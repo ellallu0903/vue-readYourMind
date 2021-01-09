@@ -283,6 +283,11 @@ a:hover {
           transform: scale(1.1);
 }
 
+.nav_backStage {
+  background-color: #f17c67;
+  color: #ebe9e8;
+}
+
 /* footer --------------------------------------- */
 footer {
   width: 100%;

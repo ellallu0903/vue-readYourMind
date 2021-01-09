@@ -40,7 +40,7 @@
                   </div>
               </b-step-item> -->
               <b-step-item
-              step="1"
+              icon="account-heart-outline"
               label="註冊帳號" :clickable="isStepsClickable"
               class="p-4">
                   <h1 class="is-size-4 has-text-weight-semibold">
@@ -52,9 +52,13 @@
                   <b-button @click="toReg()" class="btn_enter">
                     前去註冊
                   </b-button>
+                  <br>
+                  <div class="mt-2">
+                    <a href=""><small>已有帳號？登入吧！</small></a>
+                  </div>
               </b-step-item>
               <b-step-item
-              step="2"
+              icon="heart-settings-outline"
               label="開始測驗" :clickable="isStepsClickable"
               class="p-4">
                   <h1 class="is-size-4 has-text-weight-semibold">
@@ -68,7 +72,7 @@
                   </b-button>
               </b-step-item>
               <b-step-item
-              step="3"
+              icon="folder-heart-outline"
               label="檢測結果" :clickable="isStepsClickable"
               class="p-4">
                   <h1 class="is-size-4 has-text-weight-semibold">

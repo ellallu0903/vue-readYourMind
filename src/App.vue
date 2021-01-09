@@ -26,7 +26,7 @@
         </b-navbar-item>
         <b-navbar-item
           tag="router-link"
-          class="mx-5"
+          class="mx-5 nav_backStage"
           v-if="user.authority === '管理者'"
           to="/backstage"
         >
