@@ -12,7 +12,7 @@ const userSchema = new Schema(
       unique: 'true',
       // 自訂驗證規則
       validate: {
-        validator (value) {
+        validator(value) {
           return validator.isEmail(value)
         },
         // 錯誤訊息
@@ -36,7 +36,7 @@ const userSchema = new Schema(
       required: [true, '請選擇代表角色。']
     },
     authority: {
-      type: Boolean
+      type: String
     }
   },
   {
