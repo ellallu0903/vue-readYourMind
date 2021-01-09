@@ -1,5 +1,5 @@
 <template>
-  <div id="app" style="background:#E9B8AC;">
+  <div id="app">
     <b-navbar centered spaced shadow>
       <template slot="brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }" class="py-0">
@@ -11,9 +11,9 @@
           首頁
         </b-navbar-item>
         <b-navbar-item tag="router-link" class="mx-5" to="/about">
-          使用說明
+          關於讀心
         </b-navbar-item>
-        <b-navbar-dropdown collapsible label="心理測驗" class="mx-5">
+        <b-navbar-dropdown hoverable label="心理測驗" class="mx-5 is-hoverable">
           <b-navbar-item tag="router-link" to="/test">
             人際依附風格
           </b-navbar-item>
@@ -41,25 +41,25 @@
         >
           <img
             v-if="user.avator === 'bear'"
-            class="image is-60x60"
+            class="image is-55x55"
             src="./assets/images/avator/bear.png"
             alt="Your avator."
           />
           <img
             v-if="user.avator === 'fox'"
-            class="image is-60x60"
+            class="image is-55x55"
             src="./assets/images/avator/fox.png"
             alt="Your avator."
           />
           <img
             v-if="user.avator === 'deer'"
-            class="image is-60x60"
+            class="image is-55x55"
             src="./assets/images/avator/deer.png"
             alt="Your avator."
           />
           <img
             v-if="user.avator === 'owl'"
-            class="image is-60x60"
+            class="image is-55x55"
             src="./assets/images/avator/owl.png"
             alt="Your avator."
           />
@@ -122,6 +122,9 @@ export default {
     }
   },
   methods: {
+    toTest() {
+      this.$router.push('/test')
+    },
     toPersonalPage() {
       this.$router.push('/personal')
     },

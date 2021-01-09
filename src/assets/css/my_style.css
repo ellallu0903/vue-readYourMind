@@ -19,12 +19,16 @@ a:hover {
   font-weight: 500;
 }
 
+.color_primaryColor01 {
+  color: #f17c67;
+}
+
 .color_mindColor5 {
   color: #ebe9e8;
 }
 
 .has-text-primary {
-  color: #dbdbdb !important;
+  color: #ebe9e8 !important;
 }
 
 .h-50 {
@@ -55,9 +59,9 @@ a:hover {
   width: 100%;
 }
 
-.image.is-60x60 {
-  height: 60px;
-  width: 60px;
+.image.is-55x55 {
+  height: 55px;
+  width: 55px;
 }
 
 .one_page_h {
@@ -320,7 +324,7 @@ footer p {
 
 /* about&step --------------------------------------------- */
 .bg_about {
-  background-color: #d4cfca;
+  background-color: #ebe9e8;
 }
 
 .box_about {
@@ -413,7 +417,7 @@ footer p {
 
 /* knowledge -------------------------------------- */
 .bg_knowledge {
-  background-color: #aea79c;
+  background-color: #ebe9e8;
 }
 
 .box_knowledge {
@@ -621,9 +625,6 @@ footer p {
 }
 
 @media all and (min-width: 1024px) {
-  .navbar.is-spaced {
-    padding: 0.875rem 2rem;
-  }
   .one_page_h {
     height: calc(100vh - 3rem - 88px);
   }

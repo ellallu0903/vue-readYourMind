@@ -28,18 +28,18 @@
         </b-table-column>
         <b-table-column field="edit" label="編輯" width="150" v-slot="props">
           <div>
-            <button class="btn_enter btn_back_size mr-2" v-if="!props.row.edit"  @click="edit(props)">
+            <button class="btn_cancel btn_back_size mr-2" v-if="!props.row.edit"  @click="edit(props)">
               <b-icon icon="pencil-outline"></b-icon>
             </button>
-            <button class="btn_cancel btn_back_size" v-if="!props.row.edit" @click="del(props, props.index)">
+            <button class="btn_trash btn_back_size" v-if="!props.row.edit" @click="del(props, props.index)">
               <b-icon icon="trash-can-outline"></b-icon>
             </button>
           </div>
           <div>
-            <button class="btn_enter btn_back_size mr-2" v-if="props.row.edit" @click="save(props)">
+            <button class="btn_cancel btn_back_size mr-2" v-if="props.row.edit" @click="save(props)">
               <b-icon icon="content-save"></b-icon>
             </button>
-            <button class="btn_cancel btn_back_size" v-if="props.row.edit" @click="cancel(props)">
+            <button class="btn_trash btn_back_size" v-if="props.row.edit" @click="cancel(props)">
               <b-icon icon="close-outline"></b-icon>
             </button>
           </div>
