@@ -12,7 +12,8 @@ $mindColor2: #8a8174;
 $mindColor3: #aea79c;
 $mindColor4: #d4cfca;
 $mindColor5: #ebe9e8;
-$dangerColor: #a02e0d;
+$dangerColor: #ca2913;
+$addColor: #76848f;
 // shadow
 $primayShadow: 0 0 5px rgb(241, 124, 103);
 // border-radius
@@ -76,6 +77,11 @@ a:hover {
   width: 100%;
 }
 
+.image.is-60x60 {
+  height: 60px;
+  width: 60px;
+}
+
 .one_page_h {
   height: calc(100vh - 3rem - 52px);
 }
@@ -91,8 +97,12 @@ a:hover {
   font-weight: 500;
 }
 
-.fixed {
+.position_fixed {
   position: fixed;
+}
+
+.position_relative {
+  position: relative;
 }
 
 /* alert_style ------------------------------- */
@@ -165,6 +175,44 @@ a:hover {
   color: $mindColor3;
 }
 
+.btn_trash {
+  border-radius: $btnRadius;
+  background-color: $dangerColor;
+  border: 1px solid $mindColor4;
+  color: $mindColor5;
+  cursor: pointer;
+}
+
+.btn_trash:hover {
+  color: $mindColor5;
+  background: rgba($color: $dangerColor, $alpha: 0.8);
+  border: 1px solid $mindColor4;
+  transform: scale(1.08);
+}
+
+.btn_trash:focus {
+  color: $mindColor3;
+}
+
+.btn_edit {
+  border-radius: $btnRadius;
+  background-color: $mindColor5;
+  border: 1px solid $mindColor4;
+  color: $mindColor2;
+  cursor: pointer;
+}
+
+.btn_edit:hover {
+  color: $mindColor3;
+  background: rgba($color: $mindColor5, $alpha: 0.8);
+  border: 1px solid $mindColor4;
+  transform: scale(1.08);
+}
+
+.btn_edit:focus {
+  color: $mindColor3;
+}
+
 .btn_back_size {
   width: 2.5rem;
   height: 2.5rem;
@@ -224,9 +272,9 @@ a:hover {
   color: $primaryColor01;
 }
 
-.nav_avator {
-  height: 100%;
-  width: 100%;
+.nav_avator:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 /* footer --------------------------------------- */
@@ -236,11 +284,14 @@ footer {
   // left: 0;
   width: 100%;
   height: 3rem;
-  background-color: $mindColor2;
 }
 
 footer p {
   line-height: 3rem;
+}
+
+.footer {
+  background-color: $primaryColor01;
 }
 
 /* home.vue ----------------------------------------------- */
@@ -374,14 +425,15 @@ footer p {
 }
 
 .box_per_result {
-  background: $primaryColor02;
+  background: $mindColor5;
+  border-radius: $boxRadius;
 }
 
-.btn_per_edit {
-  background-color: transparent;
-  color: $primaryColor01;
-  border: none;
-}
+// .btn_per_edit {
+//   background-color: transparent;
+//   color: $primaryColor01;
+//   border: none;
+// }
 
 /* backStage-sidebar -------------------------------------------------- */
 .sidebar-page {
@@ -468,21 +520,21 @@ footer p {
   }
 
   .btn_member_add {
-    background-color: $primaryColor01;
-    width: 55px;
-    height: 55px;
+    background-color: $addColor;
+    width: 65px;
+    height: 65px;
     border-color: transparent;
     border-radius: 50%;
     color: #fff;
     position: fixed;
-    bottom: 15%;
+    bottom: 7%;
     right: 1%;
     &:hover {
-      background-color: rgba($color: $primaryColor01, $alpha: 0.8);
+      background-color: rgba($color: $addColor, $alpha: 0.8);
       transform: scale(1.1);
     }
     &:focus:not(:active) {
-      box-shadow: 0 0 5px rgba($color: $primaryColor01, $alpha: 0.8);
+      box-shadow: 0 0 5px rgba($color: $addColor, $alpha: 0.8);
     }
   }
 }
@@ -492,6 +544,14 @@ footer p {
 }
 
 /* media Queries ------------------------------------------- */
+
+@media screen and (max-width: 768px) {
+  .nav_avator:hover {
+    cursor: pointer;
+    transform: none;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .back_add_box {
     width: 95%;
@@ -562,6 +622,10 @@ footer p {
 // 導覽列 ⇆ 漢堡
 // min-width: 1024px
 @media all and (min-width: 1024px) {
+  .navbar.is-spaced {
+    padding: 0.875rem 2rem;
+  }
+
   .one_page_h {
     height: calc(100vh - 3rem - 88px);
   }

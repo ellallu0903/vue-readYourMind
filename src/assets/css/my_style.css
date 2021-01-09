@@ -55,6 +55,11 @@ a:hover {
   width: 100%;
 }
 
+.image.is-60x60 {
+  height: 60px;
+  width: 60px;
+}
+
 .one_page_h {
   height: calc(100vh - 3rem - 52px);
 }
@@ -70,8 +75,12 @@ a:hover {
   font-weight: 500;
 }
 
-.fixed {
+.position_fixed {
   position: fixed;
+}
+
+.position_relative {
+  position: relative;
 }
 
 /* alert_style ------------------------------- */
@@ -161,6 +170,46 @@ a:hover {
   color: #aea79c;
 }
 
+.btn_trash {
+  border-radius: 7px;
+  background-color: #ca2913;
+  border: 1px solid #d4cfca;
+  color: #ebe9e8;
+  cursor: pointer;
+}
+
+.btn_trash:hover {
+  color: #ebe9e8;
+  background: rgba(202, 41, 19, 0.8);
+  border: 1px solid #d4cfca;
+  -webkit-transform: scale(1.08);
+          transform: scale(1.08);
+}
+
+.btn_trash:focus {
+  color: #aea79c;
+}
+
+.btn_edit {
+  border-radius: 7px;
+  background-color: #ebe9e8;
+  border: 1px solid #d4cfca;
+  color: #8a8174;
+  cursor: pointer;
+}
+
+.btn_edit:hover {
+  color: #aea79c;
+  background: rgba(235, 233, 232, 0.8);
+  border: 1px solid #d4cfca;
+  -webkit-transform: scale(1.08);
+          transform: scale(1.08);
+}
+
+.btn_edit:focus {
+  color: #aea79c;
+}
+
 .btn_back_size {
   width: 2.5rem;
   height: 2.5rem;
@@ -224,20 +273,24 @@ a:hover {
   color: #f17c67;
 }
 
-.nav_avator {
-  height: 100%;
-  width: 100%;
+.nav_avator:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 /* footer --------------------------------------- */
 footer {
   width: 100%;
   height: 3rem;
-  background-color: #8a8174;
 }
 
 footer p {
   line-height: 3rem;
+}
+
+.footer {
+  background-color: #f17c67;
 }
 
 /* home.vue ----------------------------------------------- */
@@ -388,13 +441,8 @@ footer p {
 }
 
 .box_per_result {
-  background: #ffa392;
-}
-
-.btn_per_edit {
-  background-color: transparent;
-  color: #f17c67;
-  border: none;
+  background: #ebe9e8;
+  border-radius: 1.5rem;
 }
 
 /* backStage-sidebar -------------------------------------------------- */
@@ -491,26 +539,26 @@ footer p {
 }
 
 #backMember .btn_member_add {
-  background-color: #f17c67;
-  width: 55px;
-  height: 55px;
+  background-color: #76848f;
+  width: 65px;
+  height: 65px;
   border-color: transparent;
   border-radius: 50%;
   color: #fff;
   position: fixed;
-  bottom: 15%;
+  bottom: 7%;
   right: 1%;
 }
 
 #backMember .btn_member_add:hover {
-  background-color: rgba(241, 124, 103, 0.8);
+  background-color: rgba(118, 132, 143, 0.8);
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
 
 #backMember .btn_member_add:focus:not(:active) {
-  -webkit-box-shadow: 0 0 5px rgba(241, 124, 103, 0.8);
-          box-shadow: 0 0 5px rgba(241, 124, 103, 0.8);
+  -webkit-box-shadow: 0 0 5px rgba(118, 132, 143, 0.8);
+          box-shadow: 0 0 5px rgba(118, 132, 143, 0.8);
 }
 
 .add_modal_size {
@@ -518,6 +566,14 @@ footer p {
 }
 
 /* media Queries ------------------------------------------- */
+@media screen and (max-width: 768px) {
+  .nav_avator:hover {
+    cursor: pointer;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .back_add_box {
     width: 95%;
@@ -565,6 +621,9 @@ footer p {
 }
 
 @media all and (min-width: 1024px) {
+  .navbar.is-spaced {
+    padding: 0.875rem 2rem;
+  }
   .one_page_h {
     height: calc(100vh - 3rem - 88px);
   }

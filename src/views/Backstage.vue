@@ -1,57 +1,82 @@
 <template>
   <div id="backStage" class="one_page_min_h">
     <div class="sidebar-page">
-        <section class="sidebar-layout">
-            <b-sidebar
-                position="static"
-                :mobile="mobile"
-                :expand-on-hover="expandOnHover"
-                :reduce="reduce"
-                type="h-100"
-                open
-            >
-                <div class="p-3">
-                    <b-menu class="is-custom-mobile">
-                        <b-menu-list label="Menu">
-                            <b-menu-item active expanded icon="heart-settings-outline" label="前台內容管理">
-                                <b-menu-item icon="information"
-                                label="使用說明"
-                                to="/backstage/about" tag="router-link"></b-menu-item>
-                                <b-menu-item icon="notebook"
-                                to="/backstage/test" tag="router-link" label="心理測驗">
-                                </b-menu-item>
-                                <b-menu-item icon="help-circle"
-                                to="/backstage/knowledge" tag="router-link" label="小知識"></b-menu-item>
-                            </b-menu-item>
-                            <b-menu-item icon="account" to="/backstage/member" tag="router-link" label="會員管理">
-                            </b-menu-item>
-                        </b-menu-list>
-                        <br>
-                        <br>
-                        <b-menu-list label="Actions">
-                            <b-menu-item icon="logout" label="Logout" @click="logout"></b-menu-item>
-                        </b-menu-list>
-                    </b-menu>
-                </div>
-            </b-sidebar>
-            <div class="bg_back">
-              <router-view/>
-            </div>
-            <div id="go_top_page" class="btn_to_top_bg is-flex is-justify-content-center is-align-items-center">
+      <section class="sidebar-layout">
+        <b-sidebar
+          position="static"
+          :mobile="mobile"
+          :expand-on-hover="expandOnHover"
+          :reduce="reduce"
+          type="h-100"
+          open
+        >
+          <div class="p-3">
+            <b-menu class="is-custom-mobile">
+              <b-menu-list label="Menu">
+                <b-menu-item
+                  active
+                  expanded
+                  icon="heart-settings-outline"
+                  label="前台內容管理"
+                >
+                  <!-- <b-menu-item
+                    icon="information"
+                    label="使用說明"
+                    to="/backstage/about"
+                    tag="router-link"
+                  ></b-menu-item> -->
+                  <b-menu-item
+                    icon="notebook"
+                    to="/backstage/test"
+                    tag="router-link"
+                    label="心理測驗"
+                  >
+                  </b-menu-item>
+                  <b-menu-item
+                    icon="help-circle"
+                    to="/backstage/knowledge"
+                    tag="router-link"
+                    label="小知識"
+                  ></b-menu-item>
+                </b-menu-item>
+                <b-menu-item
+                  icon="account"
+                  to="/backstage/member"
+                  tag="router-link"
+                  label="會員管理"
+                >
+                </b-menu-item>
+              </b-menu-list>
+              <br />
+              <br />
+              <b-menu-list label="Actions">
+                <b-menu-item
+                  icon="logout"
+                  label="Logout"
+                  @click="logout"
+                ></b-menu-item>
+              </b-menu-list>
+            </b-menu>
+          </div>
+        </b-sidebar>
+        <div class="bg_back">
+          <router-view />
+        </div>
+        <!-- <div id="go_top_page" class="btn_to_top_bg is-flex is-justify-content-center is-align-items-center">
               <a href="#">
                 <b-icon icon="arrow-up-drop-circle"
                 size="is-large"
                 class="animate__animated animate__fadeIn animate__infinite animate__slower"></b-icon>
               </a>
-            </div>
-        </section>
+            </div> -->
+      </section>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       // sidebar
       expandOnHover: false,
@@ -61,8 +86,9 @@ export default {
     }
   },
   methods: {
-    logout () {
-      this.axios.delete(process.env.VUE_APP_API + '/users/logout')
+    logout() {
+      this.axios
+        .delete(process.env.VUE_APP_API + '/users/logout')
         .then(res => {
           // 如果登出成功
           if (res.data.success) {

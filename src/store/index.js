@@ -10,19 +10,19 @@ export default new Vuex.Store({
       email: '',
       name: '',
       avator: '',
-      authority: true,
+      authority: '',
       id: ''
     }
   },
   mutations: {
-    logout (state) {
+    logout(state) {
       state.user.name = ''
       state.user.email = ''
       state.user.id = ''
       state.user.avator = ''
-      state.user.authority = false
+      state.user.authority = ''
     },
-    login (state, data) {
+    login(state, data) {
       state.user.name = data.name
       state.user.email = data.email
       state.user.id = data._id
@@ -30,9 +30,7 @@ export default new Vuex.Store({
       state.user.authority = data.authority
     }
   },
-  actions: {
-  },
-  modules: {
-  },
+  actions: {},
+  modules: {},
   plugins: [Persistedstate()]
 })
