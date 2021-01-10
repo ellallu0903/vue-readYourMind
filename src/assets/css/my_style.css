@@ -28,7 +28,7 @@ a:hover {
 }
 
 .has-text-primary {
-  color: #ebe9e8 !important;
+  color: white !important;
 }
 
 .h-50 {
@@ -285,7 +285,7 @@ a:hover {
 
 .nav_backStage {
   background-color: #f17c67;
-  color: #ebe9e8;
+  color: white;
 }
 
 /* footer --------------------------------------- */
@@ -531,6 +531,53 @@ footer p {
   color: #ebe9e8;
 }
 
+/* backKnowledge ------------------ */
+#backKnowledge .btn_Knowledge_add {
+  background-color: #81c7d4;
+  width: 65px;
+  height: 65px;
+  border-color: transparent;
+  border-radius: 50%;
+  color: #fff;
+  position: fixed;
+  bottom: 17%;
+  right: 1%;
+}
+
+#backKnowledge .btn_Knowledge_add:hover {
+  background-color: rgba(129, 199, 212, 0.8);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+#backKnowledge .btn_Knowledge_add:focus:not(:active) {
+  -webkit-box-shadow: 0 0 5px rgba(129, 199, 212, 0.8);
+          box-shadow: 0 0 5px rgba(129, 199, 212, 0.8);
+}
+
+#backKnowledge .btn_Knowledge_pre {
+  background-color: #77969a;
+  width: 65px;
+  height: 65px;
+  border-color: transparent;
+  border-radius: 50%;
+  color: #fff;
+  position: fixed;
+  bottom: 7%;
+  right: 1%;
+}
+
+#backKnowledge .btn_Knowledge_pre:hover {
+  background-color: rgba(119, 150, 154, 0.8);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+#backKnowledge .btn_Knowledge_pre:focus:not(:active) {
+  -webkit-box-shadow: 0 0 5px rgba(119, 150, 154, 0.8);
+          box-shadow: 0 0 5px rgba(119, 150, 154, 0.8);
+}
+
 /* backMember---------------------- */
 #backMember .button.is-primary {
   background-color: #8a8174;
@@ -548,7 +595,7 @@ footer p {
 }
 
 #backMember .btn_member_add {
-  background-color: #76848f;
+  background-color: #81c7d4;
   width: 65px;
   height: 65px;
   border-color: transparent;
@@ -560,14 +607,14 @@ footer p {
 }
 
 #backMember .btn_member_add:hover {
-  background-color: rgba(118, 132, 143, 0.8);
+  background-color: rgba(129, 199, 212, 0.8);
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
 
 #backMember .btn_member_add:focus:not(:active) {
-  -webkit-box-shadow: 0 0 5px rgba(118, 132, 143, 0.8);
-          box-shadow: 0 0 5px rgba(118, 132, 143, 0.8);
+  -webkit-box-shadow: 0 0 5px rgba(129, 199, 212, 0.8);
+          box-shadow: 0 0 5px rgba(129, 199, 212, 0.8);
 }
 
 .add_modal_size {

@@ -128,7 +128,7 @@
           </b-radio>
           <div v-else>{{ props.row.authority }}</div>
         </b-table-column>
-        <b-table-column field="edit" label="編輯" width="150" v-slot="props">
+        <b-table-column field="edit" label="編輯" width="200" v-slot="props">
           <div>
             <button
               class="btn_cancel btn_back_size mr-2"

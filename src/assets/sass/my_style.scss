@@ -13,7 +13,8 @@ $mindColor3: #aea79c;
 $mindColor4: #d4cfca;
 $mindColor5: #ebe9e8;
 $dangerColor: #ca2913;
-$addColor: #76848f;
+$addColor: #81c7d4;
+$preColor: #77969a;
 // shadow
 $primayShadow: 0 0 5px rgb(241, 124, 103);
 // border-radius
@@ -50,7 +51,7 @@ a:hover {
 }
 
 .has-text-primary {
-  color: $mindColor5 !important;
+  color: white !important;
 }
 
 .h-50 {
@@ -283,7 +284,7 @@ a:hover {
 
 .nav_backStage {
   background-color: $primaryColor01;
-  color: $mindColor5;
+  color: white;
 }
 /* footer --------------------------------------- */
 footer {
@@ -510,6 +511,47 @@ footer p {
 #back_add_title label,
 #back_add_content label {
   color: $mindColor5;
+}
+
+/* backKnowledge ------------------ */
+#backKnowledge {
+  .btn_Knowledge_add {
+    background-color: $addColor;
+    width: 65px;
+    height: 65px;
+    border-color: transparent;
+    border-radius: 50%;
+    color: #fff;
+    position: fixed;
+    bottom: 17%;
+    right: 1%;
+    &:hover {
+      background-color: rgba($color: $addColor, $alpha: 0.8);
+      transform: scale(1.1);
+    }
+    &:focus:not(:active) {
+      box-shadow: 0 0 5px rgba($color: $addColor, $alpha: 0.8);
+    }
+  }
+
+  .btn_Knowledge_pre {
+    background-color: $preColor;
+    width: 65px;
+    height: 65px;
+    border-color: transparent;
+    border-radius: 50%;
+    color: #fff;
+    position: fixed;
+    bottom: 7%;
+    right: 1%;
+    &:hover {
+      background-color: rgba($color: $preColor, $alpha: 0.8);
+      transform: scale(1.1);
+    }
+    &:focus:not(:active) {
+      box-shadow: 0 0 5px rgba($color: $preColor, $alpha: 0.8);
+    }
+  }
 }
 
 /* backMember---------------------- */

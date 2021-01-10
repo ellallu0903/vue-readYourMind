@@ -22,11 +22,11 @@
           <b-input v-model="props.row.model01" v-if="props.row.edit"></b-input>
           <h1 v-else>{{ props.row.title }}</h1>
         </b-table-column>
-        <b-table-column field="content" label="內容" width="900" v-slot="props">
+        <b-table-column field="content" label="內容" width="800" v-slot="props">
           <b-input v-model="props.row.model02" v-if="props.row.edit"></b-input>
           <div v-else>{{ props.row.content }}</div>
         </b-table-column>
-        <b-table-column field="edit" label="編輯" width="150" v-slot="props">
+        <b-table-column field="edit" label="編輯" width="200" v-slot="props">
           <div>
             <button class="btn_cancel btn_back_size mr-2" v-if="!props.row.edit"  @click="edit(props)">
               <b-icon icon="pencil-outline"></b-icon>
@@ -45,72 +45,120 @@
           </div>
         </b-table-column>
       </b-table>
-      <hr>
-      <form @submit.prevent="onSubmit"  @reset="onReset">
-        <div class="columns">
-          <div class="column is-flex is-justify-content-center is-flex-direction-column">
-            <div class="back_pre_box backAbout_pre_box_h is-flex is-flex-direction-column h-100">
-              <div class="is-size-4 has-text-centered mb-2">預覽</div>
-                <section>
-                  <b-collapse
-                    class="card"
-                    animation="slide"
-                    v-for="(knowledge, index) of knowledges"
-                    :key="index"
-                    :open="isOpen == index"
-                    @open="isOpen = index">
-                    <div
-                      slot="trigger"
-                      slot-scope="props"
-                      class="card-header"
-                      role="button">
-                      <p class="card-header-title">
-                        {{ knowledge.title }}
-                      </p>
-                      <a class="card-header-icon">
-                          <b-icon
-                            :icon="props.open ? 'menu-down' :'menu-up'">
-                          </b-icon>
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <div class="content">
-                          {{ knowledge.content }}
-                        </div>
-                    </div>
-                  </b-collapse>
-              </section>
-            </div>
-          </div>
-          <div class="column">
-            <div class="w-100 back_add_box is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
-              <div class="is-size-4 has-text-centered">新增</div>
-              <b-field id="back_add_title" label="標題" class="w-75">
-                <b-input v-model="title"
+      <!-- knowledge_add_modal -->
+      <b-button
+        type="btn_Knowledge_add is-flex is-justify-content-center is-align-items-center"
+        @click="addModalActive = true"
+      >
+        <b-icon
+          class="animate__animated animate__pulse animate__infinite animate__slow"
+          icon="comment-plus"
+        >
+        </b-icon>
+      </b-button>
+      <b-modal :active.sync="addModalActive">
+        <form
+          @submit.prevent="onSubmit"
+          @reset="onReset"
+          class="is-flex is-justify-content-center is-align-items-center">
+          <div class="modal-card add_modal_size">
+            <header class="modal-card-head">
+              <p class="modal-card-title">新增</p>
+              <button
+                type="button"
+                class="delete"
+                @click="addModalActive = false"
+              />
+            </header>
+            <section class="modal-card-body px-6 py-5">
+              <b-field label="標題：">
+                <b-input
                   type="text"
+                  v-model="title"
+                  placeholder="Please enter title . . ."
                   required
                   validation-message="請輸入標題。"
-                  placeholder="Please enter title . . .">
+                >
                 </b-input>
               </b-field>
-              <b-field id="back_add_content" label="內容" class="w-75">
-                <b-input type="textarea"
+
+              <b-field label="內容：" class="mb-0">
+                <b-input
+                  type="textarea"
                   v-model="content"
+                  placeholder="Please enter content . . ."
+                  required
                   minlength="1"
                   maxlength="200"
-                  required
                   validation-message="請輸入內容。"
-                  placeholder="Please enter content . . .">
+                >
                 </b-input>
               </b-field>
-              <div class="buttons">
-                <button type="submit" class="button btn_enter mr-2">送出</button>
-                <button type="reset" class="button btn_cancel">重置</button>
-              </div>
-            </div>
+            </section>
+            <footer
+              class="modal-card-foot is-justify-content-center is-align-items-center"
+            >
+              <button type="submit" class="button btn_enter">新增</button>
+              <button type="reset" class="button btn_cancel">重置</button>
+            </footer>
+          </div>
+          </form>
+      </b-modal>
+
+      <!-- knowledge_preview -->
+      <b-button
+        type="btn_Knowledge_pre is-flex is-justify-content-center is-align-items-center"
+        @click="preModalActive = true"
+      >
+        <b-icon
+          class="animate__animated animate__pulse animate__infinite animate__slow"
+          icon="comment-eye-outline"
+        >
+        </b-icon>
+      </b-button>
+      <b-modal :active.sync="preModalActive">
+        <div class="is-flex is-justify-content-center is-align-items-center">
+          <div class="modal-card add_modal_size ">
+            <header class="modal-card-head">
+              <p class="modal-card-title">預覽</p>
+                <button
+                  type="button"
+                  class="delete"
+                  @click="preModalActive = false"
+                />
+            </header>
+            <section class="modal-card-body px-6 py-5">
+              <b-collapse
+                class="card"
+                animation="slide"
+                v-for="(knowledge, index) of knowledges"
+                :key="index"
+                :open="isOpen == index"
+                @open="isOpen = index">
+                <div
+                  slot="trigger"
+                  slot-scope="props"
+                  class="card-header"
+                  role="button">
+                  <p class="card-header-title">
+                    {{ knowledge.title }}
+                  </p>
+                  <a class="card-header-icon">
+                      <b-icon
+                        :icon="props.open ? 'menu-down' :'menu-up'">
+                      </b-icon>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <div class="content">
+                      {{ knowledge.content }}
+                    </div>
+                </div>
+              </b-collapse>
+            </section>
           </div>
         </div>
-      </form>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -125,7 +173,10 @@ export default {
       content: '',
       knowledges: [],
       // collapse
-      isOpen: -1
+      isOpen: -1,
+      // add_modal & pre_modal
+      addModalActive: false,
+      preModalActive: false
     }
   },
   methods: {
@@ -141,8 +192,7 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
-            this.title = ''
-            this.content = ''
+            this.addModalActive = false
           } else {
             this.$buefy.dialog.alert({
               title: 'Error!',
