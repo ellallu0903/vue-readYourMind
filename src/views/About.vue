@@ -53,8 +53,8 @@
                     前去註冊
                   </b-button>
                   <br>
-                  <div class="mt-2">
-                    <a href=""><small>已有帳號？登入吧！</small></a>
+                  <div class="mt-2" @click="toLogIn()">
+                    <a><small>已有帳號？登入吧！</small></a>
                   </div>
               </b-step-item>
               <b-step-item
@@ -167,6 +167,19 @@ export default {
     },
     toTest() {
       this.$router.push('/test')
+    },
+    toLogIn() {
+      if (this.user.id.length === 0) {
+        this.$router.push('/login')
+      } else {
+        this.$buefy.dialog.alert({
+          title: 'Awww!',
+          message: '你已經登入囉！',
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'account-heart-outline'
+        })
+      }
     }
   },
   mounted () {
