@@ -10,6 +10,12 @@
       </nav>
       <b-table
         :data="knowledges"
+        :paginated="isPaginated"
+        :per-page="perPage"
+        :current-page.sync="currentPage"
+        :pagination-simple="isPaginationSimple"
+        :pagination-position="paginationPosition"
+        :pagination-rounded="isPaginationRounded"
         striped
         hoverable
         :mobile-cards="hasMobileCards"
@@ -176,7 +182,14 @@ export default {
       isOpen: -1,
       // add_modal & pre_modal
       addModalActive: false,
-      preModalActive: false
+      preModalActive: false,
+      // page
+      isPaginated: true,
+      isPaginationSimple: false,
+      isPaginationRounded: false,
+      paginationPosition: 'bottom',
+      currentPage: 1,
+      perPage: 10
     }
   },
   methods: {
@@ -192,6 +205,8 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
+            this.title = ''
+            this.content = ''
             this.addModalActive = false
           } else {
             this.$buefy.dialog.alert({

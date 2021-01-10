@@ -10,6 +10,12 @@
       </nav>
       <b-table
         :data="users"
+        :paginated="isPaginated"
+        :per-page="perPage"
+        :current-page.sync="currentPage"
+        :pagination-simple="isPaginationSimple"
+        :pagination-position="paginationPosition"
+        :pagination-rounded="isPaginationRounded"
         striped
         hoverable
         :mobile-cards="hasMobileCards"
@@ -163,6 +169,7 @@
           </div>
         </b-table-column>
       </b-table>
+
       <!-- add_modal -->
       <b-button
         type="btn_member_add is-flex is-justify-content-center is-align-items-center"
@@ -287,7 +294,14 @@ export default {
       sortIcon: 'arrow-up',
       sortIconSize: 'is-small',
       // add_modal
-      addModalActive: false
+      addModalActive: false,
+      // page
+      isPaginated: true,
+      isPaginationSimple: false,
+      isPaginationRounded: false,
+      paginationPosition: 'bottom',
+      currentPage: 1,
+      perPage: 10
     }
   },
   methods: {
@@ -304,6 +318,11 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
+            this.email = ''
+            this.password = ''
+            this.name = ''
+            this.avator = 'bear'
+            this.authority = ''
             this.addModalActive = false
           } else {
             this.$buefy.dialog.alert({
