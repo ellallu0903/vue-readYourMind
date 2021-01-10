@@ -26,7 +26,8 @@ export const registered = async (req, res) => {
         password: md5(req.body.password),
         name: req.body.name,
         avator: req.body.avator,
-        authority: req.body.authority
+        authority: req.body.authority,
+        regDate: Date.now()
       })
       res.status(200).send({ success: true, message: '' })
     }

@@ -36,7 +36,13 @@ const userSchema = new Schema(
       required: [true, '請選擇代表角色。']
     },
     authority: {
-      type: String
+      type: String,
+      default: '使用者'
+    },
+    regDate: {
+      type: Date,
+      // `Date.now()` returns the current unix timestamp as a number
+      default: Date.now
     }
   },
   {
