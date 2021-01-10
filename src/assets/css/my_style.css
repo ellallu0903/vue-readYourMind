@@ -509,6 +509,15 @@ footer p {
 }
 
 /* backStage_routeview ---------------------- */
+.level {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .back_add_box {
   background: rgba(96, 88, 75, 0.7);
   border-radius: 1.5rem;

@@ -128,7 +128,7 @@
             v-model="props.row.model05"
             v-if="props.row.edit"
             name="authority"
-            native-value=""
+            native-value="使用者"
           >
             使用者
           </b-radio>
@@ -255,11 +255,11 @@
                 <b-radio
                   v-model="authority"
                   name="authority"
-                  native-value="true"
+                  native-value="管理者"
                 >
                   管理者
                 </b-radio>
-                <b-radio v-model="authority" name="authority" native-value="">
+                <b-radio v-model="authority" name="authority" native-value="使用者">
                   使用者
                 </b-radio>
               </b-field>
@@ -287,7 +287,7 @@ export default {
       password: '',
       name: '',
       avator: 'bear',
-      authority: '',
+      authority: '使用者',
       users: [],
       // table_sorting
       defaultSortDirection: 'asc',
@@ -322,7 +322,7 @@ export default {
             this.password = ''
             this.name = ''
             this.avator = 'bear'
-            this.authority = ''
+            this.authority = '使用者'
             this.addModalActive = false
           } else {
             this.$buefy.dialog.alert({

@@ -46,7 +46,7 @@
             <div class="columns is-flex-direction-column">
               <div class="column">
                 <div class="mb-2"><b>暱稱</b></div>
-                {{ users.name }}
+                <div class="is-size-5">{{ users.name }}</div>
                 <!-- <button
                 class="btn_per_edit ml-2"
                 v-if="!users.edit"
@@ -71,11 +71,15 @@
               </div>
               <div class="column">
                 <div class="mb-2"><b>信箱</b></div>
-                {{ users.email }}
+                <div class="is-size-5">{{ users.email }}</div>
               </div>
               <div class="column">
                 <div class="mb-2"><b>密碼</b></div>
-                ******
+                <div class="is-size-5">******</div>
+              </div>
+              <div class="column">
+                <div class="mb-2"><b>加入日期</b></div>
+                <div class="is-size-5">{{ registeredDate }}</div>
               </div>
             </div>
           </div>
@@ -121,7 +125,8 @@ export default {
     return {
       users: [],
       name: '',
-      password: ''
+      password: '',
+      registeredDate: ''
     }
   },
   computed: {
@@ -189,6 +194,7 @@ export default {
       .then(res => {
         if (res.data.success) {
           this.users = res.data.result
+          this.registeredDate = this.users.regDate.substr(0, 10)
         } else {
           this.$swal({
             icon: 'error',

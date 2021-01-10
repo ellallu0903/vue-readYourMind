@@ -491,6 +491,11 @@ footer p {
 }
 
 /* backStage_routeview ---------------------- */
+.level {
+  align-items: center;
+  justify-content: center;
+}
+
 .back_add_box {
   background: rgba($color: $mindColor1, $alpha: 0.7);
   border-radius: $boxRadius;
