@@ -59,7 +59,7 @@
                   v-model="model02"
                   name="avator"
                   native-value="bear"
-                  class="column is-flex is-justify-content-center is-align-items-center is-flex-direction-column"
+                  class="column is-flex is-justify-content-center is-align-items-center is-flex-direction-column mx-0 px-0"
                 >
                   <figure class="image is-48x48 mt-2">
                     <img
@@ -72,7 +72,7 @@
                   v-model="model02"
                   name="avator"
                   native-value="fox"
-                  class="column is-flex is-justify-content-center is-align-items-center is-flex-direction-column"
+                  class="column is-flex is-justify-content-center is-align-items-center is-flex-direction-column  mx-0 px-0"
                 >
                   <figure class="image is-48x48 mt-2">
                     <img
@@ -85,7 +85,7 @@
                   v-model="model02"
                   name="avator"
                   native-value="deer"
-                  class="column is-flex is-justify-content-center is-align-items-center is-flex-direction-column"
+                  class="column is-flex is-justify-content-center is-align-items-center is-flex-direction-column  mx-0 px-0"
                 >
                   <figure class="image is-48x48 mt-2">
                     <img
@@ -98,7 +98,7 @@
                   v-model="model02"
                   name="avator"
                   native-value="owl"
-                  class="column is-flex is-justify-content-center is-align-items-center is-flex-direction-column"
+                  class="column is-flex is-justify-content-center is-align-items-center is-flex-direction-column  mx-0 px-0"
                 >
                   <figure class="image is-48x48 mt-2">
                     <img
