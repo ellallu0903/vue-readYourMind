@@ -288,6 +288,17 @@ a:hover {
   color: white;
 }
 
+.nav_backStage:hover {
+  background-color: rgba(241, 124, 103, 0.8) !important;
+  color: white !important;
+}
+
+.nav_backStage:focus {
+  background-color: transparent !important;
+  border: 1px solid #f17c67 !important;
+  color: #f17c67 !important;
+}
+
 /* footer --------------------------------------- */
 footer {
   width: 100%;
@@ -454,6 +465,16 @@ footer p {
   border-radius: 1.5rem;
 }
 
+.btn_persinal_edit {
+  background-color: transparent;
+  color: #f17c67;
+  border: none;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  cursor: pointer;
+}
+
 /* backStage-sidebar -------------------------------------------------- */
 .sidebar-page {
   display: -webkit-box;
@@ -549,7 +570,7 @@ footer p {
   border-radius: 50%;
   color: #fff;
   position: fixed;
-  bottom: 17%;
+  bottom: 12.5%;
   right: 1%;
 }
 
@@ -572,7 +593,7 @@ footer p {
   border-radius: 50%;
   color: #fff;
   position: fixed;
-  bottom: 7%;
+  bottom: 3%;
   right: 1%;
 }
 
@@ -611,7 +632,7 @@ footer p {
   border-radius: 50%;
   color: #fff;
   position: fixed;
-  bottom: 7%;
+  bottom: 3%;
   right: 1%;
 }
 
@@ -631,14 +652,6 @@ footer p {
 }
 
 /* media Queries ------------------------------------------- */
-@media screen and (max-width: 768px) {
-  .nav_avator:hover {
-    cursor: pointer;
-    -webkit-transform: none;
-            transform: none;
-  }
-}
-
 @media screen and (max-width: 767px) {
   .back_add_box {
     width: 95%;
@@ -650,6 +663,35 @@ footer p {
   }
   .backAbout_pre_box_h {
     min-height: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav_avator:hover {
+    cursor: pointer;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+@media all and (min-width: 768px) {
+  .add_modal_size {
+    width: 50%;
+  }
+  #backKnowledge .btn_Knowledge_add {
+    position: fixed;
+    bottom: 13%;
+    right: 1%;
+  }
+  #backKnowledge .btn_Knowledge_pre {
+    position: fixed;
+    bottom: 5%;
+    right: 1%;
+  }
+  #backMember .btn_member_add {
+    position: fixed;
+    bottom: 3%;
+    right: 1%;
   }
 }
 
@@ -676,12 +718,6 @@ footer p {
     background: rgba(212, 207, 202, 0.8);
     width: 100%;
     height: 100%;
-  }
-}
-
-@media all and (min-width: 768px) {
-  .add_modal_size {
-    width: 50%;
   }
 }
 

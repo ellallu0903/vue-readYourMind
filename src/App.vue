@@ -40,25 +40,25 @@
           @click="toPersonalPage()"
         >
           <img
-            v-if="user.avator === 'bear'"
+            v-if="users.avator === 'bear'"
             class="image is-55x55"
             src="./assets/images/avator/bear.png"
             alt="Your avator."
           />
           <img
-            v-if="user.avator === 'fox'"
+            v-if="users.avator === 'fox'"
             class="image is-55x55"
             src="./assets/images/avator/fox.png"
             alt="Your avator."
           />
           <img
-            v-if="user.avator === 'deer'"
+            v-if="users.avator === 'deer'"
             class="image is-55x55"
             src="./assets/images/avator/deer.png"
             alt="Your avator."
           />
           <img
-            v-if="user.avator === 'owl'"
+            v-if="users.avator === 'owl'"
             class="image is-55x55"
             src="./assets/images/avator/owl.png"
             alt="Your avator."
@@ -116,6 +116,11 @@
 <script>
 export default {
   name: 'App',
+  data() {
+    return {
+      users: []
+    }
+  },
   computed: {
     user() {
       return this.$store.state.user
@@ -216,6 +221,29 @@ export default {
     setInterval(() => {
       this.heartbeat()
     }, 5000)
+
+    this.axios
+      .get(process.env.VUE_APP_API + '/users/' + this.user.id)
+      .then(res => {
+        if (res.data.success) {
+          this.users = res.data.result
+        } else {
+          this.$swal({
+            icon: 'error',
+            title: '發生錯誤',
+            text: res.data.message
+          })
+        }
+      })
+      .catch(err => {
+        this.$buefy.dialog.alert({
+          title: 'Error!',
+          message: err.response.data.message,
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'heart-broken'
+        })
+      })
   }
 }
 </script>

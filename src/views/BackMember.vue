@@ -38,7 +38,7 @@
           searchable
           field="email"
           label="信箱"
-          width="200"
+          width="250"
           v-slot="props"
         >
           <b-input v-model="props.row.model01" v-if="props.row.edit"></b-input>
@@ -47,23 +47,12 @@
         <b-table-column
           sortable
           searchable
-          field="password"
-          label="密碼"
-          width="150"
+          field="name"
+          label="暱稱"
+          width="200"
           v-slot="props"
         >
           <b-input v-model="props.row.model02" v-if="props.row.edit"></b-input>
-          <h1 v-else>{{ props.row.password }}</h1>
-        </b-table-column>
-        <b-table-column
-          sortable
-          searchable
-          field="name"
-          label="暱稱"
-          width="150"
-          v-slot="props"
-        >
-          <b-input v-model="props.row.model03" v-if="props.row.edit"></b-input>
           <div v-else>{{ props.row.name }}</div>
         </b-table-column>
         <b-table-column
@@ -75,7 +64,7 @@
           v-slot="props"
         >
           <b-radio
-            v-model="props.row.model04"
+            v-model="props.row.model03"
             v-if="props.row.edit"
             name="avator"
             native-value="bear"
@@ -83,7 +72,7 @@
             Bear
           </b-radio>
           <b-radio
-            v-model="props.row.model04"
+            v-model="props.row.model03"
             v-if="props.row.edit"
             name="avator"
             native-value="fox"
@@ -91,7 +80,7 @@
             Fox
           </b-radio>
           <b-radio
-            v-model="props.row.model04"
+            v-model="props.row.model03"
             v-if="props.row.edit"
             name="avator"
             native-value="deer"
@@ -99,7 +88,7 @@
             Deer
           </b-radio>
           <b-radio
-            v-model="props.row.model04"
+            v-model="props.row.model03"
             v-if="props.row.edit"
             name="avator"
             native-value="owl"
@@ -117,7 +106,7 @@
           v-slot="props"
         >
           <b-radio
-            v-model="props.row.model05"
+            v-model="props.row.model04"
             v-if="props.row.edit"
             name="authority"
             native-value="管理者"
@@ -125,7 +114,7 @@
             管理者
           </b-radio>
           <b-radio
-            v-model="props.row.model05"
+            v-model="props.row.model04"
             v-if="props.row.edit"
             name="authority"
             native-value="使用者"
@@ -134,7 +123,7 @@
           </b-radio>
           <div v-else>{{ props.row.authority }}</div>
         </b-table-column>
-        <b-table-column field="edit" label="編輯" width="200" v-slot="props">
+        <b-table-column field="edit" label="編輯" width="150" v-slot="props">
           <div>
             <button
               class="btn_cancel btn_back_size mr-2"
@@ -259,7 +248,11 @@
                 >
                   管理者
                 </b-radio>
-                <b-radio v-model="authority" name="authority" native-value="使用者">
+                <b-radio
+                  v-model="authority"
+                  name="authority"
+                  native-value="使用者"
+                >
                   使用者
                 </b-radio>
               </b-field>
@@ -349,35 +342,33 @@ export default {
       this.password = ''
       this.name = ''
       this.avator = 'bear'
+      this.authority = '使用者'
     },
     // 編輯狀態 ----------------------------------------------------------
     // 取消
     cancel(props) {
       props.row.edit = false
       props.row.model01 = props.row.email
-      props.row.model02 = props.row.password
-      props.row.model03 = props.row.name
-      props.row.model04 = props.row.avator
-      props.row.model05 = props.row.authority
+      props.row.model02 = props.row.name
+      props.row.model03 = props.row.avator
+      props.row.model04 = props.row.authority
     },
     // 保存
     save(props) {
       this.axios
         .patch(process.env.VUE_APP_API + '/users/' + props.row._id, {
           email: props.row.model01,
-          password: props.row.model02,
-          name: props.row.model03,
-          avator: props.row.model04,
-          authority: props.row.model05
+          name: props.row.model02,
+          avator: props.row.model03,
+          authority: props.row.model04
         })
         .then(res => {
           if (res.data.success) {
             props.row.edit = false
             props.row.email = props.row.model01
-            props.row.password = props.row.model02
-            props.row.name = props.row.model03
-            props.row.avator = props.row.model04
-            props.row.authority = props.row.model05
+            props.row.name = props.row.model02
+            props.row.avator = props.row.model03
+            props.row.authority = props.row.model04
             this.$buefy.dialog.alert({
               title: 'Success!',
               message: '保存成功！',
@@ -386,10 +377,9 @@ export default {
               icon: 'heart-circle'
             })
             this.users[props.index].email = props.row.model01
-            this.users[props.index].password = props.row.model02
-            this.users[props.index].name = props.row.model03
-            this.users[props.index].avator = props.row.model04
-            this.users[props.index].authority = props.row.model05
+            this.users[props.index].name = props.row.model02
+            this.users[props.index].avator = props.row.model03
+            this.users[props.index].authority = props.row.model04
           } else {
             this.$buefy.dialog.alert({
               title: 'Error!',
@@ -413,10 +403,9 @@ export default {
     edit(props) {
       props.row.edit = true
       props.row.email = props.row.model01
-      props.row.password = props.row.model02
-      props.row.name = props.row.model03
-      props.row.avator = props.row.model04
-      props.row.authority = props.row.model05
+      props.row.name = props.row.model02
+      props.row.avator = props.row.model03
+      props.row.authority = props.row.model04
     },
     del(props) {
       this.axios
@@ -462,10 +451,9 @@ export default {
           this.users = res.data.result.map(user => {
             user.edit = false
             user.model01 = user.email
-            user.model02 = user.password
-            user.model03 = user.name
-            user.model04 = user.avator
-            user.model05 = user.authority
+            user.model02 = user.name
+            user.model03 = user.avator
+            user.model04 = user.authority
             return user
           })
         } else {
