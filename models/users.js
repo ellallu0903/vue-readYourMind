@@ -5,9 +5,9 @@ import validator from 'validator'
 const Schema = mongoose.Schema
 
 const testResultSchema = new Schema({
-  type: {
-    type: String,
-    required: [true, '缺少測驗類別。']
+  testData_id: {
+    type: mongoose.ObjectID,
+    ref: 'tests'
   },
   date: {
     type: Date,
@@ -17,11 +17,6 @@ const testResultSchema = new Schema({
     type: Number,
     required: [true, '缺少測驗分數。']
   }
-  // ,
-  // testData_id: {
-  //   type: mongoose.ObjectID,
-  //   ref: 'tests'
-  // }
 })
 
 const userSchema = new Schema(

@@ -7,6 +7,9 @@ const testQuestionSchema = new Schema({
     type: String,
     minlength: [1, '題目最少一個字以上。'],
     required: [true, '缺少 測驗 題目。']
+  },
+  value: {
+    type: Number
   }
 })
 
