@@ -4,6 +4,26 @@ import validator from 'validator'
 
 const Schema = mongoose.Schema
 
+const testResultSchema = new Schema({
+  type: {
+    type: String,
+    required: [true, '缺少測驗類別。']
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  scores: {
+    type: Number,
+    required: [true, '缺少測驗分數。']
+  }
+  // ,
+  // testData_id: {
+  //   type: mongoose.ObjectID,
+  //   ref: 'tests'
+  // }
+})
+
 const userSchema = new Schema(
   {
     email: {
@@ -43,6 +63,9 @@ const userSchema = new Schema(
       type: Date,
       // `Date.now()` returns the current unix timestamp as a number
       default: Date.now
+    },
+    pesonalTestResults: {
+      type: [testResultSchema]
     }
   },
   {
