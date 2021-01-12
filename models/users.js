@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 
 const testResultSchema = new Schema({
   testData_id: {
-    type: mongoose.ObjectID,
+    type: mongoose.ObjectId,
     ref: 'tests'
   },
   date: {
