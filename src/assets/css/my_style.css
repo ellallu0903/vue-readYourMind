@@ -27,6 +27,14 @@ a:hover {
   color: #ebe9e8;
 }
 
+.bg_color {
+  background-color: #ebe9e8;
+}
+
+.msg_primaryColor01 {
+  background-color: #aea79c;
+}
+
 .has-text-primary {
   color: white !important;
 }
@@ -339,10 +347,6 @@ footer p {
 }
 
 /* about&step --------------------------------------------- */
-.bg_about {
-  background-color: #ebe9e8;
-}
-
 .box_about {
   width: 100%;
 }
@@ -431,11 +435,12 @@ footer p {
   height: 50%;
 }
 
-/* knowledge -------------------------------------- */
-.bg_knowledge {
+/* testList --------------------------------------- */
+.bg_color {
   background-color: #ebe9e8;
 }
 
+/* knowledge -------------------------------------- */
 .box_knowledge {
   width: 100%;
 }
@@ -651,6 +656,22 @@ footer p {
   width: 100%;
 }
 
+/* backMentalTest --------------------------------- */
+#test_basic {
+  background-color: rgba(235, 233, 232, 0.8);
+  border-radius: 1.5rem;
+}
+
+.btn_backTest_edit {
+  background-color: transparent;
+  color: #f17c67;
+  border: none;
+  position: absolute;
+  right: 0%;
+  top: 5%;
+  cursor: pointer;
+}
+
 /* media Queries ------------------------------------------- */
 @media screen and (max-width: 767px) {
   .back_add_box {
@@ -696,6 +717,9 @@ footer p {
 }
 
 @media screen and (max-width: 1023px) {
+  #avator_block {
+    margin: 1rem 0 0.5rem 1.5rem !important;
+  }
   .b-sidebar .sidebar-content.is-mini-mobile:not(.is-mini-expand) .menu-list li a span:nth-child(2), .b-sidebar .sidebar-content.is-mini-mobile.is-mini-expand:not(:hover) .menu-list li a span:nth-child(2) {
     display: none;
   }

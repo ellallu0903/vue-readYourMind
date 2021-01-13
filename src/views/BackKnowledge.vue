@@ -20,7 +20,13 @@
         hoverable
         :mobile-cards="hasMobileCards"
       >
-        <b-table-column field="number" label="No." centered width="100" v-slot="props">
+        <b-table-column
+          field="number"
+          label="No."
+          centered
+          width="100"
+          v-slot="props"
+        >
           <h1>{{ props.index + 1 }}</h1>
         </b-table-column>
 
@@ -34,18 +40,34 @@
         </b-table-column>
         <b-table-column field="edit" label="編輯" width="200" v-slot="props">
           <div>
-            <button class="btn_cancel btn_back_size mr-2" v-if="!props.row.edit"  @click="edit(props)">
+            <button
+              class="btn_cancel btn_back_size mr-2"
+              v-if="!props.row.edit"
+              @click="edit(props)"
+            >
               <b-icon icon="pencil-outline"></b-icon>
             </button>
-            <button class="btn_trash btn_back_size" v-if="!props.row.edit" @click="del(props, props.index)">
+            <button
+              class="btn_trash btn_back_size"
+              v-if="!props.row.edit"
+              @click="del(props, props.index)"
+            >
               <b-icon icon="trash-can-outline"></b-icon>
             </button>
           </div>
           <div>
-            <button class="btn_cancel btn_back_size mr-2" v-if="props.row.edit" @click="save(props)">
+            <button
+              class="btn_cancel btn_back_size mr-2"
+              v-if="props.row.edit"
+              @click="save(props)"
+            >
               <b-icon icon="content-save"></b-icon>
             </button>
-            <button class="btn_trash btn_back_size" v-if="props.row.edit" @click="cancel(props)">
+            <button
+              class="btn_trash btn_back_size"
+              v-if="props.row.edit"
+              @click="cancel(props)"
+            >
               <b-icon icon="close-outline"></b-icon>
             </button>
           </div>
@@ -66,7 +88,8 @@
         <form
           @submit.prevent="onSubmit"
           @reset="onReset"
-          class="is-flex is-justify-content-center is-align-items-center">
+          class="is-flex is-justify-content-center is-align-items-center"
+        >
           <div class="modal-card add_modal_size">
             <header class="modal-card-head">
               <p class="modal-card-title">新增</p>
@@ -108,7 +131,7 @@
               <button type="reset" class="button btn_cancel">重置</button>
             </footer>
           </div>
-          </form>
+        </form>
       </b-modal>
 
       <!-- knowledge_preview -->
@@ -127,11 +150,11 @@
           <div class="modal-card add_modal_size ">
             <header class="modal-card-head">
               <p class="modal-card-title">預覽</p>
-                <button
-                  type="button"
-                  class="delete"
-                  @click="preModalActive = false"
-                />
+              <button
+                type="button"
+                class="delete"
+                @click="preModalActive = false"
+              />
             </header>
             <section class="modal-card-body px-6 py-5">
               <b-collapse
@@ -140,25 +163,26 @@
                 v-for="(knowledge, index) of knowledges"
                 :key="index"
                 :open="isOpen == index"
-                @open="isOpen = index">
+                @open="isOpen = index"
+              >
                 <div
                   slot="trigger"
                   slot-scope="props"
                   class="card-header"
-                  role="button">
+                  role="button"
+                >
                   <p class="card-header-title">
                     {{ knowledge.title }}
                   </p>
                   <a class="card-header-icon">
-                      <b-icon
-                        :icon="props.open ? 'menu-down' :'menu-up'">
-                      </b-icon>
-                    </a>
+                    <b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+                    </b-icon>
+                  </a>
                 </div>
                 <div class="card-content">
-                    <div class="content">
-                      {{ knowledge.content }}
-                    </div>
+                  <div class="content">
+                    {{ knowledge.content }}
+                  </div>
                 </div>
               </b-collapse>
             </section>
@@ -171,7 +195,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       // knowledge_table
       hasMobileCards: true,
@@ -194,8 +218,9 @@ export default {
   },
   methods: {
     // 提交表單，post 到後台資料庫
-    onSubmit () {
-      this.axios.post(process.env.VUE_APP_API + '/knowledges/', this.$data)
+    onSubmit() {
+      this.axios
+        .post(process.env.VUE_APP_API + '/knowledges/', this.$data)
         .then(res => {
           if (res.data.success) {
             this.$buefy.dialog.alert({
@@ -205,6 +230,7 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
+            // this.knowledges.push(res.data.result)
             this.title = ''
             this.content = ''
             this.addModalActive = false
@@ -228,20 +254,24 @@ export default {
           })
         })
     },
-    onReset () {
+    onReset() {
       this.title = ''
       this.content = ''
     },
     // 編輯狀態 ----------------------------------------------------------
     // 取消
-    cancel (props) {
+    cancel(props) {
       props.row.edit = false
       props.row.model01 = props.row.title
       props.row.model02 = props.row.content
     },
     // 保存
-    save (props) {
-      this.axios.patch(process.env.VUE_APP_API + '/knowledges/' + props.row._id, { title: props.row.model01, content: props.row.model02 })
+    save(props) {
+      this.axios
+        .patch(process.env.VUE_APP_API + '/knowledges/' + props.row._id, {
+          title: props.row.model01,
+          content: props.row.model02
+        })
         .then(res => {
           if (res.data.success) {
             props.row.edit = false
@@ -276,13 +306,14 @@ export default {
           })
         })
     },
-    edit (props) {
+    edit(props) {
       props.row.edit = true
       props.row.title = props.row.model01
       props.row.content = props.row.model02
     },
-    del (props) {
-      this.axios.delete(process.env.VUE_APP_API + '/knowledges/' + props.row._id)
+    del(props) {
+      this.axios
+        .delete(process.env.VUE_APP_API + '/knowledges/' + props.row._id)
         .then(res => {
           if (res.data.success) {
             this.$buefy.dialog.alert({
@@ -316,8 +347,9 @@ export default {
         })
     }
   },
-  mounted () {
-    this.axios.get(process.env.VUE_APP_API + '/knowledges/')
+  mounted() {
+    this.axios
+      .get(process.env.VUE_APP_API + '/knowledges/')
       .then(res => {
         if (res.data.success) {
           // .map 把陣列的內容重新組合，再加上 edit & model

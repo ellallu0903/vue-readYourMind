@@ -13,14 +13,17 @@
         <b-navbar-item tag="router-link" class="mx-5" to="/about">
           關於讀心
         </b-navbar-item>
-        <b-navbar-dropdown hoverable label="心理測驗" class="mx-5 is-hoverable">
+        <!-- <b-navbar-dropdown hoverable label="心理測驗" class="mx-5 is-hoverable">
           <b-navbar-item tag="router-link" to="/test">
-            人際依附風格
+            所有測驗
           </b-navbar-item>
           <b-navbar-item tag="router-link" to="#">
-            其他測驗
+            開始測驗
           </b-navbar-item>
-        </b-navbar-dropdown>
+        </b-navbar-dropdown> -->
+        <b-navbar-item tag="router-link" class="mx-5" to="/test">
+          心理測驗
+        </b-navbar-item>
         <b-navbar-item tag="router-link" class="mx-5" to="/knowledge">
           小知識
         </b-navbar-item>
@@ -35,30 +38,31 @@
       </template>
       <template slot="end">
         <div
+          id="avator_block"
           v-if="user.id.length > 0"
           class="mx-3 nav_avator"
           @click="toPersonalPage()"
         >
           <img
-            v-if="users.avator === 'bear'"
+            v-if="user.avator === 'bear'"
             class="image is-55x55"
             src="./assets/images/avator/bear.png"
             alt="Your avator."
           />
           <img
-            v-if="users.avator === 'fox'"
+            v-else-if="user.avator === 'fox'"
             class="image is-55x55"
             src="./assets/images/avator/fox.png"
             alt="Your avator."
           />
           <img
-            v-if="users.avator === 'deer'"
+            v-else-if="user.avator === 'deer'"
             class="image is-55x55"
             src="./assets/images/avator/deer.png"
             alt="Your avator."
           />
           <img
-            v-if="users.avator === 'owl'"
+            v-else
             class="image is-55x55"
             src="./assets/images/avator/owl.png"
             alt="Your avator."
@@ -127,11 +131,10 @@ export default {
     }
   },
   methods: {
-    toTest() {
-      this.$router.push('/test')
-    },
     toPersonalPage() {
-      this.$router.push('/personal')
+      if (this.$route.path !== '/personal') {
+        this.$router.push('/personal')
+      }
     },
     logout() {
       this.axios
@@ -221,29 +224,6 @@ export default {
     setInterval(() => {
       this.heartbeat()
     }, 5000)
-
-    this.axios
-      .get(process.env.VUE_APP_API + '/users/' + this.user.id)
-      .then(res => {
-        if (res.data.success) {
-          this.users = res.data.result
-        } else {
-          this.$swal({
-            icon: 'error',
-            title: '發生錯誤',
-            text: res.data.message
-          })
-        }
-      })
-      .catch(err => {
-        this.$buefy.dialog.alert({
-          title: 'Error!',
-          message: err.response.data.message,
-          type: 'is-danger',
-          hasIcon: true,
-          icon: 'heart-broken'
-        })
-      })
   }
 }
 </script>

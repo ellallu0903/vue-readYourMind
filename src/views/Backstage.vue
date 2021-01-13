@@ -16,7 +16,7 @@
                 <b-menu-item
                   active
                   expanded
-                  icon="heart-settings-outline"
+                  icon="heart-half-full"
                   label="前台內容管理"
                 >
                   <!-- <b-menu-item
@@ -33,7 +33,7 @@
                   >
                   </b-menu-item>
                   <b-menu-item
-                    icon="help-circle"
+                    icon="lightbulb"
                     to="/backstage/knowledge"
                     tag="router-link"
                     label="小知識"

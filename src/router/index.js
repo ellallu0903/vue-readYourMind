@@ -18,7 +18,8 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/About.vue'),
     meta: {
       title: '讀心 | 使用說明',
       login: false
@@ -26,17 +27,27 @@ const routes = [
   },
   {
     path: '/test',
+    name: 'TestList',
+    component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue'),
+    meta: {
+      title: '讀心 | 所有測驗',
+      login: false
+    }
+  },
+  {
+    path: '/test/:id',
     name: 'Test',
     component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue'),
     meta: {
-      title: '讀心 | 心理測驗',
-      login: true
+      title: '讀心 | 開始測驗',
+      login: false
     }
   },
   {
     path: '/knowledge',
     name: 'Knowledge',
-    component: () => import(/* webpackChunkName: "knowledge" */ '../views/Knowledge.vue'),
+    component: () =>
+      import(/* webpackChunkName: "knowledge" */ '../views/Knowledge.vue'),
     meta: {
       title: '讀心 | 小知識',
       login: false
@@ -45,7 +56,8 @@ const routes = [
   {
     path: '/registered',
     name: 'Registered',
-    component: () => import(/* webpackChunkName: "registered" */ '../views/Registered.vue'),
+    component: () =>
+      import(/* webpackChunkName: "registered" */ '../views/Registered.vue'),
     meta: {
       title: '讀心 | 註冊',
       login: false
@@ -54,7 +66,8 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+    component: () =>
+      import(/* webpackChunkName: "login" */ '../views/Login.vue'),
     meta: {
       title: '讀心 | 登入',
       login: false
@@ -63,7 +76,8 @@ const routes = [
   {
     path: '/personal',
     name: 'Personal',
-    component: () => import(/* webpackChunkName: "personal" */ '../views/Personal.vue'),
+    component: () =>
+      import(/* webpackChunkName: "personal" */ '../views/Personal.vue'),
     meta: {
       title: '讀心 | 個人資料',
       login: true
@@ -72,7 +86,8 @@ const routes = [
   {
     path: '/result',
     name: 'Result',
-    component: () => import(/* webpackChunkName: "result" */ '../views/Result.vue'),
+    component: () =>
+      import(/* webpackChunkName: "result" */ '../views/Result.vue'),
     meta: {
       title: '讀心 | 測驗結果',
       login: true
@@ -81,11 +96,13 @@ const routes = [
   {
     path: '/backstage',
     name: 'Backstage',
-    component: () => import(/* webpackChunkName: "backstage" */ '../views/Backstage.vue'),
+    component: () =>
+      import(/* webpackChunkName: "backstage" */ '../views/Backstage.vue'),
     children: [
       {
         path: 'about',
-        component: () => import(/* webpackChunkName: "backAbout" */ '../views/BackAbout.vue'),
+        component: () =>
+          import(/* webpackChunkName: "backAbout" */ '../views/BackAbout.vue'),
         meta: {
           title: '後台 | 使用說明',
           login: true
@@ -93,7 +110,8 @@ const routes = [
       },
       {
         path: 'test',
-        component: () => import(/* webpackChunkName: "backTest" */ '../views/BackTest.vue'),
+        component: () =>
+          import(/* webpackChunkName: "backTest" */ '../views/BackTest.vue'),
         meta: {
           title: '後台 | 心理測驗',
           login: true
@@ -101,7 +119,10 @@ const routes = [
       },
       {
         path: 'knowledge',
-        component: () => import(/* webpackChunkName: "backKnowledge" */ '../views/BackKnowledge.vue'),
+        component: () =>
+          import(
+            /* webpackChunkName: "backKnowledge" */ '../views/BackKnowledge.vue'
+          ),
         meta: {
           title: '後台 | 小知識',
           login: true
@@ -109,7 +130,10 @@ const routes = [
       },
       {
         path: 'member',
-        component: () => import(/* webpackChunkName: "backMember" */ '../views/BackMember.vue'),
+        component: () =>
+          import(
+            /* webpackChunkName: "backMember" */ '../views/BackMember.vue'
+          ),
         meta: {
           title: '後台 | 會員管理',
           login: true

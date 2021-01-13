@@ -50,6 +50,14 @@ a:hover {
   color: $mindColor5;
 }
 
+.bg_color {
+  background-color: $mindColor5;
+}
+
+.msg_primaryColor01 {
+  background-color: rgba($color: $mindColor3, $alpha: 1);
+}
+
 .has-text-primary {
   color: white !important;
 }
@@ -335,9 +343,6 @@ footer p {
 }
 
 /* about&step --------------------------------------------- */
-.bg_about {
-  background-color: $mindColor5;
-}
 
 .box_about {
   width: 100%;
@@ -415,11 +420,12 @@ footer p {
   height: 50%;
 }
 
-/* knowledge -------------------------------------- */
-.bg_knowledge {
+/* testList --------------------------------------- */
+.bg_color {
   background-color: $mindColor5;
 }
 
+/* knowledge -------------------------------------- */
 .box_knowledge {
   width: 100%;
 }
@@ -613,6 +619,22 @@ footer p {
   width: 100%;
 }
 
+/* backMentalTest --------------------------------- */
+#test_basic {
+  background-color: rgba($color: $mindColor5, $alpha: 0.8);
+  border-radius: $boxRadius;
+}
+
+.btn_backTest_edit {
+  background-color: transparent;
+  color: $primaryColor01;
+  border: none;
+  position: absolute;
+  right: 0%;
+  top: 5%;
+  cursor: pointer;
+}
+
 /* media Queries ------------------------------------------- */
 @media screen and (max-width: 767px) {
   .back_add_box {
@@ -666,6 +688,10 @@ footer p {
 }
 
 @media screen and (max-width: 1023px) {
+  #avator_block {
+    margin: 1rem 0 0.5rem 1.5rem !important;
+  }
+
   .b-sidebar {
     .sidebar-content {
       &.is-mini-mobile {
