@@ -2,14 +2,23 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
+const optionShema = new Schema({
+  option: {
+    type: String
+  },
+  optionScore: {
+    type: Number,
+    default: 0
+  }
+})
+
 const testQuestionSchema = new Schema({
   question: {
     type: String,
-    minlength: [1, '題目最少一個字以上。'],
-    required: [true, '缺少 測驗 題目。']
+    minlength: [1, '題目最少一個字以上。']
   },
-  value: {
-    type: Number
+  options: {
+    type: [optionShema]
   }
 })
 
@@ -25,7 +34,7 @@ const testSchema = new Schema(
       minlength: [1, '描述最少一個字以上。'],
       required: [true, '缺少 測驗 描述。']
     },
-    source: {
+    reference: {
       type: String,
       minlength: [1, '來源最少一個字以上。'],
       required: [true, '缺少 測驗 來源。']
@@ -34,6 +43,10 @@ const testSchema = new Schema(
       type: String,
       minlength: [1, '分類最少一個字以上。'],
       required: [true, '缺少 測驗 分類。']
+    },
+    scoringMethod: {
+      type: String,
+      required: [true, '缺少 測驗計分方式。']
     },
     questions: {
       type: [testQuestionSchema],
