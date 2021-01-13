@@ -22,11 +22,7 @@ export const testAdd = async (req, res) => {
       req.body.questions.length < 1 ||
       req.body.reference.length < 1 ||
       req.body.type.length < 1 ||
-<<<<<<< HEAD
-      req.body.type.ScoringMethod < 1
-=======
       req.body.type.scoringMethod < 1
->>>>>>> back
     ) {
       res
         .status(400)
@@ -48,11 +44,7 @@ export const testAdd = async (req, res) => {
             ]
           }
         ],
-<<<<<<< HEAD
-        ScoringMethod: req.body.ScoringMethod
-=======
         scoringMethod: req.body.scoringMethod
->>>>>>> back
       })
       res.status(200).send({ success: true, message: '' })
     }
