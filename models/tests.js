@@ -44,7 +44,11 @@ const testSchema = new Schema(
       minlength: [1, '分類最少一個字以上。'],
       required: [true, '缺少 測驗 分類。']
     },
+<<<<<<< HEAD
     ScoringMethod: {
+=======
+    scoringMethod: {
+>>>>>>> back
       type: String,
       required: [true, '缺少 測驗計分方式。']
     },

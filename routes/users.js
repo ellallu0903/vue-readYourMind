@@ -22,7 +22,11 @@ router.delete('/:id', userDelete)
 router.get('/heartbeat', heartbeat)
 router.get('/', getAllUser)
 router.get('/:id', getPersonal)
+<<<<<<< HEAD
 // 新增測驗結果
+=======
+// 使用者新增測驗結果
+>>>>>>> back
 router.patch('/result/:id', addResult)
 // 查詢測驗結果
 router.get('/result/:id', getAllResult)

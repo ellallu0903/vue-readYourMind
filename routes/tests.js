@@ -15,7 +15,11 @@ import {
 
 const router = express.Router()
 
+<<<<<<< HEAD
 // 整個測驗
+=======
+// 整個測驗 ----------------------------------
+>>>>>>> back
 router.post('/', testAdd)
 router.patch('/:id', testEdit)
 router.delete('/:id', testDelete)
