@@ -22,7 +22,10 @@ import knowledgeRoutes from './routes/knowledges.js'
 dotenv.config()
 
 // 連接資料庫 & 防止錯誤訊息
-mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DBURL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 
 const app = express()
 
@@ -30,27 +33,29 @@ const app = express()
 app.use(bodyParder.json())
 
 // 跨域設定
-app.use(cors({
-  origin (origin, callback) {
-    // 如果是 Postman 之類的後端, 則允許
-    if (origin === undefined) {
-      callback(null, true)
-    } else {
-      if (process.env.DEV === 'true') {
-        // 如果是本機開發，接受所有請求
-        callback(null, true)
-      } else if (origin.includes('github')) {
-        // 如果不是本機開發，但是是從 github 過來的請求，則允許
+app.use(
+  cors({
+    origin(origin, callback) {
+      // 如果是 Postman 之類的後端, 則允許
+      if (origin === undefined) {
         callback(null, true)
       } else {
-        // 如果不是本機開發，也不是從 github 過來的，就拒絕請求
-        callback(new Error('Not allowed'), false)
+        if (process.env.DEV === 'true') {
+          // 如果是本機開發，接受所有請求
+          callback(null, true)
+        } else if (origin.includes('github')) {
+          // 如果不是本機開發，但是是從 github 過來的請求，則允許
+          callback(null, true)
+        } else {
+          // 如果不是本機開發，也不是從 github 過來的，就拒絕請求
+          callback(new Error('Not allowed'), false)
+        }
       }
-    }
-  },
-  // 因為要做登入，所以要允許接受認證資訊
-  credentials: true
-}))
+    },
+    // 因為要做登入，所以要允許接受認證資訊
+    credentials: true
+  })
+)
 
 // 下方為固定寫法
 const MongoStore = connectMongo(session)
@@ -62,8 +67,8 @@ const sessionSettings = {
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
   // 登入有效期，單位是毫秒 ms
   cookie: {
-    // 30 分鐘
-    maxAge: 1000 * 60 * 30
+    // 60 分鐘
+    maxAge: 1000 * 60 * 60
   },
   // 是否保存未被修改的 session
   saveUninitialized: false,
