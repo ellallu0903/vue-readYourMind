@@ -21,7 +21,7 @@
             開始測驗
           </b-navbar-item>
         </b-navbar-dropdown> -->
-        <b-navbar-item tag="router-link" class="mx-5" to="/test">
+        <b-navbar-item tag="router-link" class="mx-5" to="/testList">
           心理測驗
         </b-navbar-item>
         <b-navbar-item tag="router-link" class="mx-5" to="/knowledge">
@@ -34,6 +34,9 @@
           to="/backstage"
         >
           後台管理
+        </b-navbar-item>
+        <b-navbar-item tag="router-link" class="mx-5" to="/test/000">
+          暫放：開始測驗
         </b-navbar-item>
       </template>
       <template slot="end">

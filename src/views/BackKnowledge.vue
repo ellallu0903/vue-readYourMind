@@ -147,7 +147,7 @@
       </b-button>
       <b-modal :active.sync="preModalActive">
         <div class="is-flex is-justify-content-center is-align-items-center">
-          <div class="modal-card add_modal_size ">
+          <div class="modal-card pre_modal_size ">
             <header class="modal-card-head">
               <p class="modal-card-title">預覽</p>
               <button

@@ -25,7 +25,7 @@
                 >
                   <b-icon icon="heart-cog"></b-icon>
                 </button>
-                <div class="columns">
+                <div class="columns mb-0">
                   <div class="column is-4">
                     <div class="mb-2">
                       <b>測驗名稱：</b>
@@ -156,7 +156,7 @@
               </div>
               <div id="test_question">
                 <b-table
-                  :data="tests"
+                  :data="testQuestions"
                   :paginated="isPaginated"
                   :per-page="perPage"
                   :current-page.sync="currentPage"
@@ -187,7 +187,46 @@
                       v-model="props.row.model01"
                       v-if="props.row.edit"
                     ></b-input>
-                    <h1 v-else>{{ props.row.questions }}</h1>
+                    <h1 v-else>{{ props.row.question }}</h1>
+                  </b-table-column>
+                  <b-table-column
+                    field="edit"
+                    label="編輯"
+                    width="100"
+                    v-slot="props"
+                  >
+                    <div>
+                      <button
+                        class="btn_cancel btn_back_size mr-2"
+                        v-if="!props.row.edit"
+                        @click="edit(props)"
+                      >
+                        <b-icon icon="pencil-outline"></b-icon>
+                      </button>
+                      <button
+                        class="btn_trash btn_back_size"
+                        v-if="!props.row.edit"
+                        @click="del(props, props.index)"
+                      >
+                        <b-icon icon="trash-can-outline"></b-icon>
+                      </button>
+                    </div>
+                    <div>
+                      <button
+                        class="btn_cancel btn_back_size mr-2"
+                        v-if="props.row.edit"
+                        @click="save(props)"
+                      >
+                        <b-icon icon="content-save"></b-icon>
+                      </button>
+                      <button
+                        class="btn_trash btn_back_size"
+                        v-if="props.row.edit"
+                        @click="cancel(props)"
+                      >
+                        <b-icon icon="close-outline"></b-icon>
+                      </button>
+                    </div>
                   </b-table-column>
                   <b-table-column
                     field="option"
@@ -200,7 +239,7 @@
                       v-if="props.row.edit"
                     ></b-input>
                     <div v-else>
-                      {{ props.row.questions.options }}
+                      {{ props.row.options }}
                     </div>
                   </b-table-column>
                   <b-table-column
@@ -267,6 +306,7 @@ export default {
       // add_modal
       addModalActive: false,
       // data
+      testId: '5ff9be8feaeb15ce7278b408',
       title: '',
       type: '',
       ScoringMethod: '',
@@ -275,20 +315,7 @@ export default {
       questions: '',
       options: '',
       tests: [],
-      tabs: [
-        {
-          title: '123',
-          content: '456'
-        },
-        {
-          title: '1231111',
-          content: '456'
-        },
-        {
-          title: '1233333',
-          content: '456'
-        }
-      ]
+      testQuestions: []
     }
   },
   computed: {
@@ -456,6 +483,37 @@ export default {
           hasIcon: true,
           icon: 'heart-broken'
         })
+      })
+
+    this.axios
+      .get(process.env.VUE_APP_API + '/tests/' + this.testId)
+      .then(res => {
+        if (res.data.success) {
+          // this.testQuestions = res.data.result.questions
+          // .map 把陣列的內容重新組合，再加上 edit & model
+          this.testQuestions = res.data.result.questions.map(tq => {
+            tq.edit = false
+            tq.modelQuestion = tq.question
+            // test.modelOptions = test.questions.options
+            return tq
+          })
+        } else {
+          this.$swal({
+            icon: 'error',
+            title: '發生錯誤',
+            text: res.data.message
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        // this.$buefy.dialog.alert({
+        //   title: 'Error!',
+        //   message: err.response.data.message,
+        //   type: 'is-danger',
+        //   hasIcon: true,
+        //   icon: 'heart-broken'
+        // })
       })
   }
 }

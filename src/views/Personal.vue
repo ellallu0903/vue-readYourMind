@@ -29,30 +29,32 @@
               class="columns is-flex-direction-column is-align-items-center is-mobile"
             >
               <div class="column image is-150x150">
-                <img
-                  v-if="users.avator === 'bear'"
-                  class="is-rounded"
-                  src="../assets/images/avator/bear.png"
-                  alt="Your avator."
-                />
-                <img
-                  v-else-if="users.avator === 'fox'"
-                  class="is-rounded"
-                  src="../assets/images/avator/fox.png"
-                  alt="Your avator."
-                />
-                <img
-                  v-else-if="users.avator === 'deer'"
-                  class="is-rounded"
-                  src="../assets/images/avator/deer.png"
-                  alt="Your avator."
-                />
-                <img
-                  v-else
-                  class="is-rounded"
-                  src="../assets/images/avator/owl.png"
-                  alt="Your avator."
-                />
+                <div class="box_avator">
+                  <img
+                    v-if="users.avator === 'bear'"
+                    class="is-rounded"
+                    src="../assets/images/avator/bear.png"
+                    alt="Your avator."
+                  />
+                  <img
+                    v-else-if="users.avator === 'fox'"
+                    class="is-rounded"
+                    src="../assets/images/avator/fox.png"
+                    alt="Your avator."
+                  />
+                  <img
+                    v-else-if="users.avator === 'deer'"
+                    class="is-rounded"
+                    src="../assets/images/avator/deer.png"
+                    alt="Your avator."
+                  />
+                  <img
+                    v-else
+                    class="is-rounded"
+                    src="../assets/images/avator/owl.png"
+                    alt="Your avator."
+                  />
+                </div>
               </div>
               <div v-if="!isEdit" class="column block columns is-mobile">
                 <b-radio

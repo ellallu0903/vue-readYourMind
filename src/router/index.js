@@ -21,16 +21,17 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/About.vue'),
     meta: {
-      title: '讀心 | 使用說明',
+      title: '讀心 | 關於讀心',
       login: false
     }
   },
   {
-    path: '/test',
+    path: '/testList',
     name: 'TestList',
-    component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue'),
+    component: () =>
+      import(/* webpackChunkName: "testList" */ '../views/TestList.vue'),
     meta: {
-      title: '讀心 | 所有測驗',
+      title: '讀心 | 心理測驗',
       login: false
     }
   },
@@ -80,16 +81,6 @@ const routes = [
       import(/* webpackChunkName: "personal" */ '../views/Personal.vue'),
     meta: {
       title: '讀心 | 個人資料',
-      login: true
-    }
-  },
-  {
-    path: '/result',
-    name: 'Result',
-    component: () =>
-      import(/* webpackChunkName: "result" */ '../views/Result.vue'),
-    meta: {
-      title: '讀心 | 測驗結果',
       login: true
     }
   },

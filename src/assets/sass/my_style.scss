@@ -13,8 +13,8 @@ $mindColor3: #aea79c;
 $mindColor4: #d4cfca;
 $mindColor5: #ebe9e8;
 $dangerColor: #ca2913;
-$addColor: #81c7d4;
-$preColor: #77969a;
+$addColor: #18586d;
+$preColor: #6ba3b5;
 // shadow
 $primayShadow: 0 0 5px rgb(241, 124, 103);
 // border-radius
@@ -54,10 +54,6 @@ a:hover {
   background-color: $mindColor5;
 }
 
-.msg_primaryColor01 {
-  background-color: rgba($color: $mindColor3, $alpha: 1);
-}
-
 .has-text-primary {
   color: white !important;
 }
@@ -88,6 +84,10 @@ a:hover {
 
 .w-100 {
   width: 100%;
+}
+
+.is-size-18 {
+  font-size: 18px;
 }
 
 .image.is-55x55 {
@@ -323,27 +323,26 @@ footer p {
 }
 
 /* home.vue ----------------------------------------------- */
-.bg_home {
+#home {
   background: url(https://picsum.photos/2000/1200/?random=1) no-repeat
     center/cover;
   overflow-y: hidden;
-}
 
-.home_title {
-  height: 75%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .home_title {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.home_title h1 {
-  width: 75%;
-  color: $mindColor3;
+  .home_title h1 {
+    width: 75%;
+    color: $mindColor3;
+  }
 }
 
 /* about&step --------------------------------------------- */
-
 .box_about {
   width: 100%;
 }
@@ -421,8 +420,64 @@ footer p {
 }
 
 /* testList --------------------------------------- */
-.bg_color {
-  background-color: $mindColor5;
+.box_testList {
+  width: 100%;
+}
+
+.message {
+  border-radius: $btnRadius;
+}
+
+.message-body {
+  border-color: $primaryColor01;
+  border-radius: $btnRadius;
+}
+
+.msg_shadow {
+  box-shadow: 1px 1px 3px $mindColor1;
+}
+
+/* do_test ---------------------------------------- */
+.box_test {
+  width: 100%;
+  background: rgba($color: white, $alpha: 0.8);
+  border-radius: $boxRadius;
+}
+
+.btn_test_size {
+  width: 4rem;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+#test_question {
+  .columns {
+    // border: 1px solid $primaryColor01;
+    // border-width: 0 0 1px;
+    &:nth-child(odd) {
+      background: rgba($color: $primaryColor01, $alpha: 0.15);
+      border-radius: 1.5rem;
+    }
+  }
+
+  .columns:last-child {
+    border: none;
+  }
+
+  // .table {
+  //   background: rgba($color: white, $alpha: 1);
+  // }
+
+  // .table th {
+  //   background: rgba($color: $primaryColor01, $alpha: 0.5);
+  // }
+
+  // .table td,
+  // .table th {
+  //   border: 1px solid $primaryColor01;
+  //   border-width: 0 0 1px;
+  //   padding: 0.8rem 0.8rem;
+  //   vertical-align: top;
+  // }
 }
 
 /* knowledge -------------------------------------- */
@@ -448,6 +503,12 @@ footer p {
 .box_per_profile {
   background: $mindColor5;
   border-radius: $boxRadius;
+}
+
+.box_avator {
+  border-radius: 50%;
+  border: 3px solid $primaryColor01;
+  box-sizing: border-box;
 }
 
 .box_per_result {
@@ -619,6 +680,10 @@ footer p {
   width: 100%;
 }
 
+.pre_modal_size {
+  width: 100%;
+}
+
 /* backMentalTest --------------------------------- */
 #test_basic {
   background-color: rgba($color: $mindColor5, $alpha: 0.8);
@@ -630,8 +695,8 @@ footer p {
   color: $primaryColor01;
   border: none;
   position: absolute;
-  right: 0%;
-  top: 5%;
+  right: -1%;
+  top: 4%;
   cursor: pointer;
 }
 
@@ -650,12 +715,9 @@ footer p {
   .backAbout_pre_box_h {
     min-height: 200px;
   }
-}
 
-@media screen and (max-width: 768px) {
-  .nav_avator:hover {
-    cursor: pointer;
-    transform: none;
+  .media-content {
+    overflow: visible;
   }
 }
 
@@ -688,6 +750,11 @@ footer p {
 }
 
 @media screen and (max-width: 1023px) {
+  .nav_avator:hover {
+    cursor: pointer;
+    transform: none;
+  }
+
   #avator_block {
     margin: 1rem 0 0.5rem 1.5rem !important;
   }
@@ -771,6 +838,14 @@ footer p {
 
   .box_knowledge {
     width: 50%;
+  }
+
+  .box_testList {
+    width: 50%;
+  }
+
+  .box_test {
+    width: 65%;
   }
 
   .b-sidebar {
