@@ -118,6 +118,10 @@ a:hover {
   position: relative;
 }
 
+.position_absolute {
+  position: absolute;
+}
+
 /* alert_style ------------------------------- */
 .modal-card-title {
   text-align: center !important;
@@ -324,9 +328,11 @@ footer p {
 
 /* home.vue ----------------------------------------------- */
 #home {
-  background: url(https://picsum.photos/2000/1200/?random=1) no-repeat
-    center/cover;
+  // background: url(https://picsum.photos/2000/1200/?random=1) no-repeat
+  //   center/cover;
+  background: url(../images/bg/bg_home_1900.png) no-repeat center/cover;
   overflow-y: hidden;
+  position: relative;
 
   .home_title {
     height: 75%;
@@ -334,11 +340,23 @@ footer p {
     display: flex;
     justify-content: center;
     align-items: center;
+    // display: none;
   }
 
   .home_title h1 {
-    width: 75%;
-    color: $mindColor3;
+    width: 50%;
+    color: rgba($color: #ffffff, $alpha: 0.5);
+    -webkit-text-stroke: 2px $primaryColor01;
+  }
+
+  .particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    top: 0;
+    left: 0;
   }
 }
 
@@ -426,6 +444,9 @@ footer p {
 
 .message {
   border-radius: $btnRadius;
+  &:last-child {
+    margin-bottom: 3rem;
+  }
 }
 
 .message-body {

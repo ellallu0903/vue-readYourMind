@@ -18,7 +18,7 @@
       id="a_content"
       class="is-flex is-align-items-center is-flex-direction-column is-justify-content-center"
     >
-      <section class="box_about mt-5 has-text-centered h-100">
+      <section class="box_about mt-5 has-text-centered h-100 mb-6">
         <b-steps
           :icon-prev="prevIcon"
           :icon-next="nextIcon"

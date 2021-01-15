@@ -27,6 +27,9 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 // animate.css
 import 'animate.css'
+// particles.js
+import particles from 'particles.js'
+
 // ApexCharts
 
 // 傳送請求時一起傳送認證資訊
@@ -40,6 +43,8 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 
 Vue.use(Buefy)
+
+Vue.use(particles)
 
 Vue.use(VueAxios, axios)
 

@@ -8,7 +8,7 @@
     </nav>
     <div
       id="k_content"
-      class="is-flex is-align-items-center is-flex-direction-column"
+      class="is-flex is-align-items-center is-flex-direction-column mb-6"
     >
       <div class="title is-3">小知識</div>
       <div class="is-flex is-flex-direction-column is-align-items-center pb-4">
