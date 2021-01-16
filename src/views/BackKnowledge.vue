@@ -35,7 +35,7 @@
           <h1 v-else>{{ props.row.title }}</h1>
         </b-table-column>
         <b-table-column field="content" label="內容" width="800" v-slot="props">
-          <b-input v-model="props.row.model02" v-if="props.row.edit"></b-input>
+          <b-input type="textarea" v-model="props.row.model02" v-if="props.row.edit"></b-input>
           <div v-else>{{ props.row.content }}</div>
         </b-table-column>
         <b-table-column field="edit" label="編輯" width="200" v-slot="props">

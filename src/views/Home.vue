@@ -13,7 +13,6 @@
 
 <script>
 import 'particles.js'
-
 export default {
   name: 'Home',
   mounted() {
