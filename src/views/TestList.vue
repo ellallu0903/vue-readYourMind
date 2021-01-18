@@ -27,7 +27,12 @@
                 <div class="is-size-6">{{ test.reference }}</div>
               </div>
               <div class="column is-2 has-text-centered">
-                <b-button type="btn_enter"><b>START</b></b-button>
+                <b-button
+                  tag="router-link"
+                  type="btn_enter"
+                  :to="'test/' + test._id"
+                  ><b>START</b></b-button
+                >
               </div>
             </div>
           </b-message>

@@ -35,41 +35,55 @@
           <h1 v-else>{{ props.row.title }}</h1>
         </b-table-column>
         <b-table-column field="content" label="內容" width="800" v-slot="props">
-          <b-input type="textarea" v-model="props.row.model02" v-if="props.row.edit"></b-input>
+          <b-input
+            type="textarea"
+            v-model="props.row.model02"
+            v-if="props.row.edit"
+          ></b-input>
           <div v-else>{{ props.row.content }}</div>
         </b-table-column>
         <b-table-column field="edit" label="編輯" width="200" v-slot="props">
           <div>
-            <button
-              class="btn_cancel btn_back_size mr-2"
-              v-if="!props.row.edit"
-              @click="edit(props)"
-            >
-              <b-icon icon="pencil-outline"></b-icon>
-            </button>
-            <button
-              class="btn_trash btn_back_size"
-              v-if="!props.row.edit"
-              @click="del(props, props.index)"
-            >
-              <b-icon icon="trash-can-outline"></b-icon>
-            </button>
+            <b-tooltip label="編輯標題 / 內容" type="is-dark">
+              <button
+                class="btn_cancel btn_back_size mr-2"
+                v-if="!props.row.edit"
+                @click="edit(props)"
+              >
+                <b-icon icon="pencil-outline"></b-icon>
+              </button>
+            </b-tooltip>
+
+            <b-tooltip label="刪除小知識" type="is-dark">
+              <button
+                class="btn_trash btn_back_size"
+                v-if="!props.row.edit"
+                @click="del(props, props.index)"
+              >
+                <b-icon icon="trash-can-outline"></b-icon>
+              </button>
+            </b-tooltip>
           </div>
           <div>
-            <button
-              class="btn_cancel btn_back_size mr-2"
-              v-if="props.row.edit"
-              @click="save(props)"
-            >
-              <b-icon icon="content-save"></b-icon>
-            </button>
-            <button
-              class="btn_trash btn_back_size"
-              v-if="props.row.edit"
-              @click="cancel(props)"
-            >
-              <b-icon icon="close-outline"></b-icon>
-            </button>
+            <b-tooltip label="保存" type="is-dark">
+              <button
+                class="btn_cancel btn_back_size mr-2"
+                v-if="props.row.edit"
+                @click="save(props)"
+              >
+                <b-icon icon="content-save"></b-icon>
+              </button>
+            </b-tooltip>
+
+            <b-tooltip label="取消" type="is-dark">
+              <button
+                class="btn_trash btn_back_size"
+                v-if="props.row.edit"
+                @click="cancel(props)"
+              >
+                <b-icon icon="close-outline"></b-icon>
+              </button>
+            </b-tooltip>
           </div>
         </b-table-column>
       </b-table>

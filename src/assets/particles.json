@@ -1,9 +1,9 @@
 {
   "particles": {
     "number": {
-      "value": 50,
+      "value": 150,
       "density": {
-        "enable": true,
+        "enable": false,
         "value_area": 800
       }
     },
@@ -11,7 +11,7 @@
       "value": "#fff"
     },
     "shape": {
-      "type": "image",
+      "type": "circle",
       "stroke": {
         "width": 0,
         "color": "#000000"
@@ -20,7 +20,7 @@
         "nb_sides": 5
       },
       "image": {
-        "src": "https://i.imgur.com/cyzsjeE.png",
+        "src": "img/github.svg",
         "width": 100,
         "height": 100
       }
@@ -30,13 +30,13 @@
       "random": true,
       "anim": {
         "enable": false,
-        "speed": 0.7,
-        "opacity_min": 0.3,
-        "sync": true
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
       }
     },
     "size": {
-      "value": 43.40517547528668,
+      "value": 10,
       "random": true,
       "anim": {
         "enable": false,
@@ -54,15 +54,15 @@
     },
     "move": {
       "enable": true,
-      "speed": 1,
+      "speed": 1.5,
       "direction": "bottom-right",
-      "random": true,
-      "straight": true,
+      "random": false,
+      "straight": false,
       "out_mode": "out",
       "bounce": false,
       "attract": {
         "enable": false,
-        "rotateX": 1000,
+        "rotateX": 600,
         "rotateY": 1200
       }
     }
@@ -72,11 +72,11 @@
     "events": {
       "onhover": {
         "enable": true,
-        "mode": "repulse"
+        "mode": "bubble"
       },
       "onclick": {
-        "enable": false,
-        "mode": "push"
+        "enable": true,
+        "mode": "repulse"
       },
       "resize": true
     },

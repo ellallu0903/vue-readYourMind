@@ -125,36 +125,44 @@
         </b-table-column>
         <b-table-column field="edit" label="編輯" width="150" v-slot="props">
           <div>
-            <button
-              class="btn_cancel btn_back_size mr-2"
-              v-if="!props.row.edit"
-              @click="edit(props)"
-            >
-              <b-icon icon="pencil-outline"></b-icon>
-            </button>
-            <button
-              class="btn_trash btn_back_size"
-              v-if="!props.row.edit"
-              @click="del(props, props.index)"
-            >
-              <b-icon icon="trash-can-outline"></b-icon>
-            </button>
-          </div>
-          <div>
-            <button
-              class="btn_cancel btn_back_size mr-2"
-              v-if="props.row.edit"
-              @click="save(props)"
-            >
-              <b-icon icon="content-save"></b-icon>
-            </button>
-            <button
-              class="btn_trash btn_back_size"
-              v-if="props.row.edit"
-              @click="cancel(props)"
-            >
-              <b-icon icon="close-outline"></b-icon>
-            </button>
+            <b-tooltip label="編輯使用者" type="is-dark">
+              <button
+                class="btn_cancel btn_back_size mr-2"
+                v-if="!props.row.edit"
+                @click="edit(props)"
+              >
+                <b-icon icon="pencil-outline"></b-icon>
+              </button>
+            </b-tooltip>
+
+            <b-tooltip label="刪除使用者" type="is-dark">
+              <button
+                class="btn_trash btn_back_size"
+                v-if="!props.row.edit"
+                @click="del(props, props.index)"
+              >
+                <b-icon icon="trash-can-outline"></b-icon>
+              </button>
+            </b-tooltip>
+            <b-tooltip label="保存" type="is-dark">
+              <button
+                class="btn_cancel btn_back_size mr-2"
+                v-if="props.row.edit"
+                @click="save(props)"
+              >
+                <b-icon icon="content-save"></b-icon>
+              </button>
+            </b-tooltip>
+
+            <b-tooltip label="取消" type="is-dark">
+              <button
+                class="btn_trash btn_back_size"
+                v-if="props.row.edit"
+                @click="cancel(props)"
+              >
+                <b-icon icon="close-outline"></b-icon>
+              </button>
+            </b-tooltip>
           </div>
         </b-table-column>
       </b-table>
@@ -179,7 +187,7 @@
         >
           <div class="modal-card add_modal_size">
             <header class="modal-card-head">
-              <p class="modal-card-title">Creat Account</p>
+              <p class="modal-card-title">Create Account</p>
               <button
                 type="button"
                 class="delete"

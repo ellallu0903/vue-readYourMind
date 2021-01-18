@@ -2,7 +2,6 @@
 * {
   margin: 0;
   padding: 0;
-  list-style: none;
   font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
 }
 
@@ -97,6 +96,21 @@ a:hover {
 
 .position_absolute {
   position: absolute;
+}
+
+.button.is-primary {
+  background-color: #8a8174;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-primary:hover {
+  background-color: rgba(138, 129, 116, 0.8);
+}
+
+.button.is-primary:focus:not(:active) {
+  -webkit-box-shadow: 0 0 5px rgba(96, 88, 75, 0.8);
+          box-shadow: 0 0 5px rgba(96, 88, 75, 0.8);
 }
 
 /* alert_style ------------------------------- */
@@ -362,7 +376,7 @@ footer p {
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 100;
   pointer-events: none;
   top: 0;
   left: 0;
@@ -458,6 +472,10 @@ footer p {
 }
 
 /* testList --------------------------------------- */
+#test_list .media-content {
+  width: 100% !important;
+}
+
 .box_testList {
   width: 100%;
 }
@@ -698,7 +716,7 @@ footer p {
           box-shadow: 0 0 5px rgba(96, 88, 75, 0.8);
 }
 
-#backMember .btn_member_add {
+.btn_member_add {
   background-color: #18586d;
   width: 65px;
   height: 65px;
@@ -710,13 +728,13 @@ footer p {
   right: 1%;
 }
 
-#backMember .btn_member_add:hover {
+.btn_member_add:hover {
   background-color: rgba(24, 88, 109, 0.8);
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
 
-#backMember .btn_member_add:focus:not(:active) {
+.btn_member_add:focus:not(:active) {
   -webkit-box-shadow: 0 0 5px rgba(24, 88, 109, 0.8);
           box-shadow: 0 0 5px rgba(24, 88, 109, 0.8);
 }
@@ -735,14 +753,68 @@ footer p {
   border-radius: 1.5rem;
 }
 
-.btn_backTest_edit {
+#test_basic .btn_backTest_edit {
   background-color: transparent;
-  color: #f17c67;
+  color: #aea79c;
   border: none;
   position: absolute;
-  right: -1%;
-  top: 4%;
+  right: 2%;
+  top: 0%;
   cursor: pointer;
+}
+
+#test_basic .btn_test_delete {
+  border-radius: 7px;
+  background-color: transparent;
+  border: none;
+  color: #ca2913;
+  cursor: pointer;
+  position: absolute;
+  right: -1%;
+  top: 0%;
+}
+
+#test_basic .list_style {
+  list-style-type: square;
+}
+
+.btn_question_edit {
+  background-color: transparent;
+  color: #aea79c;
+  border: none;
+  cursor: pointer;
+  height: 25px;
+}
+
+.btn_question_delete {
+  background-color: transparent;
+  color: #ca2913;
+  border: none;
+  cursor: pointer;
+  height: 25px;
+}
+
+.btn_test_patch {
+  background-color: #6ba3b5;
+  width: 65px;
+  height: 65px;
+  border-color: transparent;
+  border-radius: 50%;
+  color: #fff;
+  position: fixed;
+  bottom: 13%;
+  right: 1%;
+}
+
+.btn_test_patch:hover {
+  background-color: rgba(107, 163, 181, 0.8);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.btn_test_patch:focus:not(:active) {
+  -webkit-box-shadow: 0 0 5px rgba(107, 163, 181, 0.8);
+          box-shadow: 0 0 5px rgba(107, 163, 181, 0.8);
 }
 
 /* media Queries ------------------------------------------- */
@@ -780,6 +852,16 @@ footer p {
   #backMember .btn_member_add {
     position: fixed;
     bottom: 3%;
+    right: 1%;
+  }
+  #backTest .btn_test_patch {
+    position: fixed;
+    bottom: 5%;
+    right: 1%;
+  }
+  #backTest .btn_member_add {
+    position: fixed;
+    bottom: 13%;
     right: 1%;
   }
 }

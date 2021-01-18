@@ -92,7 +92,7 @@
 export default {
   data() {
     return {
-      testId: '5ff9be8feaeb15ce7278b408',
+      testId: this.$route.params.id,
       tests: [],
       questions: [],
       modelQuestion: '',

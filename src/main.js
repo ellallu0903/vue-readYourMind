@@ -27,8 +27,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 // animate.css
 import 'animate.css'
-// particles.js
-import particles from 'particles.js'
+// vue-particles
+import VueParticles from 'vue-particles'
 
 // ApexCharts
 
@@ -44,7 +44,7 @@ Vue.config.productionTip = false
 
 Vue.use(Buefy)
 
-Vue.use(particles)
+Vue.use(VueParticles)
 
 Vue.use(VueAxios, axios)
 
