@@ -58,50 +58,6 @@
                         <option value="職業測驗">職業測驗</option>
                         <option value="其他">其他</option>
                       </b-select>
-                      <!-- <div v-if="test.edit" class="block mt-2">
-                        <b-radio
-                          v-model="test.modelType"
-                          name="testType"
-                          native-value="智力測驗"
-                        >
-                          智力測驗
-                        </b-radio>
-                        <b-radio
-                          v-model="test.modelType"
-                          name="testType"
-                          native-value="成就⁄能力測驗"
-                        >
-                          成就⁄能力測驗
-                        </b-radio>
-                        <b-radio
-                          v-model="test.modelType"
-                          name="testType"
-                          native-value="性向測驗"
-                        >
-                          性向測驗
-                        </b-radio>
-                        <b-radio
-                          v-model="test.modelType"
-                          name="testType"
-                          native-value="人格測驗"
-                        >
-                          人格測驗
-                        </b-radio>
-                        <b-radio
-                          v-model="test.modelType"
-                          name="testType"
-                          native-value="職業測驗"
-                        >
-                          職業測驗
-                        </b-radio>
-                        <b-radio
-                          v-model="test.modelType"
-                          name="testType"
-                          native-value="其他"
-                        >
-                          其他
-                        </b-radio>
-                      </div> -->
                       <div v-else>{{ test.type }}</div>
                     </div>
                     <div>
@@ -129,6 +85,7 @@
                     <div class="mb-2">
                       <b>文獻⁄來源：</b>
                       <b-input
+                        type="textarea"
                         v-model="test.modelReference"
                         v-if="test.edit"
                       ></b-input>
@@ -191,11 +148,7 @@
                     width="400"
                     v-slot="props"
                   >
-                    <b-input
-                      v-model="props.row.modelQuestion"
-                      v-if="props.row.edit"
-                    ></b-input>
-                    <h1 v-else>{{ props.row.question }}</h1>
+                    <h1>{{ props.row.question }}</h1>
                   </b-table-column>
                   <b-table-column
                     field="option"
@@ -203,11 +156,7 @@
                     width="400"
                     v-slot="props"
                   >
-                    <b-input
-                      v-model="props.row.model02"
-                      v-if="props.row.edit"
-                    ></b-input>
-                    <div v-else>
+                    <div>
                       <ol class="list_style">
                         <li
                           v-for="(option, index) in props.row.options"
@@ -425,34 +374,114 @@
               />
             </header>
             <section class="modal-card-body px-6 py-5">
-              <ol class="list_style">
-                <li
-                  class="p-2"
-                  v-for="(question, index) in testQuestions"
-                  :key="index"
-                >
-                  {{ question.question }}
-
-                  <b-button
-                    class="btn_question_edit"
-                    v-if="123"
-                    icon-right="pencil-outline"
-                    @click="questionEdit()"
-                  ></b-button>
-                  <b-button
-                    class="btn_question_delete"
-                    icon-right="delete"
-                    v-if="123"
-                    @click="questionEdit()"
-                  ></b-button>
-                </li>
-              </ol>
+              <div>
+                <form action="">
+                  <b-field label="題目：">
+                  <b-input
+                    type="text"
+                    icon="format-list-text"
+                    v-model="question"
+                    placeholder="Please enter test question . . ."
+                    required
+                  >
+                  </b-input>
+                  </b-field>
+                  <b-field label="選項：">
+                    <b-input
+                      type="text"
+                      icon="text"
+                      v-model="option"
+                      placeholder="Please enter test option . . ."
+                      required
+                    >
+                    </b-input>
+                  </b-field>
+                  <b-numberinput v-model="optionScore"></b-numberinput>
+                </form>
+              </div>
+              <hr>
+              <div>
+                <ol class="list_style">
+                  <li
+                    class="p-2"
+                    v-for="(question, index) in testQuestions"
+                    :key="index"
+                  >
+                    <span v-if="isEdit">
+                      <input v-model="modelQuestion" type="text" class="w-80">
+                    </span>
+                    <span v-else>{{ question.question }}</span>
+                    <!-- 編輯問題 -->
+                    <b-button
+                      class="btn_question_edit"
+                      v-if="!isEdit"
+                      icon-right="pencil-outline"
+                      @click="questionEdit(question)"
+                    ></b-button>
+                    <!-- 新增選項 -->
+                    <b-button
+                      class="btn_question_edit"
+                      icon-right="expand-all"
+                      v-if="!isEdit"
+                      @click="optionEdit(option)"
+                    ></b-button>
+                    <!-- 刪除問題 -->
+                    <b-button
+                      class="btn_question_delete mr-5"
+                      icon-right="delete"
+                      v-if="!isEdit"
+                      @click="questionEdit()"
+                    ></b-button>
+                    <!-- 保存 -->
+                    <b-button
+                      class="btn_question_edit"
+                      v-if="isEdit"
+                      icon-right="content-save"
+                      @click="questionEdit(question)"
+                    ></b-button>
+                    <!-- 取消 -->
+                    <b-button
+                      class="btn_question_delete"
+                      v-if="isEdit"
+                      icon-right="close-outline"
+                      @click="questionCancel(question)"
+                    ></b-button>
+                    <!-- 選項 -------------------------------->
+                    <span v-if="addOption">
+                      <input type="text" v-model="option">
+                    </span>
+                    <!-- 保存 -->
+                    <b-button
+                      class="btn_question_edit"
+                      v-if="addOption"
+                      icon-right="content-save"
+                      @click="questionEdit(question)"
+                    ></b-button>
+                    <!-- 取消 -->
+                    <b-button
+                      class="btn_question_delete"
+                      v-if="addOption"
+                      icon-right="close-outline"
+                      @click="optionCancel(option)"
+                    ></b-button>
+                    <div v-for="(option, index) in question.options" :key="index">
+                      ▪{{ option.option }}
+                      <b-button
+                      class="btn_question_delete"
+                      icon-right="delete-outline"
+                      v-if="123"
+                      @click="questionEdit()"
+                    ></b-button>
+                    </div>
+                  </li>
+                </ol>
+              </div>
             </section>
             <footer
               class="modal-card-foot is-justify-content-center is-align-items-center"
             >
               <button class="button btn_enter">保存</button>
-              <button class="button btn_cancel">取消</button>
+              <button @click="patchModalActive = false" class="button btn_cancel">取消</button>
             </footer>
           </div>
         </div>
@@ -477,7 +506,6 @@ export default {
       addModalActive: false,
       patchModalActive: false,
       // data
-      // testId: '5ff9be8feaeb15ce7278b408',
       testId: '',
       title: '',
       type: '',
@@ -490,20 +518,15 @@ export default {
       optionScore: 0,
       tests: [],
       // tabs
-      activeTab: 0
+      activeTab: 0,
+      // edit
+      isEdit: false,
+      modelQuestion: '',
+      addOption: false,
+      modelOption: ''
     }
   },
   computed: {
-    // 文字驗證
-    // textState() {
-    //   if (this.model01.length === 0) {
-    //     return null
-    //   } else if (this.model01.length >= 2 && this.model01.length <= 10) {
-    //     return true
-    //   } else {
-    //     return false
-    //   }
-    // }
     testQuestions() {
       return this.tests[this.activeTab].questions
     }
@@ -664,14 +687,22 @@ export default {
         })
     },
     // 問題編輯
-    questionEdit(props) {
-      props.row.edit = true
-      props.row.questions = props.row.modelQuestion
+    questionEdit(question) {
+      this.isEdit = true
+      this.question = this.modelQuestion
     },
     // 問題取消
-    questionCancel(props) {
-      props.row.edit = false
-      props.row.modelQuestion = props.row.questions
+    questionCancel(question) {
+      this.isEdit = false
+      this.modelQuestion = this.question
+    },
+    // 選項開啟新增 input
+    optionEdit(option) {
+      this.addOption = true
+    },
+    // 選項取消
+    optionCancel(option) {
+      this.addOption = false
     }
   },
   mounted() {
