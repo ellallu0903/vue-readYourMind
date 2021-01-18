@@ -19,7 +19,7 @@ export const testAdd = async (req, res) => {
     if (
       req.body.title.length < 1 ||
       req.body.description.length < 1 ||
-      req.body.questions.length < 1 ||
+      req.body.question.length < 1 ||
       req.body.reference.length < 1 ||
       req.body.type.length < 1 ||
       req.body.type.scoringMethod < 1
@@ -35,11 +35,11 @@ export const testAdd = async (req, res) => {
         type: req.body.type,
         questions: [
           {
-            question: req.body.questions.question,
+            question: req.body.question,
             options: [
               {
-                option: req.body.questions.options.option,
-                optionScore: req.body.questions.options.optionScore
+                option: req.body.option,
+                optionScore: req.body.optionScore
               }
             ]
           }
