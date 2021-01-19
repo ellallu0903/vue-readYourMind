@@ -226,7 +226,7 @@ export const testQuestionEdit = async (req, res) => {
       },
       {
         $set: {
-          'questions.$.question': req.body.questions.question
+          'questions.$.question': req.body.question
         }
       },
       { new: true }
@@ -314,27 +314,27 @@ export const QuestionOptionAdd = async (req, res) => {
 
   try {
     // 把帶有 ID 的路由參數抓進來
-    if (req.body.options.length < 1) {
-      res
-        .status(400)
-        .send({ success: false, message: '選項至少 1 個字元以上。' })
-    } else {
-      const result = await tests.findOneAndUpdate(
-        {
-          'questions._id': req.params.id
-        },
-        {
-          $push: {
-            'questions.$.options': {
-              option: req.body.options.option,
-              optionScore: req.body.options.optionScore
-            }
+    // if (req.body.options.length < 1) {
+    //   res
+    //     .status(400)
+    //     .send({ success: false, message: '選項至少 1 個字元以上。' })
+    // } else {
+    const result = await tests.findOneAndUpdate(
+      {
+        'questions._id': req.params.id
+      },
+      {
+        $push: {
+          'questions.$.options': {
+            option: req.body.option,
+            optionScore: req.body.optionScore
           }
-        },
-        { new: true }
-      )
-      res.status(200).send({ success: true, message: '', result })
-    }
+        }
+      },
+      { new: true }
+    )
+    res.status(200).send({ success: true, message: '', result })
+    // }
   } catch (error) {
     console.log(error)
     if (error.name === 'ValidationError') {
