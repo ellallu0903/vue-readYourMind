@@ -11,41 +11,11 @@
       id="test_question"
       class="is-flex is-align-items-center is-flex-direction-column"
     >
-      <div class="title is-3 pb-4">ABCD測驗名稱EFGH</div>
+      <div class="title is-3 pb-4">{{ tests.title }}</div>
       <form
-        action=""
         class="w-100 is-flex is-align-items-center is-flex-direction-column"
+        @submit.prevent="onSubmit"
       >
-        <!-- <b-table
-          :data="questions"
-          striped
-          :mobile-cards="hasMobileCards"
-          class="w-100"
-        >
-          <b-table-column
-            field="number"
-            label="No."
-            width="50"
-            centered
-            numeric
-            v-slot="props"
-          >
-            {{ props.index + 1 }}
-          </b-table-column>
-
-          <b-table-column
-            width="600"
-            field="question"
-            label="題目"
-            v-slot="props"
-          >
-            {{ props.row.question }}
-          </b-table-column>
-
-          <b-table-column field="option" label="選項" v-slot="props">
-            {{ props.row.last_name }}
-          </b-table-column>
-        </b-table> -->
         <div class="box_test p-6">
           <div
             class="columns w-100"
@@ -63,20 +33,15 @@
               </div>
             </div>
             <div class="column is-6 is-size-18">
-              <b-radio v-model="modelQuestion" name="1" native-value="0">
-                完全沒有
-              </b-radio>
-              <b-radio v-model="modelQuestion" name="1" native-value="1">
-                輕微
-              </b-radio>
-              <b-radio v-model="modelQuestion" name="1" native-value="2">
-                中等程度
-              </b-radio>
-              <b-radio v-model="modelQuestion" name="1" native-value="3">
-                厲害
-              </b-radio>
-              <b-radio v-model="modelQuestion" name="1" native-value="4">
-                非常厲害
+              <b-radio
+                v-for="(option, index2) in questions[index].options"
+                :key="option._id"
+                v-model.number="modelQuestion[index]"
+                :native-value="questions[index].options[index2].optionScore"
+                :name="'q' + index"
+              >
+                <!-- {{ questions[index].options[index2].optionScore }} -->
+                {{ questions[index].options[index2].option }}
               </b-radio>
             </div>
           </div>
@@ -95,7 +60,7 @@ export default {
       testId: this.$route.params.id,
       tests: [],
       questions: [],
-      modelQuestion: '',
+      modelQuestion: [],
       testData: [
         {
           question: '覺得容易苦惱或動怒',
@@ -139,7 +104,66 @@ export default {
         }
       ],
       // table
-      hasMobileCards: true
+      hasMobileCards: true,
+      // result_data
+      score: 0
+    }
+  },
+  methods: {
+    onSubmit() {
+      for (let i = 0; i < this.questions.length; i++) {
+        if (this.modelQuestion[i] == null) {
+          const j = i + 1
+          this.$buefy.dialog.alert({
+            title: 'Opps!',
+            message: '第' + j + '題尚未完成～',
+            type: 'is-danger',
+            hasIcon: true,
+            icon: 'alert-circle-outline'
+          })
+        } else if (this.tests.scoringMethod === '加總計分') {
+          this.score += this.modelQuestion[i]
+        }
+      }
+
+      // this.axios
+      //   .post(
+      //     process.env.VUE_APP_API + '/users/result/' + this.user.id,
+      //     this.$data
+      //   )
+      //   .then(res => {
+      //     if (res.data.success) {
+      //       this.$buefy.dialog.alert({
+      //         title: 'Success!',
+      //         message: '去看結果吧～',
+      //         type: 'is-danger',
+      //         hasIcon: true,
+      //         icon: 'heart-circle'
+      //       })
+      //       this.score = ''
+      //       // 導到個人專區
+      //       if (this.$route.path !== '/personal') {
+      //         this.$router.push('/personal')
+      //       }
+      //     } else {
+      //       this.$buefy.dialog.alert({
+      //         title: 'Error!',
+      //         message: '發生錯誤！',
+      //         type: 'is-danger',
+      //         hasIcon: true,
+      //         icon: 'heart-broken'
+      //       })
+      //     }
+      //   })
+      //   .catch(err => {
+      //     this.$buefy.dialog.alert({
+      //       title: 'Error!',
+      //       message: err.response.data.message,
+      //       type: 'is-danger',
+      //       hasIcon: true,
+      //       icon: 'heart-circle'
+      //     })
+      //   })
     }
   },
   mounted() {
@@ -149,11 +173,16 @@ export default {
         if (res.data.success) {
           this.tests = res.data.result
           this.questions = res.data.result.questions
+          for (let i = 0; i < this.questions.length; i++) {
+            this.modelQuestion.push(null)
+          }
         } else {
-          this.$swal({
-            icon: 'error',
-            title: '發生錯誤',
-            text: res.data.message
+          this.$buefy.dialog.alert({
+            title: 'Error!',
+            message: res.data.message,
+            type: 'is-danger',
+            hasIcon: true,
+            icon: 'heart-broken'
           })
         }
       })

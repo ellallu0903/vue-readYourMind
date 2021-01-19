@@ -11,12 +11,14 @@
       class="is-flex is-align-items-center is-flex-direction-column mb-6"
     >
       <div class="title is-3">小知識</div>
-      <div class="is-flex is-flex-direction-column is-align-items-center pb-4">
-        <div class="box_knowledge">
-          念位是仍理，料四方前。眼作那活業眾施自減天我何手眼獨成這不預哥研細，智主社成引院天高事此衣其房；不輕古留開算為。是答童吸出可吃形及！中月便加得即步發益、個那樓會立白不產線文
-        </div>
-      </div>
       <section class="box_knowledge">
+        <div
+          class="is-flex is-flex-direction-column is-align-items-center pb-4"
+        >
+          <div>
+            念位是仍理，料四方前。眼作那活業眾施自減天我何手眼獨成這不預哥研細，智主社成引院天高事此衣其房；不輕古留開算為。是答童吸出可吃形及！中月便加得即步發益、個那樓會立白不產線文
+          </div>
+        </div>
         <b-collapse
           class="card"
           animation="slide"
@@ -64,10 +66,12 @@ export default {
         if (res.data.success) {
           this.knowledges = res.data.result
         } else {
-          this.$swal({
-            icon: 'error',
-            title: '發生錯誤',
-            text: res.data.message
+          this.$buefy.dialog.alert({
+            title: 'Error!',
+            message: res.data.message,
+            type: 'is-danger',
+            hasIcon: true,
+            icon: 'heart-broken'
           })
         }
       })

@@ -132,15 +132,15 @@
                   hoverable
                   :mobile-cards="hasMobileCards"
                 >
-                  <!-- <b-table-column
+                  <b-table-column
                     field="number"
                     label="No."
                     centered
-                    width="100"
+                    width="50"
                     v-slot="props"
                   >
                     <h1>{{ props.index + 1 }}</h1>
-                  </b-table-column> -->
+                  </b-table-column>
 
                   <b-table-column
                     field="question"
@@ -167,60 +167,6 @@
                       </ol>
                     </div>
                   </b-table-column>
-                  <!-- <b-table-column
-                    field="edit"
-                    label="編輯"
-                    width="150"
-                    v-slot="props"
-                  >
-                    <div>
-                      <b-tooltip label="編輯題目" type="is-dark">
-                        <button
-                          class="btn_cancel btn_back_size mr-2"
-                          v-if="!props.row.edit"
-                          @click="questionEdit(props)"
-                        >
-                          <b-icon icon="pencil-outline"></b-icon>
-                        </button>
-                      </b-tooltip>
-
-                      <b-tooltip label="新增選項" type="is-dark">
-                        <button
-                          class="btn_cancel btn_back_size mr-2"
-                          v-if="!props.row.edit"
-                          @click="456"
-                        >
-                          <b-icon icon="expand-all"></b-icon>
-                        </button>
-                      </b-tooltip>
-
-                      <b-tooltip label="刪除題目" type="is-dark">
-                        <button
-                          class="btn_trash btn_back_size"
-                          v-if="!props.row.edit"
-                          @click="del(props, props.index)"
-                        >
-                          <b-icon icon="trash-can-outline"></b-icon>
-                        </button>
-                      </b-tooltip>
-                    </div>
-                    <div>
-                      <button
-                        class="btn_cancel btn_back_size mr-2"
-                        v-if="props.row.edit"
-                        @click="save(props)"
-                      >
-                        <b-icon icon="content-save"></b-icon>
-                      </button>
-                      <button
-                        class="btn_trash btn_back_size"
-                        v-if="props.row.edit"
-                        @click="questionCancel(props)"
-                      >
-                        <b-icon icon="close-outline"></b-icon>
-                      </button>
-                    </div>
-                  </b-table-column> -->
                 </b-table>
               </div>
             </b-tab-item>
@@ -351,6 +297,7 @@
         </form>
       </b-modal>
 
+      <!-- patch_modal -->
       <b-button
         type="btn_test_patch is-flex is-justify-content-center is-align-items-center"
         @click="patchModalActive = true"
@@ -364,9 +311,9 @@
 
       <b-modal :active.sync="patchModalActive">
         <div class="is-flex is-justify-content-center is-align-items-center">
-          <div class="modal-card add_modal_size">
+          <div class="modal-card w-100">
             <header class="modal-card-head">
-              <p class="modal-card-title">問題與選項</p>
+              <p class="modal-card-title">題目 & 選項</p>
               <button
                 type="button"
                 class="delete"
@@ -374,115 +321,189 @@
               />
             </header>
             <section class="modal-card-body px-6 py-5">
-              <div>
-                <form action="">
-                  <b-field label="題目：">
-                  <b-input
-                    type="text"
-                    icon="format-list-text"
-                    v-model="question"
-                    placeholder="Please enter test question . . ."
-                    required
-                  >
-                  </b-input>
-                  </b-field>
-                  <b-field label="選項：">
-                    <b-input
-                      type="text"
-                      icon="text"
-                      v-model="option"
-                      placeholder="Please enter test option . . ."
-                      required
-                    >
-                    </b-input>
-                  </b-field>
-                  <b-numberinput v-model="optionScore"></b-numberinput>
-                </form>
-              </div>
-              <hr>
-              <div>
-                <ol class="list_style">
-                  <li
-                    class="p-2"
-                    v-for="(question, index) in testQuestions"
-                    :key="index"
-                  >
-                    <span v-if="isEdit">
-                      <input v-model="modelQuestion" type="text" class="w-80">
-                    </span>
-                    <span v-else>{{ question.question }}</span>
-                    <!-- 編輯問題 -->
-                    <b-button
-                      class="btn_question_edit"
-                      v-if="!isEdit"
-                      icon-right="pencil-outline"
-                      @click="questionEdit(question)"
-                    ></b-button>
-                    <!-- 新增選項 -->
-                    <b-button
-                      class="btn_question_edit"
-                      icon-right="expand-all"
-                      v-if="!isEdit"
-                      @click="optionEdit(option)"
-                    ></b-button>
-                    <!-- 刪除問題 -->
-                    <b-button
-                      class="btn_question_delete mr-5"
-                      icon-right="delete"
-                      v-if="!isEdit"
-                      @click="questionEdit()"
-                    ></b-button>
-                    <!-- 保存 -->
-                    <b-button
-                      class="btn_question_edit"
-                      v-if="isEdit"
-                      icon-right="content-save"
-                      @click="questionEdit(question)"
-                    ></b-button>
-                    <!-- 取消 -->
-                    <b-button
-                      class="btn_question_delete"
-                      v-if="isEdit"
-                      icon-right="close-outline"
-                      @click="questionCancel(question)"
-                    ></b-button>
-                    <!-- 選項 -------------------------------->
-                    <span v-if="addOption">
-                      <input type="text" v-model="option">
-                    </span>
-                    <!-- 保存 -->
-                    <b-button
-                      class="btn_question_edit"
-                      v-if="addOption"
-                      icon-right="content-save"
-                      @click="questionEdit(question)"
-                    ></b-button>
-                    <!-- 取消 -->
-                    <b-button
-                      class="btn_question_delete"
-                      v-if="addOption"
-                      icon-right="close-outline"
-                      @click="optionCancel(option)"
-                    ></b-button>
-                    <div v-for="(option, index) in question.options" :key="index">
-                      ▪{{ option.option }}
-                      <b-button
-                      class="btn_question_delete"
-                      icon-right="delete-outline"
-                      v-if="123"
-                      @click="questionEdit()"
-                    ></b-button>
+              <div class="columns is-justify-content-space-around">
+                <div class="column is-4">
+                  <div class="columns is-flex-direction-column">
+                    <div class="column box_question_add p-5 mb-2">
+                      <form
+                        @submit.prevent="quesitonSubmit"
+                        @reset="quesitonReset"
+                      >
+                        <div class="has-text-centered is-size-4 mb-3">
+                          新增題目
+                          <b-icon icon="text-box-plus"></b-icon>
+                        </div>
+                        <b-field label="題目：" class="mb-4">
+                          <b-input
+                            type="text"
+                            icon="format-list-text"
+                            v-model="aQuestion"
+                            placeholder="Please enter test question . . ."
+                            required
+                          >
+                          </b-input>
+                        </b-field>
+                        <b-field label="選項：" class="mb-3">
+                          <b-input
+                            type="text"
+                            icon="text"
+                            v-model="aOption"
+                            placeholder="Please enter test option . . ."
+                            required
+                          >
+                          </b-input>
+                        </b-field>
+                        <b-numberinput v-model="aOptionScore"></b-numberinput>
+                        <div class="has-text-centered mt-5">
+                          <button
+                            type="submit"
+                            class="button btn_enter mr-2"
+                            style="width:50px"
+                          >
+                            送出
+                          </button>
+                          <button
+                            type="reset"
+                            class="button btn_cancel"
+                            style="width:50px"
+                          >
+                            重置
+                          </button>
+                        </div>
+                      </form>
                     </div>
-                  </li>
-                </ol>
+                    <div class="column box_option_add p-5">
+                      <form @submit.prevent="optionSubmit" @reset="optionReset">
+                        <div class="has-text-centered is-size-4 mb-3">
+                          新增選項
+                          <b-icon icon="plus-box-multiple"></b-icon>
+                        </div>
+                        <b-field label="題目：" class="mb-4">
+                          <b-select
+                            placeholder="Select a character"
+                            v-model="selectedOptions"
+                            required
+                            expanded
+                          >
+                            <option
+                              v-for="(question, index) in testQuestions"
+                              :key="index"
+                              :value="question._id"
+                            >
+                              {{ index + 1 }}. {{ question.question }}
+                            </option>
+                          </b-select>
+                        </b-field>
+                        <b-field label="選項：" class="mb-3">
+                          <b-input
+                            type="text"
+                            icon="text"
+                            v-model="aaOption"
+                            placeholder="Please enter test option . . ."
+                            required
+                          >
+                          </b-input>
+                        </b-field>
+                        <b-numberinput v-model="aaOptionScore"></b-numberinput>
+                        <div class="has-text-centered mt-5">
+                          <button
+                            type="submit"
+                            class="button btn_enter mr-2"
+                            style="width:50px"
+                          >
+                            送出
+                          </button>
+                          <button
+                            type="reset"
+                            class="button btn_cancel"
+                            style="width:50px"
+                          >
+                            重置
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="column is-1"></div> -->
+                <div
+                  class="column is-7 box_test_edit px-6 py-5 position_relative"
+                >
+                  <div class="has-text-centered is-size-4 mb-3">
+                    編輯
+                    <b-icon icon="file-edit-outline"></b-icon>
+                  </div>
+                  <ol class="list_style_num">
+                    <li
+                      class="p-2"
+                      v-for="(question, index) in testQuestions"
+                      :key="index"
+                    >
+                      <span v-if="question.edit">
+                        <input
+                          v-model="question.modelQ"
+                          type="text"
+                          class="w-80"
+                        />
+                      </span>
+                      <span v-else>{{ question.question }}</span>
+                      <!-- 編輯問題 -->
+                      <b-button
+                        class="btn_question_edit"
+                        v-if="!question.edit"
+                        icon-right="pencil-outline"
+                        @click="questionEdit(question)"
+                      ></b-button>
+                      <!-- 刪除問題 -->
+                      <b-button
+                        class="btn_question_delete mr-5"
+                        icon-right="delete"
+                        v-if="!question.edit"
+                        @click="questionDelete(question)"
+                      ></b-button>
+                      <!-- 保存 -->
+                      <b-button
+                        class="btn_question_edit"
+                        v-if="question.edit"
+                        icon-right="content-save"
+                        @click="questionPatch(question)"
+                      ></b-button>
+                      <!-- 取消 -->
+                      <b-button
+                        class="btn_question_delete"
+                        v-if="question.edit"
+                        icon-right="close-outline"
+                        @click="questionCancel(question)"
+                      ></b-button>
+                      <br />
+                      <div
+                        v-for="(option, index) in question.options"
+                        :key="index"
+                      >
+                        ▪{{ option.option }} ❮ {{ option.optionScore }} ❯
+                        <b-button
+                          class="btn_question_delete"
+                          icon-right="delete-outline"
+                          v-if="123"
+                          @click="optionDelete(option)"
+                        ></b-button>
+                      </div>
+                    </li>
+                  </ol>
+                </div>
               </div>
             </section>
-            <footer
+            <!-- <footer
               class="modal-card-foot is-justify-content-center is-align-items-center"
             >
               <button class="button btn_enter">保存</button>
-              <button @click="patchModalActive = false" class="button btn_cancel">取消</button>
-            </footer>
+              <button
+                @click="patchModalActive = false"
+                class="button btn_cancel"
+              >
+                取消
+              </button>
+            </footer> -->
           </div>
         </div>
       </b-modal>
@@ -501,7 +522,7 @@ export default {
       isPaginationRounded: false,
       paginationPosition: 'bottom',
       currentPage: 1,
-      perPage: 5,
+      perPage: 7,
       // modal
       addModalActive: false,
       patchModalActive: false,
@@ -519,11 +540,18 @@ export default {
       tests: [],
       // tabs
       activeTab: 0,
-      // edit
+      // edit -----------
       isEdit: false,
       modelQuestion: '',
-      addOption: false,
-      modelOption: ''
+      qq: [],
+      // 新增問題
+      aQuestion: '',
+      aOption: '',
+      aOptionScore: 0,
+      // 新增選項
+      selectedOptions: '',
+      aaOption: '',
+      aaOptionScore: 0
     }
   },
   computed: {
@@ -618,10 +646,6 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
-            // this.users[props.index].email = props.row.model01
-            // this.users[props.index].name = props.row.model02
-            // this.users[props.index].avator = props.row.model03
-            // this.users[props.index].authority = props.row.model04
           } else {
             this.$buefy.dialog.alert({
               title: 'Error!',
@@ -651,6 +675,7 @@ export default {
       test.type = test.modelType
       test.scoringMethod = test.modelScoringMethod
     },
+    // 刪除
     testDelete(test) {
       this.axios
         .delete(process.env.VUE_APP_API + '/tests/' + test._id)
@@ -686,23 +711,239 @@ export default {
           })
         })
     },
+    // 新增問題 & 選項
+    quesitonSubmit() {
+      this.axios
+        .patch(
+          process.env.VUE_APP_API +
+            '/tests/questions/' +
+            this.tests[this.activeTab]._id,
+          {
+            questions: {
+              question: this.aQuestion,
+              options: {
+                option: this.aOption,
+                optionScore: this.aOptionScore
+              }
+            }
+          }
+        )
+        .then(res => {
+          if (res.data.success) {
+            this.$buefy.dialog.alert({
+              title: 'Success!',
+              message: '新增成功！',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-circle'
+            })
+            this.question = ''
+            this.option = ''
+            this.optionScore = ''
+          } else {
+            this.$buefy.dialog.alert({
+              title: 'Error!',
+              message: '發生錯誤！',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-broken'
+            })
+          }
+        })
+        .catch(err => {
+          this.$buefy.dialog.alert({
+            title: 'Error!',
+            message: err.response.data.message,
+            type: 'is-danger',
+            hasIcon: true,
+            icon: 'heart-circle'
+          })
+        })
+    },
+    quesitonReset() {
+      this.aQuestion = ''
+      this.aOption = ''
+      this.aOptionScore = ''
+    },
+    // 刪除問題
+    questionDelete(question) {
+      this.axios
+        .delete(process.env.VUE_APP_API + '/tests/questions/' + question._id)
+        .then(res => {
+          if (res.data.success) {
+            this.$buefy.dialog.alert({
+              title: 'Success!',
+              message: '刪除成功！',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-circle'
+            })
+            this.users.splice(question.index, 1)
+          } else {
+            this.$buefy.dialog.alert({
+              title: 'Error!',
+              message: '發生錯誤！',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-broken'
+            })
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          this.$buefy.dialog.alert({
+            title: 'Error!',
+            message: err.response.data.message,
+            type: 'is-danger',
+            hasIcon: true,
+            icon: 'heart-circle'
+          })
+        })
+    },
     // 問題編輯
     questionEdit(question) {
-      this.isEdit = true
-      this.question = this.modelQuestion
+      console.log(question)
+      for (const i in this.tests) {
+        for (const j in this.tests[i].questions) {
+          console.log(this.tests[i].questions[j]._id)
+          if (this.tests[i].questions[j]._id === question._id) {
+            this.tests[i].questions[j].edit = true
+            break
+          }
+        }
+      }
+      question.edit = true
+      question.question = question.modelQ
     },
     // 問題取消
     questionCancel(question) {
-      this.isEdit = false
-      this.modelQuestion = this.question
+      question.edit = false
+      question.modelQ = question.question
     },
-    // 選項開啟新增 input
-    optionEdit(option) {
-      this.addOption = true
+    // 編輯問題
+    questionPatch(question) {
+      this.axios
+        .patch(
+          process.env.VUE_APP_API + '/tests/questionsEdit/' + question._id,
+          {
+            question: question.modelQ
+          }
+        )
+        .then(res => {
+          if (res.data.success) {
+            question.edit = false
+            question.question = question.modelQ
+            this.$buefy.dialog.alert({
+              title: 'Success!',
+              message: '保存成功！',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-circle'
+            })
+          } else {
+            this.$buefy.dialog.alert({
+              title: 'Error!',
+              message: '發生錯誤！',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-broken'
+            })
+          }
+        })
+        .catch(err => {
+          this.$buefy.dialog.alert({
+            title: 'Error!',
+            message: err.response.data.message,
+            type: 'is-danger',
+            hasIcon: true,
+            icon: 'heart-broken'
+          })
+        })
     },
-    // 選項取消
-    optionCancel(option) {
-      this.addOption = false
+    // 刪除選項
+    optionDelete(option) {
+      this.axios
+        .delete(
+          process.env.VUE_APP_API + '/tests/questions/options/' + option._id
+        )
+        .then(res => {
+          if (res.data.success) {
+            this.$buefy.dialog.alert({
+              title: 'Success!',
+              message: '刪除成功！',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-circle'
+            })
+            this.users.splice(option.index, 1)
+          } else {
+            this.$buefy.dialog.alert({
+              title: 'Error!',
+              message: '發生錯誤！',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-broken'
+            })
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          this.$buefy.dialog.alert({
+            title: 'Error!',
+            message: err.response.data.message,
+            type: 'is-danger',
+            hasIcon: true,
+            icon: 'heart-circle'
+          })
+        })
+    },
+    // 新增選項
+    optionSubmit() {
+      this.axios
+        .patch(
+          process.env.VUE_APP_API +
+            '/tests/questions/options/' +
+            this.selectedOptions,
+          {
+            option: this.aaOption,
+            optionScore: this.aaOptionScore
+          }
+        )
+        .then(res => {
+          if (res.data.success) {
+            this.$buefy.dialog.alert({
+              title: 'Success!',
+              message: '新增成功！',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-circle'
+            })
+            this.question = ''
+            this.option = ''
+            this.optionScore = ''
+          } else {
+            this.$buefy.dialog.alert({
+              title: 'Error!',
+              message: '發生錯誤！',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-broken'
+            })
+          }
+        })
+        .catch(err => {
+          this.$buefy.dialog.alert({
+            title: 'Error!',
+            message: err.response.data.message,
+            type: 'is-danger',
+            hasIcon: true,
+            icon: 'heart-circle'
+          })
+        })
+    },
+    optionReset() {
+      this.aaOption = ''
+      this.aaOptionScore = ''
     }
   },
   mounted() {
@@ -718,8 +959,11 @@ export default {
             test.modelReference = test.reference
             test.modelType = test.type
             test.modelScoringMethod = test.scoringMethod
-            test.modelQuestions = test.questions
-            // test.modelOptions = test.questions.options
+
+            for (const question of test.questions) {
+              question.edit = false
+              question.modelQ = question.question
+            }
             return test
           })
         } else {
@@ -739,37 +983,6 @@ export default {
           icon: 'heart-broken'
         })
       })
-
-    // this.axios
-    //   .get(process.env.VUE_APP_API + '/tests/' + this.testId)
-    //   .then(res => {
-    //     if (res.data.success) {
-    //       // this.testQuestions = res.data.result.questions
-    //       // .map 把陣列的內容重新組合，再加上 edit & model
-    //       this.testQuestions = res.data.result.questions.map(tq => {
-    //         tq.edit = false
-    //         tq.modelQuestion = tq.question
-    //         // test.modelOptions = test.questions.options
-    //         return tq
-    //       })
-    //     } else {
-    //       this.$swal({
-    //         icon: 'error',
-    //         title: '發生錯誤',
-    //         text: res.data.message
-    //       })
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //     // this.$buefy.dialog.alert({
-    //     //   title: 'Error!',
-    //     //   message: err.response.data.message,
-    //     //   type: 'is-danger',
-    //     //   hasIcon: true,
-    //     //   icon: 'heart-broken'
-    //     // })
-    //   })
   }
 }
 </script>

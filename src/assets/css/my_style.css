@@ -748,12 +748,12 @@ footer p {
 }
 
 /* backMentalTest --------------------------------- */
-#test_basic {
+#backTest {
   background-color: rgba(235, 233, 232, 0.8);
   border-radius: 1.5rem;
 }
 
-#test_basic .btn_backTest_edit {
+#backTest .btn_backTest_edit {
   background-color: transparent;
   color: #aea79c;
   border: none;
@@ -763,7 +763,7 @@ footer p {
   cursor: pointer;
 }
 
-#test_basic .btn_test_delete {
+#backTest .btn_test_delete {
   border-radius: 7px;
   background-color: transparent;
   border: none;
@@ -774,11 +774,15 @@ footer p {
   top: 0%;
 }
 
-#test_basic .list_style {
+#backTest .list_style_num {
+  list-style-type: decimal;
+}
+
+#backTest .list_style {
   list-style-type: square;
 }
 
-.btn_question_edit {
+#backTest .btn_question_edit {
   background-color: transparent;
   color: #aea79c;
   border: none;
@@ -787,7 +791,7 @@ footer p {
   width: 25px;
 }
 
-.btn_question_delete {
+#backTest .btn_question_delete {
   background-color: transparent;
   color: #ca2913;
   border: none;
@@ -796,7 +800,19 @@ footer p {
   width: 25px;
 }
 
-.btn_test_patch {
+#backTest .btn_position_left {
+  position: absolute;
+  right: 10%;
+  top: 12%;
+}
+
+#backTest .btn_position_right {
+  position: absolute;
+  right: 3%;
+  top: 12%;
+}
+
+#backTest .btn_test_patch {
   background-color: #6ba3b5;
   width: 65px;
   height: 65px;
@@ -808,15 +824,34 @@ footer p {
   right: 1%;
 }
 
-.btn_test_patch:hover {
+#backTest .btn_test_patch:hover {
   background-color: rgba(107, 163, 181, 0.8);
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+  color: #60584b;
 }
 
-.btn_test_patch:focus:not(:active) {
+#backTest .btn_test_patch:focus:not(:active) {
   -webkit-box-shadow: 0 0 5px rgba(107, 163, 181, 0.8);
           box-shadow: 0 0 5px rgba(107, 163, 181, 0.8);
+}
+
+#backTest .box_question_add {
+  border-radius: 1.5rem;
+  background: rgba(174, 167, 156, 0.5);
+  height: 100%;
+}
+
+#backTest .box_option_add {
+  border-radius: 1.5rem;
+  background: #ebe9e8;
+  height: 100%;
+}
+
+#backTest .box_test_edit {
+  border-radius: 1.5rem;
+  background: rgba(212, 207, 202, 0.3);
+  height: 100%;
 }
 
 /* media Queries ------------------------------------------- */
