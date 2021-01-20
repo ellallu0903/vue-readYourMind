@@ -214,9 +214,10 @@ export const addResult = async (req, res) => {
         {
           $push: {
             pesonalTestResults: {
-              testData_id: req.body.pesonalTestResults.testData_id,
+              testData_id: req.body.testData_id,
               date: Date.now(),
-              scores: req.body.pesonalTestResults.scores
+              scores: req.body.scores,
+              result: req.body.result
             }
           }
         },

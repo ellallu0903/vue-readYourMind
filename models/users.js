@@ -14,8 +14,10 @@ const testResultSchema = new Schema({
     default: Date.now
   },
   scores: {
-    type: Number,
-    required: [true, '缺少測驗分數。']
+    type: Number
+  },
+  result: {
+    type: Array
   }
 })
 
