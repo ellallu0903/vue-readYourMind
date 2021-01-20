@@ -61,52 +61,16 @@ export default {
       tests: [],
       questions: [],
       modelQuestion: [],
-      testData: [
-        {
-          question: '覺得容易苦惱或動怒',
-          options: [
-            {
-              option: '完全沒有'
-            },
-            {
-              option: '輕微'
-            },
-            {
-              option: '中等程度'
-            },
-            {
-              option: '厲害'
-            },
-            {
-              option: '非常厲害'
-            }
-          ]
-        },
-        {
-          question: '感覺緊張不安',
-          options: [
-            {
-              option: '完全沒有'
-            },
-            {
-              option: '輕微'
-            },
-            {
-              option: '中等程度'
-            },
-            {
-              option: '厲害'
-            },
-            {
-              option: '非常厲害'
-            }
-          ]
-        }
-      ],
       // table
       hasMobileCards: true,
       // result_data
-      score: 0
+      scores: 0,
+      result: []
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
     }
   },
   methods: {
@@ -122,48 +86,62 @@ export default {
             icon: 'alert-circle-outline'
           })
         } else if (this.tests.scoringMethod === '加總計分') {
-          this.score += this.modelQuestion[i]
+          this.scores += this.modelQuestion[i]
+        } else {
+          this.result = this.modelQuestion.reduce(function(allOptions, option) {
+            if (option in allOptions) {
+              allOptions[option]++
+            } else {
+              allOptions[option] = 1
+            }
+            return allOptions
+          }, {})
         }
       }
+      // console.log(this.result)
+      // console.log(this.scores)
 
-      // this.axios
-      //   .post(
-      //     process.env.VUE_APP_API + '/users/result/' + this.user.id,
-      //     this.$data
-      //   )
-      //   .then(res => {
-      //     if (res.data.success) {
-      //       this.$buefy.dialog.alert({
-      //         title: 'Success!',
-      //         message: '去看結果吧～',
-      //         type: 'is-danger',
-      //         hasIcon: true,
-      //         icon: 'heart-circle'
-      //       })
-      //       this.score = ''
-      //       // 導到個人專區
-      //       if (this.$route.path !== '/personal') {
-      //         this.$router.push('/personal')
-      //       }
-      //     } else {
-      //       this.$buefy.dialog.alert({
-      //         title: 'Error!',
-      //         message: '發生錯誤！',
-      //         type: 'is-danger',
-      //         hasIcon: true,
-      //         icon: 'heart-broken'
-      //       })
-      //     }
-      //   })
-      //   .catch(err => {
-      //     this.$buefy.dialog.alert({
-      //       title: 'Error!',
-      //       message: err.response.data.message,
-      //       type: 'is-danger',
-      //       hasIcon: true,
-      //       icon: 'heart-circle'
-      //     })
-      //   })
+      this.axios
+        .patch(process.env.VUE_APP_API + '/users/result/' + this.user.id, {
+          testData_id: this.$route.params.id,
+          date: Date.now(),
+          scores: this.scores,
+          result: this.result
+        })
+        .then(res => {
+          if (res.data.success) {
+            this.$buefy.dialog.alert({
+              title: 'Success!',
+              message: '去看結果吧～',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-circle'
+            })
+            this.scores = ''
+            this.result = []
+            // 導到個人專區
+            if (this.$route.path !== '/personal') {
+              this.$router.push('/personal')
+            }
+          } else {
+            this.$buefy.dialog.alert({
+              title: 'Error!',
+              message: '發生錯誤！',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'heart-broken'
+            })
+          }
+        })
+        .catch(err => {
+          this.$buefy.dialog.alert({
+            title: 'Error!',
+            message: err.response.data.message,
+            type: 'is-danger',
+            hasIcon: true,
+            icon: 'heart-circle'
+          })
+        })
     }
   },
   mounted() {

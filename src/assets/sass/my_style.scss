@@ -265,10 +265,8 @@ a:hover {
 }
 
 /* navbar -------------------------------------------------- */
-svg {
-  width: 110px;
-  height: 50px;
-  // background-color: red;
+.navbar-item img {
+  max-height: 1.75rem;
 }
 
 .nav_signUp {
@@ -353,18 +351,10 @@ footer p {
   position: relative;
 
   .home_title {
-    height: 75%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-  }
-
-  .home_title h1 {
-    width: 50%;
-    color: rgba($color: #ffffff, $alpha: 0.5);
-    -webkit-text-stroke: 2px $primaryColor01;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .particles {
@@ -536,6 +526,9 @@ footer p {
 }
 
 /* member_personal -------------------------------- */
+#personal {
+  white-space: pre-line;
+}
 .bg_personal {
   background: $mindColor4;
 }
@@ -955,6 +948,10 @@ footer p {
   // .navbar.is-spaced {
   //   padding: 0.875rem 2rem;
   // }
+
+  .navbar-item img {
+    max-height: 2.75rem;
+  }
 
   .one_page_h {
     height: calc(100vh - 3rem - 88px);

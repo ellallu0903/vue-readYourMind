@@ -156,42 +156,55 @@
       <div class="column is-1"></div>
       <div id="per_result" class="column is-8 box_per_result h-100">
         <!-- tabs -->
+        <!-- v-model="activeTab" -->
         <b-tabs v-model="activeTab" expanded class="h-100">
-          <template v-for="tab in tabs" class="h-100">
-            <b-tab-item :key="tab._id" class="h-100">
+          <template v-for="(test, index) in tests" class="h-100">
+            <b-tab-item :key="index" class="h-100">
               <template #header>
                 <span>
-                  {{ tab.label }} <b-tag rounded> {{ tab.count }} </b-tag>
+                  {{ test.title }}
                 </span>
               </template>
               <div
                 class="h-100 columns is-justify-content-center is-align-items-center"
               >
                 <div
-                  class="column p-5 is-flex is-justify-content-center is-align-items-center"
+                  class="column is-5 p-5 is-flex is-justify-content-flex-start is-align-items-start"
                 >
                   <div class="columns is-flex-direction-column">
                     <div class="column">
-                      <div class="mb-2"><b>測驗類別</b></div>
+                      <div class="mb-2"><b>測驗名稱</b></div>
                       <div class="is-size-5 ">
-                        {{ tab.content }}
+                        {{ test.title }}
                       </div>
                     </div>
                     <div class="column">
-                      <div class="mb-2"><b>測驗名稱</b></div>
-                      <div class="is-size-5 ">ABCDEFGHJKL</div>
+                      <div class="mb-2"><b>測驗類別</b></div>
+                      <div class="is-size-5 ">{{ test.type }}</div>
                     </div>
                     <div class="column">
                       <div class="mb-2"><b>測驗次數</b></div>
-                      <div class="is-size-5 ">(此測驗資料數 = 測驗數)</div>
+                      <div class="is-size-5 ">{{ resultData.length }}</div>
+                    </div>
+                    <div class="column">
+                      <div class="mb-2"><b>結果說明</b></div>
+                      <div class="is-size-5 ">{{ test.description }}</div>
                     </div>
                   </div>
                 </div>
                 <div
                   id="chart"
-                  class="column is-three-quarters p-5 is-flex is-justify-content-center is-align-content-center"
+                  class="column is-7 is-three-quarters p-5 is-flex is-justify-content-center is-align-content-center"
                 >
-                  作臺性當公一新在之後大強親是童與上我遠話積的一！事不活因還動所傳國更的是座個：兒然是著資易格個這對就區明道後；麼一完注氣好少館續話？營字一人仍童大得我入和先不內、容司造起集遊獎味，例問坐見場進能領與三主政眾是只外人除英生和生大一發可容而三一是？陸用人。面實千人裡市害的於使成任。作臺性當公一新在之後大強親是童與上我遠話積的一！事不活因還動所傳國更的是座個：兒然是著資易格個這對就區明道後；麼一完注氣好少館續話？營字一人仍童大得我入和先不內、容司造起集遊獎味，例問坐見場進能領與三主政眾是只外人除英生和生大一發可容而三一是？陸用人。面實千人裡市害的於使成任。作臺性當公一新在之後大強親是童與上我遠話積的一！事不活因還動所傳國更的是座個：兒然是著資易格個這對就區明道後；麼一完注氣好少館續話？營字一人仍童大得我入和先不內、容司造起集遊獎味，例問坐見場進能領與三主政眾是只外人除英生和生大一發可容而三一是？陸用人。面實千人裡市害的於使成任。作臺性當公一新在之後大強親是童與上我遠話積的一！事不活因還動所傳國更的是座個：兒然是著資易格個這對就區明道後；麼一完注氣好少館續話？營字一人仍童大得我入和先不內、容司造起集遊獎味，例問坐見場進能領與三主政眾是只外人除英生和生大一發可容而三一是？陸用人。面實千人裡市害的於使成任。作臺性當公一新在之後大強親是童與上我遠話積的一！事不活因還動所傳國更的是座個：兒然是著資易格個這對就區明道後；麼一完注氣好少館續話？營字一人仍童大得我入和先不內、容司造起集遊獎味，例問坐見場進能領與三主政眾是只外人除英生和生大一發可容而三一是？陸用人。面實千人裡市害的於使成任。作臺性當公一新在之後大強親是童與上我遠話積的一！事不活因還動所傳國更的是座個：兒然是著資易格個這對就區明道後；麼一完注氣好少館續話？營字一人仍童大得我入和先不內、容司造起集遊獎味，例問坐見場進能領與三主政眾是只外人除英生和生大一發可容而三一是？陸用人。面實千人裡市害的於使成任。作臺性當公一新在之後大強親是童與上我遠話積的一！事不活因還動所傳國更的是座個：兒然是著資易格個這對就區明道後；麼一完注氣好少館續話？營字一人仍童大得我入和先不內、容司造起集遊獎味，例問坐見場進能領與三主政眾是只外人除英生和生大一發可容而三一是？陸用人。面實千人裡市害的於使成任。
+                  <div
+                    v-if="resultData.length === 0"
+                    class="is-size-3 color_primaryColor01"
+                  >
+                    開始你的第一個 {{ test.title }} 測驗吧！
+                  </div>
+                  <div v-else v-for="(res, index) in resultData" :key="index">
+                    {{ res.scores }}
+                  </div>
                 </div>
               </div>
             </b-tab-item>
@@ -206,6 +219,7 @@
 export default {
   data() {
     return {
+      // 使用者資料編輯
       users: [],
       name: '',
       avator: '',
@@ -213,28 +227,18 @@ export default {
       model01: '',
       model02: '',
       isEdit: true,
+      // 測驗結果
+      results: [],
+      resultGroup: [],
       // result_tabs
       activeTab: 0,
-      tabs: [
-        {
-          _id: '1',
-          label: '123',
-          content: '123',
-          count: 3
-        },
-        {
-          _id: '2',
-          label: '456',
-          content: '456789',
-          count: 0
-        },
-        {
-          _id: '3',
-          label: 'qwer',
-          content: 'qwer',
-          count: 10
-        }
-      ]
+      // 測驗資料
+      tests: [],
+      // 圖表資料
+      chartData: {
+        columns: ['日期', '分數'],
+        rows: []
+      }
     }
   },
   computed: {
@@ -249,7 +253,21 @@ export default {
       } else {
         return false
       }
+    },
+    resultData() {
+      return this.results.filter(result => {
+        return result.testData_id._id === this.tests[this.activeTab]._id
+      })
     }
+    // chartRows() {
+    //   for (let i = 0; i < this.resultData.length; i++) {
+    //     this.chartData.rows.push({
+    //       date: this.resultDate[i].date,
+    //       scores: this.resultDate[i].scores
+    //     })
+    //   }
+    //   return this.chartData.rows
+    // }
   },
   methods: {
     // 編輯狀態 ----------------------------------------------------------
@@ -316,6 +334,7 @@ export default {
     }
   },
   mounted() {
+    // 使用者資料
     this.axios
       .get(process.env.VUE_APP_API + '/users/' + this.user.id)
       .then(res => {
@@ -324,6 +343,54 @@ export default {
           this.model01 = res.data.result.name
           this.model02 = res.data.result.avator
           this.registeredDate = this.users.regDate.substr(0, 10)
+        } else {
+          this.$swal({
+            icon: 'error',
+            title: '發生錯誤',
+            text: res.data.message
+          })
+        }
+      })
+      .catch(err => {
+        this.$buefy.dialog.alert({
+          title: 'Error!',
+          message: err.response.data.message,
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'heart-broken'
+        })
+      })
+
+    // 使用者測驗結果
+    this.axios
+      .get(process.env.VUE_APP_API + '/users/result/' + this.user.id)
+      .then(res => {
+        if (res.data.success) {
+          this.results = res.data.result.pesonalTestResults
+        } else {
+          this.$swal({
+            icon: 'error',
+            title: '發生錯誤',
+            text: res.data.message
+          })
+        }
+      })
+      .catch(err => {
+        this.$buefy.dialog.alert({
+          title: 'Error!',
+          message: err.response.data.message,
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'heart-broken'
+        })
+      })
+
+    // 所有測驗
+    this.axios
+      .get(process.env.VUE_APP_API + '/tests/')
+      .then(res => {
+        if (res.data.success) {
+          this.tests = res.data.result
         } else {
           this.$swal({
             icon: 'error',
