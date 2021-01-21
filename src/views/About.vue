@@ -9,8 +9,14 @@
 
     <div class="title is-3 has-text-centered">關於讀心</div>
     <div class="is-flex is-flex-direction-column is-align-items-center pb-4">
-      <div class="content box_about">
-        念位是仍理，料四方前。眼作那活業眾施自減天我何手眼獨成這不預哥研細，智主社成引院天高事此衣其房；不輕古留開算為。是答童吸出可吃形及！中月便加得即步發益、個那樓會立白不產線文重不！來因於故。相石信木新境不命任，企熱害；開不灣灣得一：一個性喜可的刻在臺可有件房？似電管都錯起愛來結回的景爸前北道心一的達月。
+      <div class="content box_about has-text-centered">
+        <img src="../assets/ryd_eng.svg" alt="Read your mind" />
+        <div class="is-size-5 color_primaryColor01 mt-2 mb-4">
+          藉由測驗來解讀自己的內心
+        </div>
+        以個人檔案的概念將測驗結果整合，可供使用者追蹤自身改變的幅度，
+        <br />
+        比對每次測驗的結果，記錄下自己成長的軌跡。
       </div>
     </div>
     <br />
@@ -53,7 +59,12 @@
               註冊帳號
             </h1>
             <div class="box_about_content_h py-2 px-5">
-              頭不顯建下力問是。自充本多自道：何路打難修客少全流少時個走神生法獲。力覺管但爾令到統遊兒亞行許，說金單上家希題要這力往等書大任北求約動。
+              輸入您的電子郵件、密碼、暱稱，以及選擇代表頭像後，就可以成功擁有
+              <b class="color_primaryColor01">讀心</b> 的帳號。
+              <br />
+              有了
+              <b class="color_primaryColor01">讀心</b>
+              的帳號，您可以使用本平台的心理測驗，並隨時檢視自己的測驗結果。
             </div>
             <b-button @click="toReg()" class="btn_enter">
               前去註冊
@@ -73,10 +84,12 @@
               開始測驗
             </h1>
             <div class="box_about_content_h py-2 px-5">
-              一才證非的班列方邊女、燈生作傳星色是，文的臺說一金立時方特初文打容不國開業利富向電，機場不一回不失格開操示他學。。
+              點選導覽列中的心理測驗或下方按鈕，檢視本平台目前所有的心理測驗。
+              <br />
+              選擇您有興趣的測驗後，將會傳送到測驗頁面，即可立即開始作答。
             </div>
             <b-button @click="toTest()" class="btn_enter">
-              立馬測驗
+              選擇測驗
             </b-button>
           </b-step-item>
           <b-step-item
@@ -89,7 +102,9 @@
               檢測結果
             </h1>
             <div class="box_about_content_h py-2 px-5">
-              失萬民試官寫感關輕紀臺照。受另話幾一用以管命金，熱們山父學皮又次爭城家年陸朋人考劇保這師著現小禮代……做如傳大一院止己施飯。
+              完成測驗後，檢測結果會顯示在個人資料中。
+              <br />
+              選擇心理測驗的名稱，查看剛剛作答完畢的測驗結果或是先前的測驗紀錄。
             </div>
             <b-button @click="toPersonalPage()" class="btn_enter">
               查看結果
@@ -178,7 +193,7 @@ export default {
       }
     },
     toTest() {
-      this.$router.push('/test')
+      this.$router.push('/testList')
     },
     toLogIn() {
       if (this.user.id.length === 0) {

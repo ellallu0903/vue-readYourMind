@@ -563,7 +563,12 @@ footer p {
   top: 5%;
   cursor: pointer;
 }
-
+.container {
+  width: 500px;
+  .ve-line {
+    width: 100%;
+  }
+}
 /* backStage-sidebar -------------------------------------------------- */
 .sidebar-page {
   display: flex;

@@ -29,37 +29,39 @@
         </b-navbar-item>
       </template>
       <template slot="end">
-        <div
-          id="avator_block"
-          v-if="user.id.length > 0"
-          class="mx-3 nav_avator"
-          @click="toPersonalPage()"
-        >
-          <img
-            v-if="user.avator === 'bear'"
-            class="image is-55x55"
-            src="./assets/images/avator/bear.png"
-            alt="Your avator."
-          />
-          <img
-            v-else-if="user.avator === 'fox'"
-            class="image is-55x55"
-            src="./assets/images/avator/fox.png"
-            alt="Your avator."
-          />
-          <img
-            v-else-if="user.avator === 'deer'"
-            class="image is-55x55"
-            src="./assets/images/avator/deer.png"
-            alt="Your avator."
-          />
-          <img
-            v-else
-            class="image is-55x55"
-            src="./assets/images/avator/owl.png"
-            alt="Your avator."
-          />
-        </div>
+        <b-tooltip label="查看個人資料" position="is-bottom" type="is-light">
+          <div
+            id="avator_block"
+            v-if="user.id.length > 0"
+            class="mx-3 nav_avator"
+            @click="toPersonalPage()"
+          >
+            <img
+              v-if="user.avator === 'bear'"
+              class="image is-55x55"
+              src="./assets/images/avator/bear.png"
+              alt="Your avator."
+            />
+            <img
+              v-else-if="user.avator === 'fox'"
+              class="image is-55x55"
+              src="./assets/images/avator/fox.png"
+              alt="Your avator."
+            />
+            <img
+              v-else-if="user.avator === 'deer'"
+              class="image is-55x55"
+              src="./assets/images/avator/deer.png"
+              alt="Your avator."
+            />
+            <img
+              v-else
+              class="image is-55x55"
+              src="./assets/images/avator/owl.png"
+              alt="Your avator."
+            />
+          </div>
+        </b-tooltip>
         <b-navbar-item tag="div">
           <div class="buttons">
             <b-button
@@ -102,7 +104,9 @@
     <footer>
       <div class="content has-text-centered footer p-0">
         <p>
-          <strong class="has-text-primary">&copy; 2020 Read your mind </strong>
+          <strong class="has-text-primary"
+            >&copy; 2020 Read your mind ❤
+          </strong>
         </p>
       </div>
     </footer>

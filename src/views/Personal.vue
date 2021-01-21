@@ -196,14 +196,22 @@
                   id="chart"
                   class="column is-7 is-three-quarters p-5 is-flex is-justify-content-center is-align-content-center"
                 >
-                  <div
+                  <!-- <div
                     v-if="resultData.length === 0"
                     class="is-size-3 color_primaryColor01"
                   >
                     開始你的第一個 {{ test.title }} 測驗吧！
-                  </div>
-                  <div v-else v-for="(res, index) in resultData" :key="index">
-                    {{ res.scores }}
+                  </div> -->
+                  <!-- v-for="(res, index) in resultData" :key="index" -->
+                  <div
+                    class="container is-flex is-justify-content-center is-align-items-center"
+                  >
+                    <ve-line
+                      :data="chartData"
+                      :colors="colors"
+                      :legend-visible="false"
+                      width="300px"
+                    ></ve-line>
                   </div>
                 </div>
               </div>
@@ -235,9 +243,17 @@ export default {
       // 測驗資料
       tests: [],
       // 圖表資料
+      colors: ['#f17c67'],
       chartData: {
-        columns: ['日期', '分數'],
-        rows: []
+        columns: ['date', 'scores'],
+        rows: [
+          // { date: '1/1', scores: 1393 },
+          // { date: '1/2', scores: 3530 },
+          // { date: '1/3', scores: 2923 },
+          // { date: '1/4', scores: 1723 },
+          // { date: '1/5', scores: 3792 },
+          // { date: '1/6', scores: 4593 }
+        ]
       }
     }
   },
@@ -262,8 +278,10 @@ export default {
     // chartRows() {
     //   for (let i = 0; i < this.resultData.length; i++) {
     //     this.chartData.rows.push({
-    //       date: this.resultDate[i].date,
-    //       scores: this.resultDate[i].scores
+    //       // date: this.resultDate[i].date,
+    //       // scores: this.resultDate[i].scores
+    //       date: '2020-02-0' + 1,
+    //       scores: 5
     //     })
     //   }
     //   return this.chartData.rows
@@ -408,6 +426,17 @@ export default {
           icon: 'heart-broken'
         })
       })
+
+    // for (let i = 0; i < this.resultData.length; i++) {
+
+    // }
+
+    // this.chartData.rows.push({
+    //   // date: this.resultDate[i].date,
+    //   // scores: this.resultDate[i].scores
+    //   date: '2020-02-0' + 1,
+    //   scores: 5
+    // })
   }
 }
 </script>

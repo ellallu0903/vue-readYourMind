@@ -29,8 +29,8 @@ import VueAxios from 'vue-axios'
 import 'animate.css'
 // vue-particles
 import VueParticles from 'vue-particles'
-
-// ApexCharts
+// v-charts
+import VCharts from 'v-charts'
 
 // 傳送請求時一起傳送認證資訊
 axios.defaults.withCredentials = true
@@ -45,6 +45,8 @@ Vue.config.productionTip = false
 Vue.use(Buefy)
 
 Vue.use(VueParticles)
+
+Vue.use(VCharts)
 
 Vue.use(VueAxios, axios)
 

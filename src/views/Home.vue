@@ -1,7 +1,7 @@
 <template>
   <div id="home" class="one_page_h">
     <div class="home_title">
-      <img src="../assets/logo_animated.svg" alt="" />
+      <img width="480" src="../assets/logo_animated.svg" alt="" />
     </div>
 
     <vue-particles

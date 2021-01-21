@@ -41,7 +41,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue'),
     meta: {
       title: '讀心 | 開始測驗',
-      login: false
+      login: true
     }
   },
   {

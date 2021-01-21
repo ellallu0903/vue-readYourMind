@@ -557,6 +557,14 @@ footer p {
   cursor: pointer;
 }
 
+.container {
+  width: 500px;
+}
+
+.container .ve-line {
+  width: 100%;
+}
+
 /* backStage-sidebar -------------------------------------------------- */
 .sidebar-page {
   display: -webkit-box;
