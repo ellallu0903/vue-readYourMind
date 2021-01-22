@@ -206,12 +206,12 @@
                   <div
                     class="container is-flex is-justify-content-center is-align-items-center"
                   >
-                    <ve-line
-                      :data="chartData"
-                      :colors="colors"
-                      :legend-visible="false"
-                      width="300px"
-                    ></ve-line>
+                    <div v-if="test.scoringMethod == '加總計分'" style="width:100%">
+                      <highcharts :options="chartLine"></highcharts>
+                    </div>
+                    <div v-else style="width:100%">
+                      <highcharts :options="chartRadar"></highcharts>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -223,6 +223,7 @@
   </div>
 </template>
 
+<script src="http://cdn.hcharts.cn/highcharts/highcharts-more.js"></script>
 <script>
 export default {
   data() {
@@ -243,17 +244,94 @@ export default {
       // 測驗資料
       tests: [],
       // 圖表資料
-      colors: ['#f17c67'],
-      chartData: {
-        columns: ['date', 'scores'],
-        rows: [
-          // { date: '1/1', scores: 1393 },
-          // { date: '1/2', scores: 3530 },
-          // { date: '1/3', scores: 2923 },
-          // { date: '1/4', scores: 1723 },
-          // { date: '1/5', scores: 3792 },
-          // { date: '1/6', scores: 4593 }
-        ]
+      chartLine: {
+        title: {
+          text: '測驗結果 ❤'
+        },
+        yAxis: {
+          title: {
+            text: null
+          }
+        },
+        xAxis: {
+          type: 'category'
+        },
+        style: {
+          color: '#f17c67'
+        },
+        series: [{
+          name: '分數',
+          type: 'line',
+          data: [
+            { name: '2020-02-10', y: 24 },
+            { name: '2020-02-15', y: 17 },
+            { name: '2020-02-20', y: 8 }
+          ], // sample data
+          color: '#f17c67',
+          showInLegend: false
+        }],
+        plotOptions: {
+          line: {
+            dataLabels: {
+              enabled: true
+            }
+          }
+        },
+        credits: {
+          enabled: false // 禁用版权信息
+        }
+      },
+      chartRadar: {
+        chart: {
+          polar: true,
+          type: 'line'
+        },
+        title: {
+          text: '測驗結果 ❤',
+        },
+        pane: {
+            size: '80%'
+        },
+        xAxis: {
+          categories: [
+            'A', 'B', 'C', 'D'
+          ],
+          tickmarkPlacement: 'on',
+          lineWidth: 0
+        },
+        yAxis: {
+          gridLineInterpolation: 'polygon',
+          lineWidth: 0,
+          min: 0
+        },
+        tooltip: {
+          shared: true,
+          pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+        },
+        legend: {
+          align: 'right',
+          verticalAlign: 'top',
+          y: 70,
+          layout: 'vertical'
+        },
+        colors: [
+          '#f17c67', '#60584b', '#D18A40', '#f4c7a5', '#8a8174',
+          '#f4c7a5', '#D15740', '#AE3620', '#B1366C', '#931B50'
+        ],
+        series: [{
+          name: '2020-02-10',
+          data: [43000, 19000, 60000, 35000],
+          pointPlacement: 'on'
+        }, {
+          name: '2020-02-15',
+          data: [50000, 39000, 42000, 31000],
+          pointPlacement: 'on'
+        },
+        {
+          name: '2020-02-20',
+          data: [50500, 30000, 48000, 30000],
+          pointPlacement: 'on'
+        }]
       }
     }
   },

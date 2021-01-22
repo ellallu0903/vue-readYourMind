@@ -388,7 +388,8 @@ footer p {
 
 /* login -------------------------------------------------- */
 .bg_login {
-  background-color: $secondaryColor;
+  // background-color: $secondaryColor;
+  background: url(../images/bg/bg_light.png) no-repeat center/cover;
 }
 
 .box_login {
@@ -431,6 +432,7 @@ footer p {
 
 .bg_registered {
   background-color: $primaryColor03;
+  background: url(../images/bg/bg_dark.png) no-repeat center/cover;
 }
 
 .box_registered {

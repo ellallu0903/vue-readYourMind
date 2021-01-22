@@ -29,8 +29,10 @@ import VueAxios from 'vue-axios'
 import 'animate.css'
 // vue-particles
 import VueParticles from 'vue-particles'
-// v-charts
-import VCharts from 'v-charts'
+// Highcharts Vue
+import Highcharts from 'highcharts'
+import HighchartsVue from 'highcharts-vue'
+import HighchartsMore from 'highcharts/highcharts-more'
 
 // 傳送請求時一起傳送認證資訊
 axios.defaults.withCredentials = true
@@ -46,7 +48,9 @@ Vue.use(Buefy)
 
 Vue.use(VueParticles)
 
-Vue.use(VCharts)
+Vue.use(HighchartsVue)
+
+HighchartsMore(Highcharts)
 
 Vue.use(VueAxios, axios)
 
