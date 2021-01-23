@@ -244,6 +244,9 @@ export default {
       // 測驗資料
       tests: [],
       // 圖表資料
+      chartX: [],
+      chartLineY: [],
+      chartRadarY: [],
       chartLine: {
         title: {
           text: '測驗結果 ❤'
@@ -353,17 +356,6 @@ export default {
         return result.testData_id._id === this.tests[this.activeTab]._id
       })
     }
-    // chartRows() {
-    //   for (let i = 0; i < this.resultData.length; i++) {
-    //     this.chartData.rows.push({
-    //       // date: this.resultDate[i].date,
-    //       // scores: this.resultDate[i].scores
-    //       date: '2020-02-0' + 1,
-    //       scores: 5
-    //     })
-    //   }
-    //   return this.chartData.rows
-    // }
   },
   methods: {
     // 編輯狀態 ----------------------------------------------------------
