@@ -244,7 +244,10 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
-            // this.knowledges.push(res.data.result)
+            this.knowledges.push({
+              title: this.title,
+              content: this.content
+            })
             this.title = ''
             this.content = ''
             this.addModalActive = false

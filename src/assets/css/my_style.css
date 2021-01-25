@@ -98,6 +98,13 @@ a:hover {
   position: absolute;
 }
 
+.text_404 {
+  font-weight: 500;
+  font-style: italic;
+  color: #8a8174;
+  font-size: 1.5rem;
+}
+
 .button.is-primary {
   background-color: #8a8174;
   border-color: transparent;
@@ -262,6 +269,14 @@ a:hover {
 
 .btn_to_top_bg a:hover {
   color: rgba(241, 124, 103, 0.5);
+}
+
+.button[disabled] {
+  border-radius: 7px;
+  background-color: #ebe9e8;
+  border: 2px solid #f17c67;
+  color: #8a8174;
+  cursor: auto;
 }
 
 /* navbar -------------------------------------------------- */
@@ -853,6 +868,10 @@ footer p {
   height: 100%;
 }
 
+#backTest #test_basic {
+  width: calc(100% - 50px);
+}
+
 /* media Queries ------------------------------------------- */
 @media screen and (max-width: 767px) {
   .back_add_box {
@@ -874,6 +893,9 @@ footer p {
 @media all and (min-width: 768px) {
   .add_modal_size {
     width: 50%;
+  }
+  .text_404 {
+    font-size: 2rem;
   }
   #backKnowledge .btn_Knowledge_add {
     position: fixed;
@@ -990,5 +1012,8 @@ footer p {
   }
   .b-sidebar .sidebar-content.is-mini:not(.is-mini-expand) .menu-label:not(:last-child), .b-sidebar .sidebar-content.is-mini.is-mini-expand:not(:hover) .menu-label:not(:last-child) {
     margin-bottom: 0;
+  }
+  #backTest #test_basic {
+    width: 100%;
   }
 }

@@ -135,6 +135,15 @@ const routes = [
       title: '讀心 | 後台管理',
       login: true
     }
+  },
+  {
+    path: '/*',
+    name: 'NotFound',
+    component: () =>
+      import(/* webpackChunkName: "notFound" */ '../views/NotFound.vue'),
+    meta: {
+      title: '讀心 | 找不到頁面'
+    }
   }
 ]
 

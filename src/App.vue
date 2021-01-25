@@ -3,7 +3,7 @@
     <b-navbar centered spaced shadow>
       <template slot="brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }" class="py-0">
-          <img src="./assets/ryd.svg" alt="" />
+          <img src="./assets/svg/ryd.svg" alt="" />
         </b-navbar-item>
       </template>
       <template slot="start">
@@ -37,19 +37,19 @@
             @click="toPersonalPage()"
           >
             <img
-              v-if="user.avator === 'bear'"
+              v-if="this.personalData.avator === 'bear'"
               class="image is-55x55"
               src="./assets/images/avator/bear.png"
               alt="Your avator."
             />
             <img
-              v-else-if="user.avator === 'fox'"
+              v-else-if="this.personalData.avator === 'fox'"
               class="image is-55x55"
               src="./assets/images/avator/fox.png"
               alt="Your avator."
             />
             <img
-              v-else-if="user.avator === 'deer'"
+              v-else-if="this.personalData.avator === 'deer'"
               class="image is-55x55"
               src="./assets/images/avator/deer.png"
               alt="Your avator."
@@ -118,7 +118,7 @@ export default {
   name: 'App',
   data() {
     return {
-      users: []
+      personalData: []
     }
   },
   computed: {
@@ -220,6 +220,29 @@ export default {
     setInterval(() => {
       this.heartbeat()
     }, 5000)
+
+    this.axios
+      .get(process.env.VUE_APP_API + '/users/' + this.user.id)
+      .then(res => {
+        if (res.data.success) {
+          this.personalData = res.data.result
+        } else {
+          this.$swal({
+            icon: 'error',
+            title: '發生錯誤',
+            text: res.data.message
+          })
+        }
+      })
+      .catch(err => {
+        this.$buefy.dialog.alert({
+          title: 'Error!',
+          message: err.response.data.message,
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'heart-broken'
+        })
+      })
   }
 }
 </script>

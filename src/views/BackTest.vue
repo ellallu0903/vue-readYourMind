@@ -8,7 +8,7 @@
           <li class="is-active"><a href="#">心理測驗</a></li>
         </ul>
       </nav>
-      <section id="test_basic" class="w-100 p-4">
+      <section id="test_basic" class="w-100">
         <b-tabs expanded class="h-100" v-model="activeTab">
           <template v-for="test in tests" class="h-100">
             <b-tab-item :key="test._id" class="h-100">
@@ -493,17 +493,6 @@
                 </div>
               </div>
             </section>
-            <!-- <footer
-              class="modal-card-foot is-justify-content-center is-align-items-center"
-            >
-              <button class="button btn_enter">保存</button>
-              <button
-                @click="patchModalActive = false"
-                class="button btn_cancel"
-              >
-                取消
-              </button>
-            </footer> -->
           </div>
         </div>
       </b-modal>
@@ -572,6 +561,13 @@ export default {
               type: 'is-danger',
               hasIcon: true,
               icon: 'heart-circle'
+            })
+            this.tests.push({
+              title: this.title,
+              type: this.type,
+              scoringMethod: this.scoringMethod,
+              reference: this.reference,
+              description: this.description
             })
             this.title = ''
             this.type = ''
@@ -737,9 +733,18 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
-            this.question = ''
-            this.option = ''
-            this.optionScore = ''
+            this.tests[this.activeTab].questions.push({
+              question: this.aQuestion,
+              options: [
+                {
+                  option: this.aOption,
+                  optionScore: this.aOptionScore
+                }
+              ]
+            })
+            this.aQuestion = ''
+            this.aOption = ''
+            this.aOptionScore = ''
           } else {
             this.$buefy.dialog.alert({
               title: 'Error!',
@@ -778,6 +783,10 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
+            const Qindex = this.tests[this.activeTab].questions.findIndex(
+              q => q === question._id
+            )
+            this.tests[this.activeTab].questions.splice(Qindex - 1, 1)
             this.users.splice(question.index, 1)
           } else {
             this.$buefy.dialog.alert({
@@ -875,6 +884,10 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
+            const Oindex = this.tests[
+              this.activeTab
+            ].questions.options.findIndex(o => o._id === option._id)
+            this.tests[this.activeTab].questions.options.splice(Oindex - 1, 1)
             this.users.splice(option.index, 1)
           } else {
             this.$buefy.dialog.alert({
@@ -918,9 +931,18 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
+
+            const Qindex = this.tests[this.activeTab].questions.findIndex(
+              q => q._id === this.selectedOptions
+            )
+
+            this.tests[this.activeTab].questions[Qindex].options.push({
+              option: this.aaOption,
+              optionScore: this.aaOptionScore
+            })
             this.question = ''
-            this.option = ''
-            this.optionScore = ''
+            this.aaOption = ''
+            this.aaOptionScore = ''
           } else {
             this.$buefy.dialog.alert({
               title: 'Error!',

@@ -122,6 +122,13 @@ a:hover {
   position: absolute;
 }
 
+.text_404 {
+  font-weight: 500;
+  font-style: italic;
+  color: $mindColor2;
+  font-size: 1.5rem;
+}
+
 .button.is-primary {
   background-color: $mindColor2;
   border-color: transparent;
@@ -262,6 +269,14 @@ a:hover {
   a:hover {
     color: rgba($color: $primaryColor01, $alpha: 0.5);
   }
+}
+
+.button[disabled] {
+  border-radius: $btnRadius;
+  background-color: $mindColor5;
+  border: 2px solid $primaryColor01;
+  color: $mindColor2;
+  cursor: auto;
 }
 
 /* navbar -------------------------------------------------- */
@@ -830,6 +845,10 @@ footer p {
     background: rgba($color: $mindColor4, $alpha: 0.3);
     height: 100%;
   }
+
+  #test_basic {
+    width: calc(100% - 50px);
+  }
 }
 
 /* media Queries ------------------------------------------- */
@@ -856,6 +875,10 @@ footer p {
 @media all and (min-width: 768px) {
   .add_modal_size {
     width: 50%;
+  }
+
+  .text_404 {
+    font-size: 2rem;
   }
 
   #backKnowledge {
@@ -955,7 +978,6 @@ footer p {
   // .navbar.is-spaced {
   //   padding: 0.875rem 2rem;
   // }
-
   .navbar-item img {
     max-height: 2.75rem;
   }
@@ -1025,6 +1047,11 @@ footer p {
           }
         }
       }
+    }
+  }
+  #backTest {
+    #test_basic {
+      width: 100%;
     }
   }
 }

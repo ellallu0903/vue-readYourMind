@@ -319,6 +319,12 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
+            this.users.push({
+              email: this.email,
+              name: this.name,
+              avator: this.avator,
+              authority: this.authority
+            })
             this.email = ''
             this.password = ''
             this.name = ''

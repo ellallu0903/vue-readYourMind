@@ -27,7 +27,16 @@
                 <div class="is-size-6">{{ test.reference }}</div>
               </div>
               <div class="column is-2 has-text-centered">
+                <b-tooltip
+                  v-if="user.id.length === 0"
+                  label="請先登入"
+                  type="is-dark"
+                  position="is-bottom"
+                >
+                  <b-button disabled><b>START</b></b-button>
+                </b-tooltip>
                 <b-button
+                  v-else
                   tag="router-link"
                   type="btn_enter"
                   :to="'test/' + test._id"
@@ -48,6 +57,11 @@ export default {
     return {
       tests: [],
       testId: ''
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
     }
   },
   mounted() {

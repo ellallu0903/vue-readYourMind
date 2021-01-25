@@ -156,7 +156,6 @@
       <div class="column is-1"></div>
       <div id="per_result" class="column is-8 box_per_result h-100">
         <!-- tabs -->
-        <!-- v-model="activeTab" -->
         <b-tabs v-model="activeTab" expanded class="h-100">
           <template v-for="(test, index) in tests" class="h-100">
             <b-tab-item :key="index" class="h-100">
@@ -196,17 +195,30 @@
                   id="chart"
                   class="column is-7 is-three-quarters p-5 is-flex is-justify-content-center is-align-content-center"
                 >
-                  <!-- <div
-                    v-if="resultData.length === 0"
-                    class="is-size-3 color_primaryColor01"
-                  >
-                    開始你的第一個 {{ test.title }} 測驗吧！
-                  </div> -->
-                  <!-- v-for="(res, index) in resultData" :key="index" -->
                   <div
                     class="container is-flex is-justify-content-center is-align-items-center"
                   >
-                    <div v-if="test.scoringMethod == '加總計分'" style="width:100%">
+                    <div
+                      v-if="resultData.length === 0"
+                      class="is-size-4 color_primaryColor01"
+                    >
+                      <div class="columns is-flex-direction-column">
+                        <div class="column mb-3">
+                          開始你的第一個 {{ test.title }} 測驗吧！
+                        </div>
+                        <div class="column has-text-centered">
+                          <img
+                            src="../assets/svg/startTest.svg"
+                            alt="Start your first test."
+                            width="200"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      v-else-if="test.scoringMethod == '加總計分'"
+                      style="width:100%"
+                    >
                       <highcharts :options="chartLine"></highcharts>
                     </div>
                     <div v-else style="width:100%">
@@ -242,100 +254,7 @@ export default {
       // result_tabs
       activeTab: 0,
       // 測驗資料
-      tests: [],
-      // 圖表資料
-      chartX: [],
-      chartLineY: [],
-      chartRadarY: [],
-      chartLine: {
-        title: {
-          text: '測驗結果 ❤'
-        },
-        yAxis: {
-          title: {
-            text: null
-          }
-        },
-        xAxis: {
-          type: 'category'
-        },
-        style: {
-          color: '#f17c67'
-        },
-        series: [{
-          name: '分數',
-          type: 'line',
-          data: [
-            { name: '2020-02-10', y: 24 },
-            { name: '2020-02-15', y: 17 },
-            { name: '2020-02-20', y: 8 }
-          ], // sample data
-          color: '#f17c67',
-          showInLegend: false
-        }],
-        plotOptions: {
-          line: {
-            dataLabels: {
-              enabled: true
-            }
-          }
-        },
-        credits: {
-          enabled: false // 禁用版权信息
-        }
-      },
-      chartRadar: {
-        chart: {
-          polar: true,
-          type: 'line'
-        },
-        title: {
-          text: '測驗結果 ❤',
-        },
-        pane: {
-            size: '80%'
-        },
-        xAxis: {
-          categories: [
-            'A', 'B', 'C', 'D'
-          ],
-          tickmarkPlacement: 'on',
-          lineWidth: 0
-        },
-        yAxis: {
-          gridLineInterpolation: 'polygon',
-          lineWidth: 0,
-          min: 0
-        },
-        tooltip: {
-          shared: true,
-          pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
-        },
-        legend: {
-          align: 'right',
-          verticalAlign: 'top',
-          y: 70,
-          layout: 'vertical'
-        },
-        colors: [
-          '#f17c67', '#60584b', '#D18A40', '#f4c7a5', '#8a8174',
-          '#f4c7a5', '#D15740', '#AE3620', '#B1366C', '#931B50'
-        ],
-        series: [{
-          name: '2020-02-10',
-          data: [43000, 19000, 60000, 35000],
-          pointPlacement: 'on'
-        }, {
-          name: '2020-02-15',
-          data: [50000, 39000, 42000, 31000],
-          pointPlacement: 'on'
-        },
-        {
-          name: '2020-02-20',
-          data: [50500, 30000, 48000, 30000],
-          pointPlacement: 'on'
-        }]
-      }
+      tests: []
     }
   },
   computed: {
@@ -355,6 +274,120 @@ export default {
       return this.results.filter(result => {
         return result.testData_id._id === this.tests[this.activeTab]._id
       })
+    },
+    chartLine() {
+      let r = this.resultData
+      const data = r.map(rd => {
+        const rdObject = { name: '', y: null }
+        rdObject.name = rd.date.substr(0, 10)
+        rdObject.y = rd.scores
+        return rdObject
+      })
+
+      const chart = {
+        title: {
+          text: '測驗結果 ❤'
+        },
+        yAxis: {
+          title: {
+            text: null
+          }
+        },
+        xAxis: {
+          type: 'category'
+        },
+        style: {
+          color: '#f17c67'
+        },
+        series: [
+          {
+            name: '分數',
+            type: 'line',
+            data,
+            color: '#f17c67',
+            showInLegend: false
+          }
+        ],
+        plotOptions: {
+          line: {
+            dataLabels: {
+              enabled: true
+            }
+          }
+        },
+        credits: {
+          enabled: false // 禁用版权信息
+        }
+      }
+      return chart
+    },
+    chartRadar() {
+      const r = this.resultData
+      const series = r.map(rd => {
+        const data = []
+        for (let i = 1; i <= 4; i++) {
+          if (rd.result.length > 0 && rd.result[0][i]) {
+            data.push(rd.result[0][i])
+          } else {
+            data.push(0)
+          }
+        }
+        const rdObject = {
+          name: rd.date.substr(0, 10),
+          data,
+          pointPlacement: 'on'
+        }
+
+        return rdObject
+      })
+
+      const chart = {
+        chart: {
+          polar: true,
+          type: 'line'
+        },
+        title: {
+          text: '測驗結果 ❤'
+        },
+        pane: {
+          size: '80%'
+        },
+        xAxis: {
+          categories: ['A', 'B', 'C', 'D'],
+          tickmarkPlacement: 'on',
+          lineWidth: 0
+        },
+        yAxis: {
+          gridLineInterpolation: 'polygon',
+          lineWidth: 0,
+          min: 0
+        },
+        tooltip: {
+          shared: true,
+          pointFormat:
+            '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+        },
+        legend: {
+          align: 'right',
+          verticalAlign: 'top',
+          y: 70,
+          layout: 'vertical'
+        },
+        colors: [
+          '#f17c67',
+          '#60584b',
+          '#D18A40',
+          '#f4c7a5',
+          '#8a8174',
+          '#f4c7a5',
+          '#D15740',
+          '#AE3620',
+          '#B1366C',
+          '#931B50'
+        ],
+        series
+      }
+      return chart
     }
   },
   methods: {

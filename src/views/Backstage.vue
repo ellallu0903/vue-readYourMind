@@ -49,6 +49,7 @@
               </b-menu-list>
               <br />
               <br />
+              <br />
               <b-menu-list label="Actions">
                 <b-menu-item
                   icon="logout"
@@ -62,13 +63,6 @@
         <div class="bg_back">
           <router-view />
         </div>
-        <!-- <div id="go_top_page" class="btn_to_top_bg is-flex is-justify-content-center is-align-items-center">
-              <a href="#">
-                <b-icon icon="arrow-up-drop-circle"
-                size="is-large"
-                class="animate__animated animate__fadeIn animate__infinite animate__slower"></b-icon>
-              </a>
-            </div> -->
       </section>
     </div>
   </div>
@@ -82,7 +76,9 @@ export default {
       expandOnHover: false,
       mobile: 'reduce',
       reduce: false,
-      activeTab: 0
+      activeTab: 0,
+      // data
+      users: []
     }
   },
   methods: {
@@ -128,6 +124,30 @@ export default {
           })
         })
     }
+  },
+  mounted() {
+    this.axios
+      .get(process.env.VUE_APP_API + '/users/')
+      .then(res => {
+        if (res.data.success) {
+          this.users = res.data.result
+        } else {
+          this.$swal({
+            icon: 'error',
+            title: '發生錯誤',
+            text: res.data.message
+          })
+        }
+      })
+      .catch(err => {
+        this.$buefy.dialog.alert({
+          title: 'Error!',
+          message: err.response.data.message,
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'heart-broken'
+        })
+      })
   }
 }
 </script>
