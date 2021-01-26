@@ -576,6 +576,7 @@ export default {
             this.description = ''
             this.question = ''
             this.option = ''
+            this.optionScore = 0
             this.addModalActive = false
           } else {
             this.$buefy.dialog.alert({
@@ -735,16 +736,23 @@ export default {
             })
             this.tests[this.activeTab].questions.push({
               question: this.aQuestion,
+              _id:
+                res.data.result.questions[res.data.result.questions.length - 1]
+                  ._id,
               options: [
                 {
                   option: this.aOption,
-                  optionScore: this.aOptionScore
+                  optionScore: this.aOptionScore,
+                  _id:
+                    res.data.result.questions[
+                      res.data.result.questions.length - 1
+                    ].options[0]._id
                 }
               ]
             })
             this.aQuestion = ''
             this.aOption = ''
-            this.aOptionScore = ''
+            this.aOptionScore = 0
           } else {
             this.$buefy.dialog.alert({
               title: 'Error!',
@@ -768,7 +776,7 @@ export default {
     quesitonReset() {
       this.aQuestion = ''
       this.aOption = ''
-      this.aOptionScore = ''
+      this.aOptionScore = 0
     },
     // 刪除問題
     questionDelete(question) {
@@ -784,9 +792,9 @@ export default {
               icon: 'heart-circle'
             })
             const Qindex = this.tests[this.activeTab].questions.findIndex(
-              q => q === question._id
+              q => q._id === question._id
             )
-            this.tests[this.activeTab].questions.splice(Qindex - 1, 1)
+            this.tests[this.activeTab].questions.splice(Qindex, 1)
             this.users.splice(question.index, 1)
           } else {
             this.$buefy.dialog.alert({
@@ -884,10 +892,24 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
-            const Oindex = this.tests[
-              this.activeTab
-            ].questions.options.findIndex(o => o._id === option._id)
-            this.tests[this.activeTab].questions.options.splice(Oindex - 1, 1)
+
+            let qid = -1
+            let oid = -1
+            for (
+              let i = 0;
+              i < this.tests[this.activeTab].questions.length;
+              i++
+            ) {
+              oid = this.tests[this.activeTab].questions[i].options.findIndex(
+                o => o._id === option._id
+              )
+              if (oid > -1) {
+                qid = i
+                break
+              }
+            }
+
+            this.tests[this.activeTab].questions[qid].options.splice(oid, 1)
             this.users.splice(option.index, 1)
           } else {
             this.$buefy.dialog.alert({
@@ -938,11 +960,15 @@ export default {
 
             this.tests[this.activeTab].questions[Qindex].options.push({
               option: this.aaOption,
+              _id:
+                res.data.result.questions[Qindex].options[
+                  res.data.result.questions[Qindex].options.length - 1
+                ]._id,
               optionScore: this.aaOptionScore
             })
             this.question = ''
             this.aaOption = ''
-            this.aaOptionScore = ''
+            this.aaOptionScore = 0
           } else {
             this.$buefy.dialog.alert({
               title: 'Error!',
@@ -965,7 +991,7 @@ export default {
     },
     optionReset() {
       this.aaOption = ''
-      this.aaOptionScore = ''
+      this.aaOptionScore = 0
     }
   },
   mounted() {

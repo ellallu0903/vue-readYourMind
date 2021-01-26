@@ -170,6 +170,7 @@ a:hover {
   flex-grow: 0 !important;
   font-size: 1.2rem;
   margin-top: 1rem;
+  overflow: visible;
 }
 
 /* btn ( enter & cancel) */
@@ -274,9 +275,9 @@ a:hover {
 .button[disabled] {
   border-radius: $btnRadius;
   background-color: $mindColor5;
-  border: 2px solid $primaryColor01;
+  border: 1px solid $primaryColor01;
   color: $mindColor2;
-  cursor: auto;
+  // cursor: auto;
 }
 
 /* navbar -------------------------------------------------- */
@@ -540,6 +541,44 @@ footer p {
 .card {
   background-color: rgba($color: white, $alpha: 0.7);
   border-radius: $contentRadius;
+}
+
+blockquote {
+  font-weight: 300;
+  font-size: 1.5rem;
+  max-width: 550px;
+  line-height: 1.4;
+  position: relative;
+  margin: auto;
+  padding: 0.5rem;
+}
+
+blockquote:before,
+blockquote:after {
+  position: absolute;
+  color: #f1efe6;
+  font-size: 5rem;
+  width: 4rem;
+  height: 4rem;
+}
+
+blockquote:before {
+  content: '“';
+  left: -4rem;
+  top: -0.5rem;
+  color: $primaryColor01;
+}
+
+blockquote:after {
+  content: '”';
+  right: -3rem;
+  bottom: -0.5rem;
+  color: $primaryColor01;
+}
+
+cite {
+  line-height: 3;
+  text-align: left;
 }
 
 /* member_personal -------------------------------- */

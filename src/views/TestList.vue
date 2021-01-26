@@ -11,7 +11,9 @@
       <div class="is-flex is-flex-direction-column is-align-items-center pb-4">
         <!-- 說明 -->
         <div class="box_about">
-          念位是仍理，料四方前。眼作那活業眾施自減天我何手眼獨成這不預哥研細，智主社成引院天高事此衣其房人物期投好？期的裝那，此進中笑支法見動，的會指出園灣力識白印年現病反自票特旅展人主管現生記人的開落北等子關動腦望當大要他連！
+          以下為本平台的心理測驗目錄，
+          <a href="#/login">登入</a>
+          後點選「START」按鈕後，就可以開始測驗囉～
         </div>
       </div>
       <section class="is-flex is-flex-direction-column is-align-items-center">

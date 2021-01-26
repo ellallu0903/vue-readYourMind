@@ -12,12 +12,13 @@
     >
       <div class="title is-3">小知識</div>
       <section class="box_knowledge">
-        <div
-          class="is-flex is-flex-direction-column is-align-items-center pb-4"
-        >
-          <div>
-            念位是仍理，料四方前。眼作那活業眾施自減天我何手眼獨成這不預哥研細，智主社成引院天高事此衣其房；不輕古留開算為。是答童吸出可吃形及！中月便加得即步發益、個那樓會立白不產線文
-          </div>
+        <div class="has-text-centered pb-4">
+          <blockquote>
+            向外看的人是在夢中；向內看的人是清醒的人。
+          </blockquote>
+          <cite>
+            卡爾·榮格，著名瑞士心理學家
+          </cite>
         </div>
         <b-collapse
           class="card"

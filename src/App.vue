@@ -37,19 +37,19 @@
             @click="toPersonalPage()"
           >
             <img
-              v-if="this.personalData.avator === 'bear'"
+              v-if="user.avator === 'bear'"
               class="image is-55x55"
               src="./assets/images/avator/bear.png"
               alt="Your avator."
             />
             <img
-              v-else-if="this.personalData.avator === 'fox'"
+              v-else-if="user.avator === 'fox'"
               class="image is-55x55"
               src="./assets/images/avator/fox.png"
               alt="Your avator."
             />
             <img
-              v-else-if="this.personalData.avator === 'deer'"
+              v-else-if="user.avator === 'deer'"
               class="image is-55x55"
               src="./assets/images/avator/deer.png"
               alt="Your avator."
@@ -221,28 +221,29 @@ export default {
       this.heartbeat()
     }, 5000)
 
-    this.axios
-      .get(process.env.VUE_APP_API + '/users/' + this.user.id)
-      .then(res => {
-        if (res.data.success) {
-          this.personalData = res.data.result
-        } else {
-          this.$swal({
-            icon: 'error',
-            title: '發生錯誤',
-            text: res.data.message
-          })
-        }
-      })
-      .catch(err => {
-        this.$buefy.dialog.alert({
-          title: 'Error!',
-          message: err.response.data.message,
-          type: 'is-danger',
-          hasIcon: true,
-          icon: 'heart-broken'
-        })
-      })
+    // this.axios
+    //   .get(process.env.VUE_APP_API + '/users/' + this.user.id)
+    //   .then(res => {
+    //     if (res.data.success) {
+    //       this.personalData = res.data.result
+    //     } else {
+    //       this.$swal({
+    //         icon: 'error',
+    //         title: '發生錯誤',
+    //         text: res.data.message
+    //       })
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //     // this.$buefy.dialog.alert({
+    //     //   title: 'Error!',
+    //     //   message: err.response.data.message,
+    //     //   type: 'is-danger',
+    //     //   hasIcon: true,
+    //     //   icon: 'heart-broken'
+    //     // })
+    //   })
   }
 }
 </script>
