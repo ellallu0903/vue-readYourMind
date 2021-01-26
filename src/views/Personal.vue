@@ -168,7 +168,7 @@
                 class="h-100 columns is-justify-content-center is-align-items-center"
               >
                 <div
-                  class="column is-5 p-5 is-flex is-justify-content-flex-start is-align-items-start"
+                  class="column is-5 p-5"
                 >
                   <div class="columns is-flex-direction-column">
                     <div class="column">
@@ -193,10 +193,10 @@
                 </div>
                 <div
                   id="chart"
-                  class="column is-7 is-three-quarters p-5 is-flex is-justify-content-center is-align-content-center"
+                  class="column is-7 is-three-quarters p-5 is-align-self-flex-start mt-3"
                 >
                   <div
-                    class="container is-flex is-justify-content-center is-align-items-center"
+                    class="container"
                   >
                     <div
                       v-if="resultData.length === 0"

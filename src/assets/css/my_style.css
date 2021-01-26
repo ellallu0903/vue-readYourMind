@@ -576,6 +576,28 @@ footer p {
   white-space: pre-line;
 }
 
+#per_result {
+  /* Custom Scrollbar */
+}
+
+#per_result ::-webkit-scrollbar {
+  width: 10px;
+}
+
+#per_result ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 20px rgba(241, 124, 103, 0.3);
+  border-radius: 10px;
+}
+
+#per_result ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 50px rgba(241, 124, 103, 0.8);
+}
+
+#per_result ::-webkit-scrollbar-thumb:hover {
+  -webkit-box-shadow: inset 0 0 50px #f17c67;
+}
+
 .bg_personal {
   background: #d4cfca;
 }
