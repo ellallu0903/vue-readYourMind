@@ -515,22 +515,6 @@ footer p {
   .columns:last-child {
     border: none;
   }
-
-  // .table {
-  //   background: rgba($color: white, $alpha: 1);
-  // }
-
-  // .table th {
-  //   background: rgba($color: $primaryColor01, $alpha: 0.5);
-  // }
-
-  // .table td,
-  // .table th {
-  //   border: 1px solid $primaryColor01;
-  //   border-width: 0 0 1px;
-  //   padding: 0.8rem 0.8rem;
-  //   vertical-align: top;
-  // }
 }
 
 /* knowledge -------------------------------------- */
@@ -543,42 +527,44 @@ footer p {
   border-radius: $contentRadius;
 }
 
-blockquote {
-  font-weight: 300;
-  font-size: 1.5rem;
-  max-width: 550px;
-  line-height: 1.4;
-  position: relative;
-  margin: auto;
-  padding: 0.5rem;
-}
+#k_content {
+  blockquote {
+    font-weight: 300;
+    font-size: 1.5rem;
+    max-width: 550px;
+    line-height: 1.4;
+    position: relative;
+    margin: auto;
+    padding: 0.5rem;
+  }
 
-blockquote:before,
-blockquote:after {
-  position: absolute;
-  color: #f1efe6;
-  font-size: 5rem;
-  width: 4rem;
-  height: 4rem;
-}
+  blockquote:before,
+  blockquote:after {
+    position: absolute;
+    color: #f1efe6;
+    font-size: 5rem;
+    width: 4rem;
+    height: 4rem;
+  }
 
-blockquote:before {
-  content: '“';
-  left: -4rem;
-  top: -0.5rem;
-  color: $primaryColor01;
-}
+  blockquote:before {
+    content: '“';
+    left: -4rem;
+    top: -0.5rem;
+    color: $primaryColor01;
+  }
 
-blockquote:after {
-  content: '”';
-  right: -3rem;
-  bottom: -0.5rem;
-  color: $primaryColor01;
-}
+  blockquote:after {
+    content: '”';
+    right: -3rem;
+    bottom: -0.5rem;
+    color: $primaryColor01;
+  }
 
-cite {
-  line-height: 3;
-  text-align: left;
+  cite {
+    line-height: 3;
+    text-align: left;
+  }
 }
 
 /* member_personal -------------------------------- */

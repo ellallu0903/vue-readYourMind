@@ -1,5 +1,5 @@
 <template>
-  <div id="question" class="bg_color one_page_min_h p-5">
+  <div id="knowledge" class="bg_color one_page_min_h p-5">
     <nav class="breadcrumb has-bullet-separator">
       <ul>
         <li><a href="#/">首頁</a></li>

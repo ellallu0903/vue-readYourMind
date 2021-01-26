@@ -139,7 +139,7 @@
                     width="50"
                     v-slot="props"
                   >
-                    <h1>{{ props.index + 1 }}</h1>
+                    <h1>{{ props.row.number }}</h1>
                   </b-table-column>
 
                   <b-table-column
@@ -545,7 +545,11 @@ export default {
   },
   computed: {
     testQuestions() {
-      return this.tests[this.activeTab].questions
+      let i = 1
+      return this.tests[this.activeTab].questions.map(q => {
+        q.number = i++
+        return q
+      })
     }
   },
   methods: {
@@ -736,6 +740,8 @@ export default {
             })
             this.tests[this.activeTab].questions.push({
               question: this.aQuestion,
+              modelQ: this.aQuestion,
+              edit: false,
               _id:
                 res.data.result.questions[res.data.result.questions.length - 1]
                   ._id,
@@ -807,7 +813,7 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err)
+          // console.log(err)
           this.$buefy.dialog.alert({
             title: 'Error!',
             message: err.response.data.message,
@@ -819,10 +825,9 @@ export default {
     },
     // 問題編輯
     questionEdit(question) {
-      console.log(question)
       for (const i in this.tests) {
         for (const j in this.tests[i].questions) {
-          console.log(this.tests[i].questions[j]._id)
+          // console.log(this.tests[i].questions[j]._id)
           if (this.tests[i].questions[j]._id === question._id) {
             this.tests[i].questions[j].edit = true
             break
@@ -922,7 +927,7 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err)
+          // console.log(err)
           this.$buefy.dialog.alert({
             title: 'Error!',
             message: err.response.data.message,

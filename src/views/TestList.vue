@@ -12,7 +12,7 @@
         <!-- 說明 -->
         <div class="box_about">
           以下為本平台的心理測驗目錄，
-          <a href="#/login">登入</a>
+          <a @click="toLogIn()">登入</a>
           後點選「START」按鈕後，就可以開始測驗囉～
         </div>
       </div>
@@ -64,6 +64,21 @@ export default {
   computed: {
     user() {
       return this.$store.state.user
+    }
+  },
+  methods: {
+    toLogIn() {
+      if (this.user.id.length === 0) {
+        this.$router.push('/login')
+      } else {
+        this.$buefy.dialog.alert({
+          title: 'Awww!',
+          message: '你已經登入囉！',
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'account-heart-outline'
+        })
+      }
     }
   },
   mounted() {

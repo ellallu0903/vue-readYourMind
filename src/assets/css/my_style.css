@@ -533,7 +533,7 @@ footer p {
   border-radius: 0.8rem;
 }
 
-blockquote {
+#k_content blockquote {
   font-weight: 300;
   font-size: 1.5rem;
   max-width: 550px;
@@ -543,8 +543,8 @@ blockquote {
   padding: 0.5rem;
 }
 
-blockquote:before,
-blockquote:after {
+#k_content blockquote:before,
+#k_content blockquote:after {
   position: absolute;
   color: #f1efe6;
   font-size: 5rem;
@@ -552,21 +552,21 @@ blockquote:after {
   height: 4rem;
 }
 
-blockquote:before {
+#k_content blockquote:before {
   content: '“';
   left: -4rem;
   top: -0.5rem;
   color: #f17c67;
 }
 
-blockquote:after {
+#k_content blockquote:after {
   content: '”';
   right: -3rem;
   bottom: -0.5rem;
   color: #f17c67;
 }
 
-cite {
+#k_content cite {
   line-height: 3;
   text-align: left;
 }
