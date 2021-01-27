@@ -9,14 +9,11 @@
 
     <div class="title is-3 has-text-centered">關於讀心</div>
     <div class="is-flex is-flex-direction-column is-align-items-center pb-4">
-      <div class=" box_about has-text-centered p-5">
+      <div class="box_about_text has-text-centered p-5 speech-bubble">
         <img src="../assets/svg/ryd_eng.svg" alt="Read your mind" />
-        <div class="is-size-5 color_primaryColor01 mt-2 mb-4">
+        <div class="is-size-5 mt-2 about_slogan">
           藉由測驗來解讀自己的內心
         </div>
-        以個人檔案的概念將測驗結果整合，可供使用者追蹤自身改變的幅度，
-        <br />
-        比對每次測驗的結果，記錄下自己成長的軌跡。
       </div>
     </div>
     <br />

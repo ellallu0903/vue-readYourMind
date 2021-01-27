@@ -6,13 +6,13 @@
         <li class="is-active"><a href="#">個人資料</a></li>
       </ul>
     </nav>
-    <div class="columns p-5 is-justify-content-center">
+    <div class="columns p-5 is-justify-content-space-around">
       <div
         id="per_content"
-        class="column is-2 is-flex is-justify-content-center h-100"
+        class="column is-2 is-flex is-justify-content-center h-100 mb-4"
       >
         <div
-          class="columns position_relative box_per_profile is-flex-direction-column p-6"
+          class="columns position_relative box_per_profile is-flex-direction-column p-4"
         >
           <button
             class="btn_persinal_edit ml-2"
@@ -153,7 +153,7 @@
           </div>
         </div>
       </div>
-      <div class="column is-1"></div>
+      <!-- <div class="column is-1"></div> -->
       <div id="per_result" class="column is-8 box_per_result h-100">
         <!-- tabs -->
         <b-tabs v-model="activeTab" expanded class="h-100">
@@ -165,10 +165,10 @@
                 </span>
               </template>
               <div
-                class="h-100 columns is-justify-content-center is-align-items-center"
+                class="h-100 columns is-justify-content-center is-align-items-flex-start"
               >
                 <div
-                  class="column is-5 p-5"
+                  class="column is-5 p-5 is-flex is-justify-content-flex-start is-align-items-flex-start"
                 >
                   <div class="columns is-flex-direction-column">
                     <div class="column">
@@ -187,16 +187,30 @@
                     </div>
                     <div class="column">
                       <div class="mb-2"><b>結果說明</b></div>
-                      <div class="is-size-5 ">{{ test.description }}</div>
+                      <b-collapse
+                        :open="false"
+                        position="is-bottom"
+                        aria-id="contentIdForA11y1"
+                      >
+                        <template #trigger="props">
+                          <a aria-controls="contentIdForA11y1">
+                            <b-icon
+                              :icon="!props.open ? 'menu-down' : 'menu-up'"
+                            ></b-icon>
+                            {{ !props.open ? 'Open' : 'Close' }}
+                          </a>
+                        </template>
+                        <div class="is-size-5 ">{{ test.description }}</div>
+                      </b-collapse>
                     </div>
                   </div>
                 </div>
                 <div
                   id="chart"
-                  class="column is-7 is-three-quarters p-5 is-align-self-flex-start mt-3"
+                  class="column is-7 is-three-quarters p-5 is-flex is-justify-content-center is-align-content-center"
                 >
                   <div
-                    class="container"
+                    class="container is-flex is-justify-content-center is-align-items-flex-start"
                   >
                     <div
                       v-if="resultData.length === 0"

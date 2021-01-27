@@ -11,11 +11,14 @@
       id="test_question"
       class="is-flex is-align-items-center is-flex-direction-column"
     >
-      <div class="title is-3 pb-4">{{ tests.title }}</div>
+      <div class="title is-3">{{ tests.title }}</div>
       <form
         class="w-100 is-flex is-align-items-center is-flex-direction-column"
         @submit.prevent="onSubmit"
       >
+        <div class="box_test_title is-size-5 mb-3">
+          請根據下方題目的敘述，選擇最符合您情況的選項：
+        </div>
         <div class="box_test p-6">
           <div
             class="columns w-100"
@@ -71,6 +74,14 @@ export default {
   computed: {
     user() {
       return this.$store.state.user
+    },
+    hasValue() {
+      // 判斷表單有無 null 值
+      if (Object.values(this.modelQuestion).includes(null)) {
+        return false
+      } else {
+        return true
+      }
     }
   },
   methods: {
@@ -87,6 +98,7 @@ export default {
           })
         } else if (this.tests.scoringMethod === '加總計分') {
           this.scores += this.modelQuestion[i]
+          this.hasValue++
         } else {
           this.result = this.modelQuestion.reduce(function(allOptions, option) {
             if (option in allOptions) {
@@ -96,52 +108,53 @@ export default {
             }
             return allOptions
           }, {})
+          this.hasValue.push(2)
         }
       }
-      // console.log(this.result)
-      // console.log(this.scores)
 
-      this.axios
-        .patch(process.env.VUE_APP_API + '/users/result/' + this.user.id, {
-          testData_id: this.$route.params.id,
-          date: Date.now(),
-          scores: this.scores,
-          result: this.result
-        })
-        .then(res => {
-          if (res.data.success) {
+      if (this.hasValue) {
+        this.axios
+          .patch(process.env.VUE_APP_API + '/users/result/' + this.user.id, {
+            testData_id: this.$route.params.id,
+            date: Date.now(),
+            scores: this.scores,
+            result: this.result
+          })
+          .then(res => {
+            if (res.data.success) {
+              this.$buefy.dialog.alert({
+                title: 'Success!',
+                message: '去看結果吧～',
+                type: 'is-danger',
+                hasIcon: true,
+                icon: 'heart-circle'
+              })
+              this.scores = ''
+              this.result = []
+              // 導到個人專區
+              if (this.$route.path !== '/personal') {
+                this.$router.push('/personal')
+              }
+            } else {
+              this.$buefy.dialog.alert({
+                title: 'Error!',
+                message: '發生錯誤！',
+                type: 'is-danger',
+                hasIcon: true,
+                icon: 'heart-broken'
+              })
+            }
+          })
+          .catch(err => {
             this.$buefy.dialog.alert({
-              title: 'Success!',
-              message: '去看結果吧～',
+              title: 'Error!',
+              message: err.response.data.message,
               type: 'is-danger',
               hasIcon: true,
               icon: 'heart-circle'
             })
-            this.scores = ''
-            this.result = []
-            // 導到個人專區
-            if (this.$route.path !== '/personal') {
-              this.$router.push('/personal')
-            }
-          } else {
-            this.$buefy.dialog.alert({
-              title: 'Error!',
-              message: '發生錯誤！',
-              type: 'is-danger',
-              hasIcon: true,
-              icon: 'heart-broken'
-            })
-          }
-        })
-        .catch(err => {
-          this.$buefy.dialog.alert({
-            title: 'Error!',
-            message: err.response.data.message,
-            type: 'is-danger',
-            hasIcon: true,
-            icon: 'heart-circle'
           })
-        })
+      }
     }
   },
   mounted() {

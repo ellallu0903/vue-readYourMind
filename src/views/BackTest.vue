@@ -18,21 +18,6 @@
                 </span>
               </template>
               <div class="has-text-left position_relative mb-3">
-                <b-button
-                  class="btn_test_delete"
-                  @click="testDelete(test)"
-                  icon-right="trash-can-outline"
-                  size="is-medium"
-                  v-if="!test.edit"
-                ></b-button>
-                <b-button
-                  class="btn_backTest_edit"
-                  icon-right="cog-outline"
-                  size="is-medium"
-                  v-if="!test.edit"
-                  @click="testEdit(test)"
-                >
-                </b-button>
                 <div class="columns mb-0">
                   <div class="column is-3">
                     <div class="mb-2">
@@ -55,6 +40,7 @@
                         <option value="成就⁄能力測驗">成就⁄能力測驗</option>
                         <option value="性向測驗">性向測驗</option>
                         <option value="人格測驗">人格測驗</option>
+                        <option value="心理健康">心理健康</option>
                         <option value="職業測驗">職業測驗</option>
                         <option value="其他">其他</option>
                       </b-select>
@@ -100,6 +86,23 @@
                       ></b-input>
                       <div v-else>{{ test.description }}</div>
                     </div>
+                  </div>
+                  <div class="column is-1">
+                    <b-button
+                      class="btn_backTest_edit"
+                      icon-right="cog-outline"
+                      size="is-medium"
+                      v-if="!test.edit"
+                      @click="testEdit(test)"
+                    >
+                    </b-button>
+                    <b-button
+                      class="btn_test_delete"
+                      @click="testDelete(test)"
+                      icon-right="trash-can-outline"
+                      size="is-medium"
+                      v-if="!test.edit"
+                    ></b-button>
                   </div>
                 </div>
                 <div class="has-text-centered">
@@ -222,6 +225,7 @@
                   <option value="成就⁄能力測驗">成就⁄能力測驗</option>
                   <option value="性向測驗">性向測驗</option>
                   <option value="人格測驗">人格測驗</option>
+                  <option value="心理健康">心理健康</option>
                   <option value="職業測驗">職業測驗</option>
                   <option value="其他">其他</option>
                 </b-select>

@@ -11,7 +11,7 @@
       <div class="is-flex is-flex-direction-column is-align-items-center pb-4">
         <!-- 說明 -->
         <div class="box_about">
-          以下為本平台的心理測驗目錄，
+          以下為本平台的心理測驗 / 量表目錄，
           <a @click="toLogIn()">登入</a>
           後點選「START」按鈕後，就可以開始測驗囉～
         </div>
@@ -23,8 +23,9 @@
               class="columns is-justify-content-center is-align-items-center"
             >
               <div class="column is-10">
-                <div class="title is-size-5 mb-3">
+                <div class="title is-size-5 mb-3" style="line-height: 2rem">
                   {{ test.title }}
+                  <b-tag type="teg_style" rounded>{{ test.type }}</b-tag>
                 </div>
                 <div class="is-size-6">{{ test.reference }}</div>
               </div>

@@ -42,6 +42,17 @@ a:hover {
   font-weight: 500;
 }
 
+.title,
+.is-size-4,
+.is-size-6,
+.box_about_content_h,
+.card-header-title,
+.card-content,
+.breadcrumb li.is-active a,
+#test_list {
+  color: $mindColor1;
+}
+
 .color_primaryColor01 {
   color: $primaryColor01;
 }
@@ -389,8 +400,50 @@ footer p {
   width: 100%;
 }
 
+.box_about_text {
+  width: 100%;
+}
+
 .box_about_content_h {
   min-height: 150px;
+}
+
+#about {
+  .speech-bubble {
+    position: relative;
+    background: rgba($color: white, $alpha: 0.3);
+    border-radius: 1rem;
+    border: 3px solid rgba($color: $primaryColor02, $alpha: 1);
+    box-shadow: 0 0 5px $primaryColor01;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: rgba($color: $primaryColor02, $alpha: 1);
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -10px;
+    margin-bottom: -20px;
+  }
+
+  .about_slogan {
+    font-weight: 300;
+    max-width: 550px;
+    line-height: 1.4;
+    margin: auto;
+    padding: 0.5rem 0 0 0;
+    color: $primaryColor01;
+  }
 }
 
 #a_content {
@@ -470,6 +523,11 @@ footer p {
   }
 }
 
+.tag:not(body).teg_style {
+  background-color: rgba($color: $mindColor1, $alpha: 0.7);
+  color: white;
+}
+
 .box_testList {
   width: 100%;
 }
@@ -495,6 +553,10 @@ footer p {
   width: 100%;
   background: rgba($color: white, $alpha: 0.8);
   border-radius: $boxRadius;
+}
+
+.box_test_title {
+  width: 100%;
 }
 
 .btn_test_size {
@@ -616,6 +678,7 @@ footer p {
 .box_per_result {
   background: $mindColor5;
   border-radius: $boxRadius;
+  min-height: 465px;
 }
 
 .btn_persinal_edit {
@@ -624,15 +687,17 @@ footer p {
   border: none;
   position: absolute;
   right: 5%;
-  top: 5%;
+  top: 4%;
   cursor: pointer;
 }
+
 .container {
   width: 500px;
   .ve-line {
     width: 100%;
   }
 }
+
 /* backStage-sidebar -------------------------------------------------- */
 .sidebar-page {
   display: flex;
@@ -800,9 +865,9 @@ footer p {
     background-color: transparent;
     color: $mindColor3;
     border: none;
-    position: absolute;
-    right: 2%;
-    top: 0%;
+    // position: absolute;
+    // right: 4.5%;
+    // top: 0%;
     cursor: pointer;
   }
 
@@ -812,9 +877,9 @@ footer p {
     border: none;
     color: $dangerColor;
     cursor: pointer;
-    position: absolute;
-    right: -1%;
-    top: 0%;
+    // position: absolute;
+    // right: 0%;
+    // top: 0%;
   }
 
   .list_style_num {
@@ -895,6 +960,25 @@ footer p {
 
   #test_basic {
     width: calc(100% - 50px);
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 20px rgba($primaryColor01, 0.3);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 50px rgba($primaryColor01, 0.8);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      -webkit-box-shadow: inset 0 0 50px rgba($primaryColor01, 1);
+    }
   }
 }
 
@@ -962,6 +1046,10 @@ footer p {
       bottom: 13%;
       right: 1%;
     }
+  }
+
+  #test_basic {
+    width: 100%;
   }
 }
 
@@ -1055,6 +1143,10 @@ footer p {
     width: 50%;
   }
 
+  .box_about_text {
+    width: 35%;
+  }
+
   .box_knowledge {
     width: 50%;
   }
@@ -1065,6 +1157,10 @@ footer p {
 
   .box_test {
     width: 65%;
+  }
+
+  .box_test_title {
+    width: 60%;
   }
 
   .b-sidebar {
@@ -1094,11 +1190,6 @@ footer p {
           }
         }
       }
-    }
-  }
-  #backTest {
-    #test_basic {
-      width: 100%;
     }
   }
 }
