@@ -129,6 +129,15 @@ const routes = [
           title: '後台 | 會員管理',
           login: true
         }
+      },
+      {
+        path: 'home',
+        component: () =>
+          import(/* webpackChunkName: "backHome" */ '../views/BackHome.vue'),
+        meta: {
+          title: '後台 | 首頁',
+          login: true
+        }
       }
     ],
     meta: {

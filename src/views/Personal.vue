@@ -156,7 +156,16 @@
       <!-- <div class="column is-1"></div> -->
       <div id="per_result" class="column is-8 box_per_result h-100">
         <!-- tabs -->
-        <b-tabs v-model="activeTab" expanded class="h-100">
+        <b-tabs v-model="activeTab" expanded class="h-100" :animated="false">
+          <b-notification class="color_primaryColor01 notification_style">
+            <img
+              width="45"
+              src="../assets/svg/mushroom.svg"
+              alt="Check it out!"
+              class="mr-2"
+            />
+            <span class="mx-3">點選上方測驗名稱，查看結果吧～</span>
+          </b-notification>
           <template v-for="(test, index) in tests" class="h-100">
             <b-tab-item :key="index" class="h-100">
               <template #header>

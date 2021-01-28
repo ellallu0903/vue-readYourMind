@@ -4,7 +4,8 @@
       <nav class="breadcrumb has-bullet-separator">
         <ul>
           <li><a href="#/">首頁</a></li>
-          <li><a href="#/backStage">前台內容管理</a></li>
+          <li><a href="#/backStage/home">後台管理</a></li>
+          <li>前台內容管理</li>
           <li class="is-active"><a href="#">心理測驗</a></li>
         </ul>
       </nav>
@@ -376,7 +377,7 @@
                         </div>
                       </form>
                     </div>
-                    <div class="column box_option_add p-5">
+                    <div class="column box_option_add p-5 mb-2">
                       <form @submit.prevent="optionSubmit" @reset="optionReset">
                         <div class="has-text-centered is-size-4 mb-3">
                           新增選項
@@ -437,7 +438,7 @@
                     編輯
                     <b-icon icon="file-edit-outline"></b-icon>
                   </div>
-                  <ol class="list_style_num">
+                  <ol class="list_style_num ">
                     <li
                       class="p-2"
                       v-for="(question, index) in testQuestions"

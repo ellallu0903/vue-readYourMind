@@ -4,7 +4,8 @@
       <nav class="breadcrumb has-bullet-separator">
         <ul>
           <li><a href="#/">首頁</a></li>
-          <li><a href="#/backStage">前台內容管理</a></li>
+          <li><a href="#/backStage/home">後台管理</a></li>
+          <li>前台內容管理</li>
           <li class="is-active"><a href="#">小知識</a></li>
         </ul>
       </nav>

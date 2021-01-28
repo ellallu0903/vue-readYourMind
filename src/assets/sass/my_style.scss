@@ -44,11 +44,13 @@ a:hover {
 
 .title,
 .is-size-4,
+.is-size-5,
 .is-size-6,
 .box_about_content_h,
 .card-header-title,
 .card-content,
 .breadcrumb li.is-active a,
+.tabs a,
 #test_list {
   color: $mindColor1;
 }
@@ -59,6 +61,12 @@ a:hover {
 
 .color_mindColor5 {
   color: $mindColor5;
+}
+
+.notification_style {
+  border: dotted 3px $primaryColor01;
+  background: rgba($color: $secondaryColor, $alpha: 0.15);
+  border-radius: 0.8rem;
 }
 
 .bg_color {
@@ -635,6 +643,12 @@ footer p {
 }
 
 #per_result {
+  .media-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
@@ -719,6 +733,11 @@ footer p {
   width: 100%;
 }
 
+.menu-list a.is-active {
+  background-color: transparent;
+  color: #4a4a4a;
+}
+
 .menu-list a:hover {
   background-color: rgba($color: $mindColor4, $alpha: 0.8);
 }
@@ -742,6 +761,13 @@ footer p {
     width: 100%;
     height: 100%;
   }
+}
+
+.notification_postion {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  z-index: 9999;
 }
 
 /* backStage_routeview ---------------------- */
@@ -770,6 +796,17 @@ footer p {
 #back_add_title label,
 #back_add_content label {
   color: $mindColor5;
+}
+
+/* backHome */
+#backHome {
+  .media-content {
+    margin-top: 0;
+  }
+
+  .backData {
+    width: 100%;
+  }
 }
 
 /* backKnowledge ------------------ */
@@ -955,7 +992,9 @@ footer p {
   .box_test_edit {
     border-radius: $boxRadius;
     background: rgba($color: $mindColor4, $alpha: 0.3);
-    height: 100%;
+    height: 755px;
+    // height: 100%;
+    overflow-y: auto;
   }
 
   #test_basic {
@@ -1072,7 +1111,7 @@ footer p {
             li {
               a {
                 span:nth-child(2) {
-                  display: none;
+                  display: inline-block;
                 }
               }
               ul {
@@ -1190,6 +1229,12 @@ footer p {
           }
         }
       }
+    }
+  }
+
+  #backData {
+    .backData {
+      width: 25%;
     }
   }
 }

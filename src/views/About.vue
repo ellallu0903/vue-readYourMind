@@ -12,7 +12,7 @@
       <div class="box_about_text has-text-centered p-5 speech-bubble">
         <img src="../assets/svg/ryd_eng.svg" alt="Read your mind" />
         <div class="is-size-5 mt-2 about_slogan">
-          藉由測驗來解讀自己的內心
+          藉由測驗來解讀自己的心
         </div>
       </div>
     </div>

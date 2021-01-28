@@ -14,11 +14,20 @@
             <b-menu class="is-custom-mobile">
               <b-menu-list label="Menu">
                 <b-menu-item
-                  active
-                  expanded
-                  icon="heart-half-full"
-                  label="前台內容管理"
+                  icon="tag-heart-outline"
+                  to="/backstage/home"
+                  tag="router-link"
+                  label="後台數據"
                 >
+                </b-menu-item>
+                <b-menu-item icon="heart-half-full">
+                  <template #label="props" id="sidebar_front">
+                    前台內容管理
+                    <b-icon
+                      class="is-pulled-right"
+                      :icon="props.expanded ? 'menu-down' : 'menu-up'"
+                    ></b-icon>
+                  </template>
                   <!-- <b-menu-item
                     icon="information"
                     label="使用說明"
