@@ -83,9 +83,9 @@ const sessionSettings = {
 // 例如分別在 GitHub 和 Heroku 才能互通
 if (process.env.DEV === 'false') {
   // 如果不是本機的開發環境，允許不同網域的認證
-  sessionSettings.cokkie.sameSite = 'none'
+  sessionSettings.cookie.sameSite = 'none'
   // 如果是不同網域的認證，一定要設定 secure
-  sessionSettings.cokkie.secure = true
+  sessionSettings.cookie.secure = true
 }
 
 app.use(session(sessionSettings))
