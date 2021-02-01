@@ -33,6 +33,8 @@ import VueParticles from 'vue-particles'
 import Highcharts from 'highcharts'
 import HighchartsVue from 'highcharts-vue'
 import HighchartsMore from 'highcharts/highcharts-more'
+// vue-analytics
+import VueGtag from 'vue-gtag'
 
 // 傳送請求時一起傳送認證資訊
 axios.defaults.withCredentials = true
@@ -51,6 +53,12 @@ Vue.use(VueParticles)
 Vue.use(HighchartsVue)
 
 HighchartsMore(Highcharts)
+
+Vue.use(VueGtag, {
+  config: {
+    id: process.env.VUE_APP_GA
+  }
+})
 
 Vue.use(VueAxios, axios)
 
