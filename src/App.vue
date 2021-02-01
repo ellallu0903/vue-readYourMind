@@ -116,22 +116,17 @@
 <script>
 export default {
   name: 'App',
-  data() {
-    return {
-      personalData: []
-    }
-  },
   computed: {
     user() {
       return this.$store.state.user
-    },
-    isLogin() {
-      if (this.user.id.length > 0) {
-        return true
-      } else {
-        return false
-      }
     }
+    // isLogin() {
+    //   if (this.user.id.length > 0) {
+    //     return true
+    //   } else {
+    //     return false
+    //   }
+    // }
   },
   methods: {
     toPersonalPage() {
@@ -227,34 +222,6 @@ export default {
     setInterval(() => {
       this.heartbeat()
     }, 5000)
-
-    // if (this.isLogin) {
-    //   this.axios
-    //     .get(process.env.VUE_APP_API + '/users/' + this.user.id)
-    //     .then(res => {
-    //       if (res.data.success) {
-    //         this.personalData = res.data.result
-    //       } else {
-    //         this.$swal({
-    //           icon: 'error',
-    //           title: '發生錯誤',
-    //           text: res.data.message
-    //         })
-    //       }
-    //     })
-    //     .catch(err => {
-    //       console.log(err)
-    //       // this.$buefy.dialog.alert({
-    //       //   title: 'Error!',
-    //       //   message: err.response.data.message,
-    //       //   type: 'is-danger',
-    //       //   hasIcon: true,
-    //       //   icon: 'heart-broken'
-    //       // })
-    //     })
-    // } else {
-    //   console.log(333333333)
-    // }
   }
 }
 </script>

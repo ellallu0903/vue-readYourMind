@@ -434,6 +434,7 @@ export default {
               this.isEdit = true
               users.name = this.model01
               users.avator = this.model02
+              this.$store.state.user.avator = this.model02
               this.$buefy.dialog.alert({
                 title: 'Success!',
                 message: '保存成功！',
