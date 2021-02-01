@@ -30,7 +30,7 @@
           width="100"
           v-slot="props"
         >
-          <h1>{{ props.index + 1 }}</h1>
+          <h1>{{ props.row.number }}</h1>
         </b-table-column>
 
         <b-table-column
@@ -461,6 +461,7 @@ export default {
       .get(process.env.VUE_APP_API + '/users/')
       .then(res => {
         if (res.data.success) {
+          let i = 1
           // .map 把陣列的內容重新組合，再加上 edit & model
           this.users = res.data.result.map(user => {
             user.edit = false
@@ -468,6 +469,7 @@ export default {
             user.model02 = user.name
             user.model03 = user.avator
             user.model04 = user.authority
+            user.number = i++
             return user
           })
         } else {
