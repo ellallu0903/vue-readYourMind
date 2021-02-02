@@ -28,7 +28,7 @@
           width="100"
           v-slot="props"
         >
-          <h1>{{ props.index + 1 }}</h1>
+          <h1>{{ props.row.number }}</h1>
         </b-table-column>
 
         <b-table-column field="title" label="標題" width="300" v-slot="props">
@@ -59,8 +59,9 @@
               <button
                 class="btn_trash btn_back_size"
                 v-if="!props.row.edit"
-                @click="del(props, props.index)"
+                @click="confirmCustomDelete(props, props.index)"
               >
+                <!-- @click="del(props, props.index)" -->
                 <b-icon icon="trash-can-outline"></b-icon>
               </button>
             </b-tooltip>
@@ -246,8 +247,13 @@ export default {
               icon: 'heart-circle'
             })
             this.knowledges.push({
+              _id: res.data.result._id,
               title: this.title,
-              content: this.content
+              content: this.content,
+              model01: this.title,
+              model02: this.content,
+              edit: false,
+              number: this.knowledges.length + 1
             })
             this.title = ''
             this.content = ''
@@ -263,6 +269,7 @@ export default {
           }
         })
         .catch(err => {
+          console.log(err)
           this.$buefy.dialog.alert({
             title: 'Error!',
             message: err.response.data.message,
@@ -363,6 +370,53 @@ export default {
             icon: 'heart-circle'
           })
         })
+    },
+    // 二次確認後刪除
+    confirmCustomDelete(props) {
+      this.$buefy.dialog.confirm({
+        title: 'Deleting knowledge',
+        message: '你確定要刪除這筆小知識嗎？',
+        confirmText: 'Yes',
+        type: 'is-danger',
+        hasIcon: true,
+        onConfirm: () =>
+          this.axios
+            .delete(process.env.VUE_APP_API + '/knowledges/' + props.row._id)
+            .then(res => {
+              if (res.data.success) {
+                this.$buefy.dialog.alert({
+                  title: 'Success!',
+                  message: '刪除成功！',
+                  type: 'is-danger',
+                  hasIcon: true,
+                  icon: 'heart-circle'
+                })
+                // props.splice(props.index, 1)
+                const kindex = this.knowledges.findIndex(
+                  k => k._id === props.row._id
+                )
+                this.knowledges.splice(kindex, 1)
+              } else {
+                this.$buefy.dialog.alert({
+                  title: 'Error!',
+                  message: '發生錯誤！',
+                  type: 'is-danger',
+                  hasIcon: true,
+                  icon: 'heart-broken'
+                })
+              }
+            })
+            .catch(err => {
+              console.log(err)
+              this.$buefy.dialog.alert({
+                title: 'Error!',
+                message: err.response.data.message,
+                type: 'is-danger',
+                hasIcon: true,
+                icon: 'heart-circle'
+              })
+            })
+      })
     }
   },
   mounted() {
@@ -370,11 +424,13 @@ export default {
       .get(process.env.VUE_APP_API + '/knowledges/')
       .then(res => {
         if (res.data.success) {
+          let i = 1
           // .map 把陣列的內容重新組合，再加上 edit & model
           this.knowledges = res.data.result.map(knowledge => {
             knowledge.edit = false
             knowledge.model01 = knowledge.title
             knowledge.model02 = knowledge.content
+            knowledge.number = i++
             return knowledge
           })
         } else {

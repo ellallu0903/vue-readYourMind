@@ -139,7 +139,7 @@
               <button
                 class="btn_trash btn_back_size"
                 v-if="!props.row.edit"
-                @click="del(props, props.index)"
+                @click="confirmCustomDelete(props, props.index)"
               >
                 <b-icon icon="trash-can-outline"></b-icon>
               </button>
@@ -320,10 +320,17 @@ export default {
               icon: 'heart-circle'
             })
             this.users.push({
+              _id: res.data.result._id,
               email: this.email,
               name: this.name,
               avator: this.avator,
-              authority: this.authority
+              authority: this.authority,
+              model01: this.email,
+              model02: this.name,
+              model03: this.avator,
+              model04: this.authority,
+              number: this.users.length + 1,
+              edit: false
             })
             this.email = ''
             this.password = ''
@@ -454,6 +461,53 @@ export default {
             icon: 'heart-circle'
           })
         })
+    },
+    // 二次確認後刪除
+    confirmCustomDelete(props) {
+      this.$buefy.dialog.confirm({
+        title: 'Deleting member',
+        message: '你確定要刪除這筆會員資料嗎？',
+        confirmText: 'Yes',
+        type: 'is-danger',
+        hasIcon: true,
+        onConfirm: () =>
+          this.axios
+            .delete(process.env.VUE_APP_API + '/users/' + props.row._id)
+            .then(res => {
+              if (res.data.success) {
+                this.$buefy.dialog.alert({
+                  title: 'Success!',
+                  message: '刪除成功！',
+                  type: 'is-danger',
+                  hasIcon: true,
+                  icon: 'heart-circle'
+                })
+                // props.splice(props.index, 1)
+                const uindex = this.users.findIndex(
+                  u => u._id === props.row._id
+                )
+                this.users.splice(uindex, 1)
+              } else {
+                this.$buefy.dialog.alert({
+                  title: 'Error!',
+                  message: '發生錯誤！',
+                  type: 'is-danger',
+                  hasIcon: true,
+                  icon: 'heart-broken'
+                })
+              }
+            })
+            .catch(err => {
+              console.log(err)
+              this.$buefy.dialog.alert({
+                title: 'Error!',
+                message: err.response.data.message,
+                type: 'is-danger',
+                hasIcon: true,
+                icon: 'heart-circle'
+              })
+            })
+      })
     }
   },
   mounted() {

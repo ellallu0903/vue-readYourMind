@@ -99,7 +99,7 @@
                     </b-button>
                     <b-button
                       class="btn_test_delete"
-                      @click="testDelete(test)"
+                      @click="confirmCustomDelete(test)"
                       icon-right="trash-can-outline"
                       size="is-medium"
                       v-if="!test.edit"
@@ -572,11 +572,27 @@ export default {
               icon: 'heart-circle'
             })
             this.tests.push({
+              _id: res.data.result._id,
               title: this.title,
               type: this.type,
               scoringMethod: this.scoringMethod,
               reference: this.reference,
-              description: this.description
+              description: this.description,
+              edit: false,
+              modelTitle: this.title,
+              modelDescription: this.description,
+              modelReference: this.reference,
+              modelType: this.type,
+              modelScoringMethod: this.scoringMethod,
+              questions: [
+                {
+                  question: this.question,
+                  options: {
+                    option: this.option,
+                    optionScore: this.optionScore
+                  }
+                }
+              ]
             })
             this.title = ''
             this.type = ''
@@ -716,6 +732,52 @@ export default {
             icon: 'heart-circle'
           })
         })
+    },
+    // 二次確認後刪除
+    confirmCustomDelete(test) {
+      this.$buefy.dialog.confirm({
+        title: 'Deleting test',
+        message: '你確定要刪除這筆測驗嗎？',
+        confirmText: 'Yes',
+        type: 'is-danger',
+        hasIcon: true,
+        onConfirm: () =>
+          this.axios
+            .delete(process.env.VUE_APP_API + '/tests/' + test._id)
+            .then(res => {
+              if (res.data.success) {
+                this.$buefy.dialog.alert({
+                  title: 'Success!',
+                  message: '刪除成功！',
+                  type: 'is-danger',
+                  hasIcon: true,
+                  icon: 'heart-circle'
+                })
+                // props.splice(props.index, 1)
+                const tindex = this.tests.findIndex(t => t._id === test._id)
+                this.activeTab = tindex - 1
+                this.tests.splice(tindex, 1)
+              } else {
+                this.$buefy.dialog.alert({
+                  title: 'Error!',
+                  message: '發生錯誤！',
+                  type: 'is-danger',
+                  hasIcon: true,
+                  icon: 'heart-broken'
+                })
+              }
+            })
+            .catch(err => {
+              console.log(err)
+              this.$buefy.dialog.alert({
+                title: 'Error!',
+                message: err.response.data.message,
+                type: 'is-danger',
+                hasIcon: true,
+                icon: 'heart-circle'
+              })
+            })
+      })
     },
     // 新增問題 & 選項
     quesitonSubmit() {
