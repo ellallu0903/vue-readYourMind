@@ -169,7 +169,7 @@
           <template v-for="(test, index) in tests" class="h-100">
             <b-tab-item :key="index" class="h-100">
               <template #header>
-                <span>
+                <span :id="'tab' + index">
                   {{ test.title }}
                 </span>
               </template>
@@ -478,82 +478,69 @@ export default {
       users.avator = this.model02
     }
   },
-  mounted() {
-    // 使用者資料
-    this.axios
-      .get(process.env.VUE_APP_API + '/users/' + this.user.id)
-      .then(res => {
-        if (res.data.success) {
-          this.users = res.data.result
-          this.model01 = res.data.result.name
-          this.model02 = res.data.result.avator
-          this.registeredDate = this.users.regDate.substr(0, 10)
-        } else {
-          this.$swal({
-            icon: 'error',
-            title: '發生錯誤',
-            text: res.data.message
-          })
-        }
-      })
-      .catch(err => {
-        this.$buefy.dialog.alert({
-          title: 'Error!',
-          message: err.response.data.message,
-          type: 'is-danger',
-          hasIcon: true,
-          icon: 'heart-broken'
+  async mounted() {
+    try {
+      // 使用者資料
+      let res = await this.axios.get(
+        process.env.VUE_APP_API + '/users/' + this.user.id
+      )
+      if (res.data.success) {
+        this.users = res.data.result
+        this.model01 = res.data.result.name
+        this.model02 = res.data.result.avator
+        this.registeredDate = this.users.regDate.substr(0, 10)
+      } else {
+        this.$swal({
+          icon: 'error',
+          title: '發生錯誤',
+          text: res.data.message
         })
-      })
-
-    // 使用者測驗結果
-    this.axios
-      .get(process.env.VUE_APP_API + '/users/result/' + this.user.id)
-      .then(res => {
-        if (res.data.success) {
-          this.results = res.data.result.pesonalTestResults
-        } else {
-          this.$swal({
-            icon: 'error',
-            title: '發生錯誤',
-            text: res.data.message
-          })
-        }
-      })
-      .catch(err => {
-        this.$buefy.dialog.alert({
-          title: 'Error!',
-          message: err.response.data.message,
-          type: 'is-danger',
-          hasIcon: true,
-          icon: 'heart-broken'
+      }
+      // 使用者測驗結果
+      res = await this.axios.get(
+        process.env.VUE_APP_API + '/users/result/' + this.user.id
+      )
+      if (res.data.success) {
+        this.results = res.data.result.pesonalTestResults
+      } else {
+        this.$swal({
+          icon: 'error',
+          title: '發生錯誤',
+          text: res.data.message
         })
-      })
+      }
 
-    // 所有測驗
-    this.axios
-      .get(process.env.VUE_APP_API + '/tests/')
-      .then(res => {
-        if (res.data.success) {
-          this.tests = res.data.result
-        } else {
-          this.$swal({
-            icon: 'error',
-            title: '發生錯誤',
-            text: res.data.message
-          })
+      // 所有測驗
+      res = await this.axios.get(process.env.VUE_APP_API + '/tests/')
+      if (res.data.success) {
+        this.tests = res.data.result
+        if (this.$route.query.test) {
+          const idx = this.tests.findIndex(
+            test => test._id === this.$route.query.test
+          )
+          if (idx > -1) {
+            setTimeout(() => {
+              document.querySelector(`#tab` + idx).parentElement.click()
+            }, 10)
+          }
         }
-      })
-      .catch(err => {
-        this.$buefy.dialog.alert({
-          title: 'Error!',
-          message: err.response.data.message,
-          type: 'is-danger',
-          hasIcon: true,
-          icon: 'heart-broken'
+      } else {
+        this.$swal({
+          icon: 'error',
+          title: '發生錯誤',
+          text: res.data.message
         })
+      }
+    } catch (err) {
+      console.log(err)
+      this.$buefy.dialog.alert({
+        title: 'Error!',
+        message: err.response.data.message,
+        type: 'is-danger',
+        hasIcon: true,
+        icon: 'heart-broken'
       })
-
+    }
     // for (let i = 0; i < this.resultData.length; i++) {
 
     // }

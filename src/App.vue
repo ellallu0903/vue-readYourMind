@@ -99,7 +99,7 @@
         </b-navbar-item>
       </template>
     </b-navbar>
-    <router-view />
+    <router-view :key="$route.fullPath" />
     <!-- footer -->
     <footer>
       <div class="content has-text-centered footer p-0">

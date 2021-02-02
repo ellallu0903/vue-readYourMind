@@ -133,7 +133,7 @@ export default {
               this.result = []
               // 導到個人專區
               if (this.$route.path !== '/personal') {
-                this.$router.push('/personal')
+                this.$router.push(`/personal?test=${this.$route.params.id}`)
               }
             } else {
               this.$buefy.dialog.alert({
