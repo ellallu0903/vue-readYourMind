@@ -3,8 +3,8 @@
 
 ![分隔線](http://free-line-design.com/b/b_simple_38/png/b_simple_38_0L.png)
 
-- ##### Preview：
+- #### Preview：
 
   ![readYourMind](https://i.imgur.com/3JfeRdJ.jpg)
 
-- ##### DEMO：[讀心 Read your mind](https://ellallu0903.github.io/vue-readYourMind/#/)
+- #### DEMO：[讀心 Read your mind](https://ellallu0903.github.io/vue-readYourMind/#/)
