@@ -28,7 +28,7 @@ export const testAdd = async (req, res) => {
         .status(400)
         .send({ success: false, message: '有內容未達 1 個字元以上。' })
     } else {
-      await tests.create({
+      const result = await tests.create({
         title: req.body.title,
         description: req.body.description,
         reference: req.body.reference,
@@ -46,7 +46,7 @@ export const testAdd = async (req, res) => {
         ],
         scoringMethod: req.body.scoringMethod
       })
-      res.status(200).send({ success: true, message: '' })
+      res.status(200).send({ success: true, message: '', result })
     }
   } catch (error) {
     console.log(error)

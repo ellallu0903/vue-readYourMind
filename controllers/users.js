@@ -22,7 +22,7 @@ export const registered = async (req, res) => {
         .status(400)
         .send({ success: false, message: '密碼必須 30 個字元以下。' })
     } else {
-      await users.create({
+      const result = await users.create({
         email: req.body.email,
         password: md5(req.body.password),
         name: req.body.name,
@@ -30,7 +30,7 @@ export const registered = async (req, res) => {
         authority: req.body.authority,
         regDate: Date.now()
       })
-      res.status(200).send({ success: true, message: '' })
+      res.status(200).send({ success: true, message: '', result })
     }
   } catch (error) {
     if (error.name === 'ValidationError') {

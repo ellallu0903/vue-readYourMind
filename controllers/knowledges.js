@@ -7,20 +7,25 @@ export const knowledgeAdd = async (req, res) => {
     return
   }
 
-  if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
+  if (
+    !req.headers['content-type'] ||
+    !req.headers['content-type'].includes('application/json')
+  ) {
     res.status(400).send({ success: false, message: '資料格式不符。' })
     return
   }
 
   try {
     if (req.body.title.length < 1 || req.body.content.length < 1) {
-      res.status(400).send({ success: false, message: '標題或內容必須 1 個字元以上。' })
+      res
+        .status(400)
+        .send({ success: false, message: '標題或內容必須 1 個字元以上。' })
     } else {
-      await knowledges.create({
+      const result = await knowledges.create({
         title: req.body.title,
         content: req.body.content
       })
-      res.status(200).send({ success: true, message: '' })
+      res.status(200).send({ success: true, message: '', result })
     }
   } catch (error) {
     if (error.name === 'ValidationError') {
@@ -40,7 +45,10 @@ export const knowledgeEdit = async (req, res) => {
     return
   }
 
-  if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
+  if (
+    !req.headers['content-type'] ||
+    !req.headers['content-type'].includes('application/json')
+  ) {
     res.status(400).send({ success: false, message: '資料格式不符。' })
     return
   }
@@ -51,7 +59,9 @@ export const knowledgeEdit = async (req, res) => {
     if (result === null) {
       res.status(404).send({ success: false, message: '找不到資料。' })
     } else {
-      result = await knowledges.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      result = await knowledges.findByIdAndUpdate(req.params.id, req.body, {
+        new: true
+      })
       res.status(200).send({ success: true, message: '', result })
     }
   } catch (error) {
