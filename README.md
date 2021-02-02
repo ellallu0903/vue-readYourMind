@@ -1,24 +1,10 @@
-# front
+<h3 align=center>讀心 Read your mind</h3>
+<div align=center>藉由測驗來解讀自己的心</div>
 
-## Project setup
-```
-npm install
-```
+![分隔線](http://free-line-design.com/b/b_simple_38/png/b_simple_38_0L.png)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- ##### Preview：
 
-### Compiles and minifies for production
-```
-npm run build
-```
+  ![readYourMind](https://i.imgur.com/3JfeRdJ.jpg)
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- ##### DEMO：[讀心 Read your mind](https://ellallu0903.github.io/vue-readYourMind/#/)
