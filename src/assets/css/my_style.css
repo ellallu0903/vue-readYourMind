@@ -140,6 +140,47 @@ a:hover {
           box-shadow: 0 0 5px rgba(96, 88, 75, 0.8);
 }
 
+.button.is-started {
+  -webkit-box-shadow: 0 5px 10px rgba(96, 88, 75, 0.5);
+          box-shadow: 0 5px 10px rgba(96, 88, 75, 0.5);
+  background-color: white;
+  border-radius: 7px;
+  color: #f17c67;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  font-weight: 600;
+}
+
+.button.is-started:hover {
+  background-color: #f17c67;
+  color: white;
+  -webkit-transform: translateY(3px);
+          transform: translateY(3px);
+}
+
+.button.is-started:focus:not(:active) {
+  -webkit-box-shadow: 0 0 5px rgba(96, 88, 75, 0.8);
+          box-shadow: 0 0 5px rgba(96, 88, 75, 0.8);
+}
+
+.btn_goToTest {
+  font-size: 1.25rem;
+  background-color: transparent;
+  color: #f17c67;
+  border-color: transparent;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  font-weight: 600;
+}
+
+.btn_goToTest:hover {
+  border: transparent;
+  color: #60584b;
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+  font-weight: 600;
+}
+
 /* alert_style ------------------------------- */
 .modal-card-title {
   text-align: center !important;
@@ -286,6 +327,8 @@ a:hover {
 
 .btn_to_top_bg a {
   color: rgba(241, 124, 103, 0.8);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .btn_to_top_bg a:hover {
@@ -309,6 +352,8 @@ a:hover {
   background-color: #f17c67;
   color: white;
   border: 1px solid #ffa392;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .nav_signUp:hover {
@@ -328,6 +373,8 @@ a:hover {
   background-color: white;
   color: #f17c67;
   border: 1px solid #ffa392;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .nav_logIn:hover {

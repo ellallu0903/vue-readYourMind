@@ -160,6 +160,39 @@ a:hover {
   }
 }
 
+.button.is-started {
+  box-shadow: 0 5px 10px rgba($color: $mindColor1, $alpha: 0.5);
+  background-color: rgba($color: white, $alpha: 1);
+  // border: 1px solid $primaryColor01;
+  border-radius: $btnRadius;
+  color: $primaryColor01;
+  transition: all 0.5s;
+  font-weight: 600;
+  &:hover {
+    background-color: rgba($color: $primaryColor01, $alpha: 1);
+    color: white;
+    transform: translateY(3px);
+  }
+  &:focus:not(:active) {
+    box-shadow: 0 0 5px rgba($color: $mindColor1, $alpha: 0.8);
+  }
+}
+
+.btn_goToTest {
+  font-size: 1.25rem;
+  background-color: transparent;
+  color: $primaryColor01;
+  border-color: transparent;
+  transition: all 0.5s;
+  font-weight: 600;
+  &:hover {
+    border: transparent;
+    color: $mindColor1;
+    transform: translateY(-3px);
+    font-weight: 600;
+  }
+}
+
 /* alert_style ------------------------------- */
 .modal-card-title {
   text-align: center !important;
@@ -285,6 +318,7 @@ a:hover {
   border-radius: 50%;
   a {
     color: rgba($color: $primaryColor01, $alpha: 0.8);
+    transition: all 0.5s;
   }
   a:hover {
     color: rgba($color: $primaryColor01, $alpha: 0.5);
@@ -309,6 +343,7 @@ a:hover {
   background-color: $primaryColor01;
   color: white;
   border: 1px solid $primaryColor02;
+  transition: all 0.5s;
 }
 
 .nav_signUp:hover {
@@ -327,6 +362,7 @@ a:hover {
   background-color: white;
   color: $primaryColor01;
   border: 1px solid $primaryColor02;
+  transition: all 0.5s;
 }
 
 .nav_logIn:hover {

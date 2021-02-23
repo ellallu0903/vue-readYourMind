@@ -227,7 +227,12 @@
                     >
                       <div class="columns is-flex-direction-column">
                         <div class="column mb-3">
-                          開始你的第一個 {{ test.title }} 測驗吧！
+                          <b-button
+                            tag="router-link"
+                            type="btn_goToTest"
+                            :to="'test/' + test._id"
+                            >開始你的第一個 {{ test.title }} 測驗吧！</b-button
+                          >
                         </div>
                         <div class="column has-text-centered">
                           <img
