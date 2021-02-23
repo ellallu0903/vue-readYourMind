@@ -35,6 +35,12 @@
             </b-input>
           </b-field>
 
+          <b-field>
+              <b-checkbox v-model="rememberEmail">
+                  記住信箱
+              </b-checkbox>
+          </b-field>
+
           <b-field class="w-100 has-text-centered">
             <button type="submit" class="btn_login">登入</button>
           </b-field>
@@ -55,8 +61,9 @@ export default {
   name: 'Login',
   data() {
     return {
-      email: '',
-      password: ''
+      email: this.$store.state.sign.email,
+      password: '',
+      rememberEmail: true
     }
   },
   methods: {
@@ -75,6 +82,12 @@ export default {
               icon: 'heart-circle'
             })
             this.$router.push('/')
+            if (this.rememberEmail === false) {
+              this.$store.commit('cleanEmail')
+              this.rememberEmail = false
+            } else {
+              this.$store.state.sign.email = this.email
+            }
           } else {
             this.$buefy.dialog.alert({
               title: 'Error!',

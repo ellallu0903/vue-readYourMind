@@ -138,7 +138,8 @@ export default {
               hasIcon: true,
               icon: 'heart-circle'
             })
-            this.$router.push('/')
+            this.$store.state.sign.email = this.email
+            this.$router.push('/login')
           } else {
             this.$buefy.dialog.alert({
               title: 'Error!',

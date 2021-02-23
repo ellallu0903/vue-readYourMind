@@ -12,6 +12,9 @@ export default new Vuex.Store({
       avator: '',
       authority: '',
       id: ''
+    },
+    sign: {
+      email: ''
     }
   },
   mutations: {
@@ -28,6 +31,9 @@ export default new Vuex.Store({
       state.user.id = data._id
       state.user.avator = data.avator
       state.user.authority = data.authority
+    },
+    cleanEmail(state) {
+      state.sign.email = ''
     }
   },
   actions: {},
