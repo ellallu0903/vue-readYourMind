@@ -12,7 +12,7 @@
         <b-notification :closable="false" class="backData">
           <div class="is-flex is-justify-content-center is-align-items-center">
             <b-icon icon="account" size="is-large" class="mr-1"></b-icon
-            >會員數量：
+            >會員總數：
           </div>
           <div class="p-3 has-text-centered is-size-2 color_primaryColor01">
             {{ members.length }}
