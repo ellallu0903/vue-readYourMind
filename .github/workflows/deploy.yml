@@ -20,8 +20,8 @@ jobs:
       # 步驟二：編譯
       - name: Install and Build
         run: |
-          yarn install
-          yarn build
+          npm install
+          npm build
         env:
           VUE_APP_API: ${{ secrets.VUE_APP_API }}
           VUE_APP_GA: ${{ secrets.VUE_APP_GA }}
