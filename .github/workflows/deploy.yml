@@ -17,10 +17,14 @@ jobs:
       - name: checkout
         # 使用的 actions/checkout 複製程式碼
         uses: actions/checkout@v2.3.1
-      # 步驟二：編譯
-      - name: Install and Build
+      # 設定 Node.js 版本
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 16
+      # 步驟二：編譯
+      - uses: actions/setup-node@v4
+      - name: Install and Build
         run: |
           yarn install
           yarn build
